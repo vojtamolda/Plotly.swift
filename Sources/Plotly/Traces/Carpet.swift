@@ -82,7 +82,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
 
     /// A two dimensional array of x coordinates at each carpet point.
     /// 
-    /// If ommitted, the plot is a cheater plot and the xaxis is hidden by default.
+    /// If omitted, the plot is a cheater plot and the xaxis is hidden by default.
     public var x: XData? = nil
 
     /// A two dimensional array of y coordinates at each carpet point.
@@ -118,7 +118,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
 
     /// The shift applied to each successive row of data in creating a cheater plot.
     /// 
-    /// Only used if `x` is been ommitted.
+    /// Only used if `x` is been omitted.
     public var cheaterSlope: Double? = nil
 
     public struct AAxis: Encodable {
@@ -179,6 +179,12 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         /// By default, plotly attempts to determined the axis type by looking into the data of the traces
         /// that referenced the axis in question.
         public var type: `Type`? = nil
+    
+        /// Using *strict* a numeric string in trace data is not converted to a number.
+        /// 
+        /// Using *convert types* a numeric string in trace data may be treated as a number during automatic
+        /// axis `type` detection. Defaults to layout.autotypenumbers.
+        public var autoTypeNumbers: AutoTypeNumbers? = nil
     
         /// Determines whether or not the range of this axis is computed in relation to the input data.
         /// 
@@ -279,6 +285,9 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
         public var exponentFormat: ExponentFormat? = nil
+    
+        /// Hide SI prefix for 10^n if |n| is below this number
+        public var minExponent: Double? = nil
     
         /// If "true", even 4-digit integers are separated
         public var separateThousands: Bool? = nil
@@ -387,6 +396,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
             case smoothing
             case title
             case type
+            case autoTypeNumbers = "autotypenumbers"
             case autoRange = "autorange"
             case rangeMode = "rangemode"
             case range
@@ -405,6 +415,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
             case showTickSuffix = "showticksuffix"
             case showExponent = "showexponent"
             case exponentFormat = "exponentformat"
+            case minExponent = "minexponent"
             case separateThousands = "separatethousands"
             case tickFormat = "tickformat"
             case tickFormatStops = "tickformatstops"
@@ -442,6 +453,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         ///   - smoothing:
         ///   - title:
         ///   - type: Sets the axis type.
+        ///   - autoTypeNumbers: Using *strict* a numeric string in trace data is not converted to a number.
         ///   - autoRange: Determines whether or not the range of this axis is computed in relation to the
         ///   input data.
         ///   - rangeMode: If *normal*, the range is computed in relation to the extrema of the input data.
@@ -462,6 +474,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
         ///   - showExponent: If *all*, all exponents are shown besides their significands.
         ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+        ///   - minExponent: Hide SI prefix for 10^n if |n| is below this number
         ///   - separateThousands: If "true", even 4-digit integers are separated
         ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
         ///   very similar to those in Python.
@@ -491,25 +504,26 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         ///   - arrayTick0: The starting index of grid lines along the axis
         ///   - arraydTick: The stride between grid lines along the axis
         public init(color: Color? = nil, smoothing: Double? = nil, title: Title? = nil, type: `Type`? =
-                nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil,
-                fixedRange: Bool? = nil, cheaterType: CheaterType? = nil, tickMode: TickMode? = nil, numTicks:
-                Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels:
-                ShowTickLabels? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? =
-                nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix:
-                ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil,
-                separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? =
-                nil, categoryOrder: CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, labelPadding:
-                Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil,
-                lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? =
-                nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil,
-                minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil,
-                startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor:
-                Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick:
-                Int? = nil) {
+                nil, autoTypeNumbers: AutoTypeNumbers? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode?
+                = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, cheaterType: CheaterType? = nil,
+                tickMode: TickMode? = nil, numTicks: Int? = nil, tickValues: [Double]? = nil, tickText:
+                [Double]? = nil, showTickLabels: ShowTickLabels? = nil, tickFont: Font? = nil, tickAngle: Angle?
+                = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? =
+                nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat:
+                ExponentFormat? = nil, minExponent: Double? = nil, separateThousands: Bool? = nil, tickFormat:
+                String? = nil, tickFormatStops: [TickFormatStop]? = nil, categoryOrder: CarpetCategoryOrder? =
+                nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil, labelPrefix: String? = nil,
+                labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? =
+                nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid: Bool? = nil, minorGridCount:
+                Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? = nil, startLine: Bool? = nil,
+                startLineColor: Color? = nil, startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth:
+                Double? = nil, endLineColor: Color? = nil, tick0: Double? = nil, dTick: Double? = nil,
+                arrayTick0: Int? = nil, arraydTick: Int? = nil) {
             self.color = color
             self.smoothing = smoothing
             self.title = title
             self.type = type
+            self.autoTypeNumbers = autoTypeNumbers
             self.autoRange = autoRange
             self.rangeMode = rangeMode
             self.range = range
@@ -528,6 +542,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
             self.showTickSuffix = showTickSuffix
             self.showExponent = showExponent
             self.exponentFormat = exponentFormat
+            self.minExponent = minExponent
             self.separateThousands = separateThousands
             self.tickFormat = tickFormat
             self.tickFormatStops = tickFormatStops
@@ -619,6 +634,12 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         /// that referenced the axis in question.
         public var type: `Type`? = nil
     
+        /// Using *strict* a numeric string in trace data is not converted to a number.
+        /// 
+        /// Using *convert types* a numeric string in trace data may be treated as a number during automatic
+        /// axis `type` detection. Defaults to layout.autotypenumbers.
+        public var autoTypeNumbers: AutoTypeNumbers? = nil
+    
         /// Determines whether or not the range of this axis is computed in relation to the input data.
         /// 
         /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -718,6 +739,9 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
         public var exponentFormat: ExponentFormat? = nil
+    
+        /// Hide SI prefix for 10^n if |n| is below this number
+        public var minExponent: Double? = nil
     
         /// If "true", even 4-digit integers are separated
         public var separateThousands: Bool? = nil
@@ -826,6 +850,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
             case smoothing
             case title
             case type
+            case autoTypeNumbers = "autotypenumbers"
             case autoRange = "autorange"
             case rangeMode = "rangemode"
             case range
@@ -844,6 +869,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
             case showTickSuffix = "showticksuffix"
             case showExponent = "showexponent"
             case exponentFormat = "exponentformat"
+            case minExponent = "minexponent"
             case separateThousands = "separatethousands"
             case tickFormat = "tickformat"
             case tickFormatStops = "tickformatstops"
@@ -881,6 +907,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         ///   - smoothing:
         ///   - title:
         ///   - type: Sets the axis type.
+        ///   - autoTypeNumbers: Using *strict* a numeric string in trace data is not converted to a number.
         ///   - autoRange: Determines whether or not the range of this axis is computed in relation to the
         ///   input data.
         ///   - rangeMode: If *normal*, the range is computed in relation to the extrema of the input data.
@@ -901,6 +928,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
         ///   - showExponent: If *all*, all exponents are shown besides their significands.
         ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+        ///   - minExponent: Hide SI prefix for 10^n if |n| is below this number
         ///   - separateThousands: If "true", even 4-digit integers are separated
         ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
         ///   very similar to those in Python.
@@ -930,25 +958,26 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
         ///   - arrayTick0: The starting index of grid lines along the axis
         ///   - arraydTick: The stride between grid lines along the axis
         public init(color: Color? = nil, smoothing: Double? = nil, title: Title? = nil, type: `Type`? =
-                nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil,
-                fixedRange: Bool? = nil, cheaterType: CheaterType? = nil, tickMode: TickMode? = nil, numTicks:
-                Int? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, showTickLabels:
-                ShowTickLabels? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? =
-                nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix:
-                ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil,
-                separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? =
-                nil, categoryOrder: CarpetCategoryOrder? = nil, categoryArray: [Double]? = nil, labelPadding:
-                Int? = nil, labelPrefix: String? = nil, labelSuffix: String? = nil, showLine: Bool? = nil,
-                lineColor: Color? = nil, lineWidth: Double? = nil, gridColor: Color? = nil, gridWidth: Double? =
-                nil, showGrid: Bool? = nil, minorGridCount: Int? = nil, minorGridWidth: Double? = nil,
-                minorGridColor: Color? = nil, startLine: Bool? = nil, startLineColor: Color? = nil,
-                startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth: Double? = nil, endLineColor:
-                Color? = nil, tick0: Double? = nil, dTick: Double? = nil, arrayTick0: Int? = nil, arraydTick:
-                Int? = nil) {
+                nil, autoTypeNumbers: AutoTypeNumbers? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode?
+                = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, cheaterType: CheaterType? = nil,
+                tickMode: TickMode? = nil, numTicks: Int? = nil, tickValues: [Double]? = nil, tickText:
+                [Double]? = nil, showTickLabels: ShowTickLabels? = nil, tickFont: Font? = nil, tickAngle: Angle?
+                = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? =
+                nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat:
+                ExponentFormat? = nil, minExponent: Double? = nil, separateThousands: Bool? = nil, tickFormat:
+                String? = nil, tickFormatStops: [TickFormatStop]? = nil, categoryOrder: CarpetCategoryOrder? =
+                nil, categoryArray: [Double]? = nil, labelPadding: Int? = nil, labelPrefix: String? = nil,
+                labelSuffix: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? =
+                nil, gridColor: Color? = nil, gridWidth: Double? = nil, showGrid: Bool? = nil, minorGridCount:
+                Int? = nil, minorGridWidth: Double? = nil, minorGridColor: Color? = nil, startLine: Bool? = nil,
+                startLineColor: Color? = nil, startLineWidth: Double? = nil, endLine: Bool? = nil, endLineWidth:
+                Double? = nil, endLineColor: Color? = nil, tick0: Double? = nil, dTick: Double? = nil,
+                arrayTick0: Int? = nil, arraydTick: Int? = nil) {
             self.color = color
             self.smoothing = smoothing
             self.title = title
             self.type = type
+            self.autoTypeNumbers = autoTypeNumbers
             self.autoRange = autoRange
             self.rangeMode = rangeMode
             self.range = range
@@ -967,6 +996,7 @@ public struct Carpet<XData, YData, AData, BData>: Trace, XYSubplot where XData: 
             self.showTickSuffix = showTickSuffix
             self.showExponent = showExponent
             self.exponentFormat = exponentFormat
+            self.minExponent = minExponent
             self.separateThousands = separateThousands
             self.tickFormat = tickFormat
             self.tickFormatStops = tickFormatStops

@@ -143,6 +143,44 @@ public struct Box<YData, XData, QData>: Trace, XYSubplot where YData: Plotable, 
     /// Sets the y coordinate step for multi-box traces set using q1/median/q3.
     public var dy: Double? = nil
 
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form
+    /// of *M<n>* could be used to declare the number of months. In this case `n` must be a positive
+    /// integer.
+    public var xPeriod: Anything? = nil
+
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form
+    /// of *M<n>* could be used to declare the number of months. In this case `n` must be a positive
+    /// integer.
+    public var yPeriod: Anything? = nil
+
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the base for period positioning in milliseconds or date string on the x0 axis. When
+    /// `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e.
+    /// 2000-01-02, otherwise it would be at 2000-01-01.
+    public var xPeriod0: Anything? = nil
+
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the base for period positioning in milliseconds or date string on the y0 axis. When
+    /// `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e.
+    /// 2000-01-02, otherwise it would be at 2000-01-01.
+    public var yPeriod0: Anything? = nil
+
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the alignment of data points on the x axis.
+    public var xPeriodAlignment: XPeriodAlignment? = nil
+
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the alignment of data points on the y axis.
+    public var yPeriodAlignment: YPeriodAlignment? = nil
+
     /// Sets the Quartile 1 values.
     /// 
     /// There should be as many items as the number of boxes desired.
@@ -598,6 +636,12 @@ public struct Box<YData, XData, QData>: Trace, XYSubplot where YData: Plotable, 
         case y0
         case dx
         case dy
+        case xPeriod = "xperiod"
+        case yPeriod = "yperiod"
+        case xPeriod0 = "xperiod0"
+        case yPeriod0 = "yperiod0"
+        case xPeriodAlignment = "xperiodalignment"
+        case yPeriodAlignment = "yperiodalignment"
         case q1
         case median
         case q3
@@ -703,6 +747,12 @@ public struct Box<YData, XData, QData>: Trace, XYSubplot where YData: Plotable, 
     ///   traces set using q1/median/q3.
     ///   - dx: Sets the x coordinate step for multi-box traces set using q1/median/q3.
     ///   - dy: Sets the y coordinate step for multi-box traces set using q1/median/q3.
+    ///   - xPeriod: Only relevant when the axis `type` is *date*.
+    ///   - yPeriod: Only relevant when the axis `type` is *date*.
+    ///   - xPeriod0: Only relevant when the axis `type` is *date*.
+    ///   - yPeriod0: Only relevant when the axis `type` is *date*.
+    ///   - xPeriodAlignment: Only relevant when the axis `type` is *date*.
+    ///   - yPeriodAlignment: Only relevant when the axis `type` is *date*.
     ///   - q1: Sets the Quartile 1 values.
     ///   - median: Sets the median values.
     ///   - q3: Sets the Quartile 3 values.
@@ -749,15 +799,17 @@ public struct Box<YData, XData, QData>: Trace, XYSubplot where YData: Plotable, 
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
             hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms:
             [Transform] = [], uiRevision: Anything? = nil, y: YData? = nil, x: XData? = nil, x0: Anything? =
-            nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, q1: QData? = nil, median: QData?
-            = nil, q3: QData? = nil, lowerFence: QData? = nil, upperFence: QData? = nil, notched: Bool? =
-            nil, notchWidth: Double? = nil, notchSpan: QData? = nil, boxPoints: BoxPoints? = nil, jitter:
-            Double? = nil, pointPosition: Double? = nil, boxMean: BoxMean? = nil, mean: QData? = nil,
-            standardDeviation: QData? = nil, orientation: Orientation? = nil, quartileMethod:
-            QuartileMethod? = nil, width: Double? = nil, marker: SymbolicMarker? = nil, line: Line? = nil,
-            fillColor: Color? = nil, whiskerWidth: Double? = nil, offsetGroup: String? = nil,
-            alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, text:
-            Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil,
+            nil, y0: Anything? = nil, dx: Double? = nil, dy: Double? = nil, xPeriod: Anything? = nil,
+            yPeriod: Anything? = nil, xPeriod0: Anything? = nil, yPeriod0: Anything? = nil,
+            xPeriodAlignment: XPeriodAlignment? = nil, yPeriodAlignment: YPeriodAlignment? = nil, q1: QData?
+            = nil, median: QData? = nil, q3: QData? = nil, lowerFence: QData? = nil, upperFence: QData? =
+            nil, notched: Bool? = nil, notchWidth: Double? = nil, notchSpan: QData? = nil, boxPoints:
+            BoxPoints? = nil, jitter: Double? = nil, pointPosition: Double? = nil, boxMean: BoxMean? = nil,
+            mean: QData? = nil, standardDeviation: QData? = nil, orientation: Orientation? = nil,
+            quartileMethod: QuartileMethod? = nil, width: Double? = nil, marker: SymbolicMarker? = nil,
+            line: Line? = nil, fillColor: Color? = nil, whiskerWidth: Double? = nil, offsetGroup: String? =
+            nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil,
+            text: Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>? = nil,
             hoverOn: HoverOn? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil, xAxis: XAxis =
             .preset, yAxis: YAxis = .preset) {
         self.visible = visible
@@ -781,6 +833,12 @@ public struct Box<YData, XData, QData>: Trace, XYSubplot where YData: Plotable, 
         self.y0 = y0
         self.dx = dx
         self.dy = dy
+        self.xPeriod = xPeriod
+        self.yPeriod = yPeriod
+        self.xPeriod0 = xPeriod0
+        self.yPeriod0 = yPeriod0
+        self.xPeriodAlignment = xPeriodAlignment
+        self.yPeriodAlignment = yPeriodAlignment
         self.q1 = q1
         self.median = median
         self.q3 = q3
@@ -846,6 +904,12 @@ public struct Box<YData, XData, QData>: Trace, XYSubplot where YData: Plotable, 
         try container.encodeIfPresent(y0, forKey: .y0)
         try container.encodeIfPresent(dx, forKey: .dx)
         try container.encodeIfPresent(dy, forKey: .dy)
+        try container.encodeIfPresent(xPeriod, forKey: .xPeriod)
+        try container.encodeIfPresent(yPeriod, forKey: .yPeriod)
+        try container.encodeIfPresent(xPeriod0, forKey: .xPeriod0)
+        try container.encodeIfPresent(yPeriod0, forKey: .yPeriod0)
+        try container.encodeIfPresent(xPeriodAlignment, forKey: .xPeriodAlignment)
+        try container.encodeIfPresent(yPeriodAlignment, forKey: .yPeriodAlignment)
         if let q1 = self.q1 {
             try q1.encode(toPlotly: container.superEncoder(forKey: .q1))
         }

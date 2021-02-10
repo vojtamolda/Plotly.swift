@@ -485,11 +485,22 @@ public struct Layout: Encodable {
     }
     public var margin: Margin? = nil
 
+    /// Placeholder for exporting automargin-impacting values namely `margin.t`, `margin.b`, `margin.l`
+    /// and `margin.r` in *full-json* mode.
+    public var computed: Anything? = nil
+
     /// Sets the background color of the paper where the graph is drawn.
     public var paperBackgroundColor: Color? = nil
 
     /// Sets the background color of the plotting area in-between x and y axes.
     public var plotBackgroundColor: Color? = nil
+
+    /// Using *strict* a numeric string in trace data is not converted to a number.
+    /// 
+    /// Using *convert types* a numeric string in trace data may be treated as a number during automatic
+    /// axis `type` detection. This is the default value; however it could be overridden for individual
+    /// axes.
+    public var autoTypeNumbers: AutoTypeNumbers? = nil
 
     /// Sets the decimal and thousand separators.
     /// 
@@ -1231,6 +1242,9 @@ public struct Layout: Encodable {
         /// remain *constant* independent of the symbol size on the graph.
         public var itemSizing: ItemSizing? = nil
     
+        /// Sets the width (in px) of the legend item symbols (the part other than the title.text).
+        public var itemWidth: Double? = nil
+    
         /// Determines the behavior on legend item click.
         /// 
         /// *toggle* toggles the visibility of the item clicked on the graph. *toggleothers* makes the
@@ -1333,6 +1347,7 @@ public struct Layout: Encodable {
             case traceOrder = "traceorder"
             case traceGroupGap = "tracegroupgap"
             case itemSizing = "itemsizing"
+            case itemWidth = "itemwidth"
             case itemClick = "itemclick"
             case itemDoubleClick = "itemdoubleclick"
             case x
@@ -1356,6 +1371,8 @@ public struct Layout: Encodable {
         ///   - traceGroupGap: Sets the amount of vertical space (in px) between legend groups.
         ///   - itemSizing: Determines if the legend items symbols scale with their corresponding *trace*
         ///   attributes or remain *constant* independent of the symbol size on the graph.
+        ///   - itemWidth: Sets the width (in px) of the legend item symbols (the part other than the
+        ///   title.text).
         ///   - itemClick: Determines the behavior on legend item click.
         ///   - itemDoubleClick: Determines the behavior on legend item double-click.
         ///   - x: Sets the x position (in normalized coordinates) of the legend.
@@ -1369,10 +1386,10 @@ public struct Layout: Encodable {
         ///   - title:
         public init(backgroundColor: Color? = nil, borderColor: Color? = nil, borderWidth: Double? =
                 nil, font: Font? = nil, orientation: Orientation? = nil, traceOrder: TraceOrder? = nil,
-                traceGroupGap: Double? = nil, itemSizing: ItemSizing? = nil, itemClick: ItemClick? = nil,
-                itemDoubleClick: ItemDoubleClick? = nil, x: Double? = nil, xAnchor: XAutoAnchor? = nil, y:
-                Double? = nil, yAnchor: YAutoAnchor? = nil, uiRevision: Anything? = nil, verticalAlign:
-                VerticalAlign? = nil, title: LegendTitle? = nil) {
+                traceGroupGap: Double? = nil, itemSizing: ItemSizing? = nil, itemWidth: Double? = nil,
+                itemClick: ItemClick? = nil, itemDoubleClick: ItemDoubleClick? = nil, x: Double? = nil, xAnchor:
+                XAutoAnchor? = nil, y: Double? = nil, yAnchor: YAutoAnchor? = nil, uiRevision: Anything? = nil,
+                verticalAlign: VerticalAlign? = nil, title: LegendTitle? = nil) {
             self.backgroundColor = backgroundColor
             self.borderColor = borderColor
             self.borderWidth = borderWidth
@@ -1381,6 +1398,7 @@ public struct Layout: Encodable {
             self.traceOrder = traceOrder
             self.traceGroupGap = traceGroupGap
             self.itemSizing = itemSizing
+            self.itemWidth = itemWidth
             self.itemClick = itemClick
             self.itemDoubleClick = itemDoubleClick
             self.x = x
@@ -1516,22 +1534,32 @@ public struct Layout: Encodable {
         /// Sets the x component of the arrow tail about the arrow head.
         /// 
         /// If `axref` is `pixel`, a positive (negative) component corresponds to an arrow pointing from
-        /// right to left (left to right). If `axref` is an axis, this is an absolute value on that axis,
-        /// like `x`, NOT a relative value.
+        /// right to left (left to right). If `axref` is not `pixel` and is exactly the same as `xref`, this
+        /// is an absolute value on that axis, like `x`, specified in the same coordinates as `xref`.
         public var ax: Anything? = nil
     
         /// Sets the y component of the arrow tail about the arrow head.
         /// 
         /// If `ayref` is `pixel`, a positive (negative) component corresponds to an arrow pointing from
-        /// bottom to top (top to bottom). If `ayref` is an axis, this is an absolute value on that axis,
-        /// like `y`, NOT a relative value.
+        /// bottom to top (top to bottom). If `ayref` is not `pixel` and is exactly the same as `yref`, this
+        /// is an absolute value on that axis, like `y`, specified in the same coordinates as `yref`.
         public var ay: Anything? = nil
     
-        /// Indicates in what terms the tail of the annotation (ax,ay) is specified.
+        /// Indicates in what coordinates the tail of the annotation (ax,ay) is specified.
         /// 
-        /// If `pixel`, `ax` is a relative offset in pixels from `x`. If set to an x axis id (e.g. *x* or
-        /// *x2*), `ax` is specified in the same terms as that axis. This is useful for trendline
-        /// annotations which should continue to indicate the correct trend when zoomed.
+        /// If set to a ax axis id (e.g. *ax* or *ax2*), the `ax` position refers to a ax coordinate. If set
+        /// to *paper*, the `ax` position refers to the distance from the left of the plotting area in
+        /// normalized coordinates where *0* (*1*) corresponds to the left (right). If set to a ax axis ID
+        /// followed by *domain* (separated by a space), the position behaves like for *paper*, but refers
+        /// to the distance in fractions of the domain length from the left of the domain of that axis:
+        /// e.g., *ax2 domain* refers to the domain of the second ax axis and a ax position of 0.5 refers to
+        /// the point between the left and the right of the domain of the second ax axis. In order for
+        /// absolute positioning of the arrow to work, *axref* must be exactly the same as *xref*, otherwise
+        /// *axref* will revert to *pixel* (explained next). For relative positioning, *axref* can be set to
+        /// *pixel*, in which case the *ax* value is specified in pixels relative to *x*. Absolute
+        /// positioning is useful for trendline annotations which should continue to indicate the correct
+        /// trend when zoomed. Relative positioning is useful for specifying the text offset for an
+        /// annotated point.
         public enum AxReference: Encodable {
             case pixel
             case xAxis(XAxis)
@@ -1545,18 +1573,38 @@ public struct Layout: Encodable {
                 }
             }
         }
-        /// Indicates in what terms the tail of the annotation (ax,ay) is specified.
+        /// Indicates in what coordinates the tail of the annotation (ax,ay) is specified.
         /// 
-        /// If `pixel`, `ax` is a relative offset in pixels from `x`. If set to an x axis id (e.g. *x* or
-        /// *x2*), `ax` is specified in the same terms as that axis. This is useful for trendline
-        /// annotations which should continue to indicate the correct trend when zoomed.
+        /// If set to a ax axis id (e.g. *ax* or *ax2*), the `ax` position refers to a ax coordinate. If set
+        /// to *paper*, the `ax` position refers to the distance from the left of the plotting area in
+        /// normalized coordinates where *0* (*1*) corresponds to the left (right). If set to a ax axis ID
+        /// followed by *domain* (separated by a space), the position behaves like for *paper*, but refers
+        /// to the distance in fractions of the domain length from the left of the domain of that axis:
+        /// e.g., *ax2 domain* refers to the domain of the second ax axis and a ax position of 0.5 refers to
+        /// the point between the left and the right of the domain of the second ax axis. In order for
+        /// absolute positioning of the arrow to work, *axref* must be exactly the same as *xref*, otherwise
+        /// *axref* will revert to *pixel* (explained next). For relative positioning, *axref* can be set to
+        /// *pixel*, in which case the *ax* value is specified in pixels relative to *x*. Absolute
+        /// positioning is useful for trendline annotations which should continue to indicate the correct
+        /// trend when zoomed. Relative positioning is useful for specifying the text offset for an
+        /// annotated point.
         public var axReference: AxReference? = nil
     
-        /// Indicates in what terms the tail of the annotation (ax,ay) is specified.
+        /// Indicates in what coordinates the tail of the annotation (ax,ay) is specified.
         /// 
-        /// If `pixel`, `ay` is a relative offset in pixels from `y`. If set to a y axis id (e.g. *y* or
-        /// *y2*), `ay` is specified in the same terms as that axis. This is useful for trendline
-        /// annotations which should continue to indicate the correct trend when zoomed.
+        /// If set to a ay axis id (e.g. *ay* or *ay2*), the `ay` position refers to a ay coordinate. If set
+        /// to *paper*, the `ay` position refers to the distance from the bottom of the plotting area in
+        /// normalized coordinates where *0* (*1*) corresponds to the bottom (top). If set to a ay axis ID
+        /// followed by *domain* (separated by a space), the position behaves like for *paper*, but refers
+        /// to the distance in fractions of the domain length from the bottom of the domain of that axis:
+        /// e.g., *ay2 domain* refers to the domain of the second ay axis and a ay position of 0.5 refers to
+        /// the point between the bottom and the top of the domain of the second ay axis. In order for
+        /// absolute positioning of the arrow to work, *ayref* must be exactly the same as *yref*, otherwise
+        /// *ayref* will revert to *pixel* (explained next). For relative positioning, *ayref* can be set to
+        /// *pixel*, in which case the *ay* value is specified in pixels relative to *y*. Absolute
+        /// positioning is useful for trendline annotations which should continue to indicate the correct
+        /// trend when zoomed. Relative positioning is useful for specifying the text offset for an
+        /// annotated point.
         public enum AyReference: Encodable {
             case pixel
             case yAxis(YAxis)
@@ -1570,18 +1618,32 @@ public struct Layout: Encodable {
                 }
             }
         }
-        /// Indicates in what terms the tail of the annotation (ax,ay) is specified.
+        /// Indicates in what coordinates the tail of the annotation (ax,ay) is specified.
         /// 
-        /// If `pixel`, `ay` is a relative offset in pixels from `y`. If set to a y axis id (e.g. *y* or
-        /// *y2*), `ay` is specified in the same terms as that axis. This is useful for trendline
-        /// annotations which should continue to indicate the correct trend when zoomed.
+        /// If set to a ay axis id (e.g. *ay* or *ay2*), the `ay` position refers to a ay coordinate. If set
+        /// to *paper*, the `ay` position refers to the distance from the bottom of the plotting area in
+        /// normalized coordinates where *0* (*1*) corresponds to the bottom (top). If set to a ay axis ID
+        /// followed by *domain* (separated by a space), the position behaves like for *paper*, but refers
+        /// to the distance in fractions of the domain length from the bottom of the domain of that axis:
+        /// e.g., *ay2 domain* refers to the domain of the second ay axis and a ay position of 0.5 refers to
+        /// the point between the bottom and the top of the domain of the second ay axis. In order for
+        /// absolute positioning of the arrow to work, *ayref* must be exactly the same as *yref*, otherwise
+        /// *ayref* will revert to *pixel* (explained next). For relative positioning, *ayref* can be set to
+        /// *pixel*, in which case the *ay* value is specified in pixels relative to *y*. Absolute
+        /// positioning is useful for trendline annotations which should continue to indicate the correct
+        /// trend when zoomed. Relative positioning is useful for specifying the text offset for an
+        /// annotated point.
         public var ayReference: AyReference? = nil
     
         /// Sets the annotation's x coordinate axis.
         /// 
-        /// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to
-        /// *paper*, the `x` position refers to the distance from the left side of the plotting area in
-        /// normalized coordinates where 0 (1) corresponds to the left (right) side.
+        /// If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to a x coordinate. If set to
+        /// *paper*, the `x` position refers to the distance from the left of the plotting area in
+        /// normalized coordinates where *0* (*1*) corresponds to the left (right). If set to a x axis ID
+        /// followed by *domain* (separated by a space), the position behaves like for *paper*, but refers
+        /// to the distance in fractions of the domain length from the left of the domain of that axis:
+        /// e.g., *x2 domain* refers to the domain of the second x axis and a x position of 0.5 refers to
+        /// the point between the left and the right of the domain of the second x axis.
         public var xReference: XAxisReference? = nil
     
         /// Sets the annotation's x position.
@@ -1608,9 +1670,13 @@ public struct Layout: Encodable {
     
         /// Sets the annotation's y coordinate axis.
         /// 
-        /// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
+        /// If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y coordinate. If set to
         /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
-        /// normalized coordinates where 0 (1) corresponds to the bottom (top).
+        /// normalized coordinates where *0* (*1*) corresponds to the bottom (top). If set to a y axis ID
+        /// followed by *domain* (separated by a space), the position behaves like for *paper*, but refers
+        /// to the distance in fractions of the domain length from the bottom of the domain of that axis:
+        /// e.g., *y2 domain* refers to the domain of the second y axis and a y position of 0.5 refers to
+        /// the point between the bottom and the top of the domain of the second y axis.
         public var yReference: YAxisReference? = nil
     
         /// Sets the annotation's y position.
@@ -1823,8 +1889,8 @@ public struct Layout: Encodable {
         ///   it is pointing at, for example to point at the edge of a marker independent of zoom.
         ///   - ax: Sets the x component of the arrow tail about the arrow head.
         ///   - ay: Sets the y component of the arrow tail about the arrow head.
-        ///   - axReference: Indicates in what terms the tail of the annotation (ax,ay) is specified.
-        ///   - ayReference: Indicates in what terms the tail of the annotation (ax,ay) is specified.
+        ///   - axReference: Indicates in what coordinates the tail of the annotation (ax,ay) is specified.
+        ///   - ayReference: Indicates in what coordinates the tail of the annotation (ax,ay) is specified.
         ///   - xReference: Sets the annotation's x coordinate axis.
         ///   - x: Sets the annotation's x position.
         ///   - xAnchor: Sets the text box's horizontal position anchor This anchor binds the `x` position to
@@ -1944,9 +2010,13 @@ public struct Layout: Encodable {
     
         /// Sets the shape's x coordinate axis.
         /// 
-        /// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate. If set to
-        /// *paper*, the `x` position refers to the distance from the left side of the plotting area in
-        /// normalized coordinates where *0* (*1*) corresponds to the left (right) side. If the axis `type`
+        /// If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to a x coordinate. If set to
+        /// *paper*, the `x` position refers to the distance from the left of the plotting area in
+        /// normalized coordinates where *0* (*1*) corresponds to the left (right). If set to a x axis ID
+        /// followed by *domain* (separated by a space), the position behaves like for *paper*, but refers
+        /// to the distance in fractions of the domain length from the left of the domain of that axis:
+        /// e.g., *x2 domain* refers to the domain of the second x axis and a x position of 0.5 refers to
+        /// the point between the left and the right of the domain of the second x axis. If the axis `type`
         /// is *log*, then you must take the log of your desired range. If the axis `type` is *date*, then
         /// you must convert the date to unix time in milliseconds.
         public var xReference: XAxisReference? = nil
@@ -1990,9 +2060,13 @@ public struct Layout: Encodable {
     
         /// Sets the annotation's y coordinate axis.
         /// 
-        /// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
+        /// If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y coordinate. If set to
         /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
-        /// normalized coordinates where *0* (*1*) corresponds to the bottom (top).
+        /// normalized coordinates where *0* (*1*) corresponds to the bottom (top). If set to a y axis ID
+        /// followed by *domain* (separated by a space), the position behaves like for *paper*, but refers
+        /// to the distance in fractions of the domain length from the bottom of the domain of that axis:
+        /// e.g., *y2 domain* refers to the domain of the second y axis and a y position of 0.5 refers to
+        /// the point between the bottom and the top of the domain of the second y axis.
         public var yReference: YAxisReference? = nil
     
         /// Sets the shapes's sizing mode along the y axis.
@@ -2195,13 +2269,15 @@ public struct Layout: Encodable {
         /// Sets the image container size horizontally.
         /// 
         /// The image will be sized based on the `position` value. When `xref` is set to `paper`, units are
-        /// sized relative to the plot width.
+        /// sized relative to the plot width. When `xref` ends with ` domain`, units are sized relative to
+        /// the axis width.
         public var xSize: Double? = nil
     
         /// Sets the image container size vertically.
         /// 
         /// The image will be sized based on the `position` value. When `yref` is set to `paper`, units are
-        /// sized relative to the plot height.
+        /// sized relative to the plot height. When `yref` ends with ` domain`, units are sized relative to
+        /// the axis height.
         public var ySize: Double? = nil
     
         /// Specifies which dimension of the image to constrain.
@@ -2236,16 +2312,24 @@ public struct Layout: Encodable {
     
         /// Sets the images's x coordinate axis.
         /// 
-        /// If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to an x data coordinate If set
-        /// to *paper*, the `x` position refers to the distance from the left of plot in normalized
-        /// coordinates where *0* (*1*) corresponds to the left (right).
+        /// If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to a x coordinate. If set to
+        /// *paper*, the `x` position refers to the distance from the left of the plotting area in
+        /// normalized coordinates where *0* (*1*) corresponds to the left (right). If set to a x axis ID
+        /// followed by *domain* (separated by a space), the position behaves like for *paper*, but refers
+        /// to the distance in fractions of the domain length from the left of the domain of that axis:
+        /// e.g., *x2 domain* refers to the domain of the second x axis and a x position of 0.5 refers to
+        /// the point between the left and the right of the domain of the second x axis.
         public var xReference: XAxisReference? = nil
     
         /// Sets the images's y coordinate axis.
         /// 
-        /// If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y data coordinate. If set
-        /// to *paper*, the `y` position refers to the distance from the bottom of the plot in normalized
-        /// coordinates where *0* (*1*) corresponds to the bottom (top).
+        /// If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y coordinate. If set to
+        /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
+        /// normalized coordinates where *0* (*1*) corresponds to the bottom (top). If set to a y axis ID
+        /// followed by *domain* (separated by a space), the position behaves like for *paper*, but refers
+        /// to the distance in fractions of the domain length from the bottom of the domain of that axis:
+        /// e.g., *y2 domain* refers to the domain of the second y axis and a y position of 0.5 refers to
+        /// the point between the bottom and the top of the domain of the second y axis.
         public var yReference: YAxisReference? = nil
     
         /// When used in a template, named items are created in the output figure in addition to any items
@@ -3004,8 +3088,10 @@ public struct Layout: Encodable {
         case width
         case height
         case margin
+        case computed
         case paperBackgroundColor = "paper_bgcolor"
         case plotBackgroundColor = "plot_bgcolor"
+        case autoTypeNumbers = "autotypenumbers"
         case separators
         case hideSources = "hidesources"
         case showLegend = "showlegend"
@@ -3093,8 +3179,11 @@ public struct Layout: Encodable {
     ///   - width: Sets the plot's width (in px).
     ///   - height: Sets the plot's height (in px).
     ///   - margin:
+    ///   - computed: Placeholder for exporting automargin-impacting values namely `margin.t`, `margin.b`,
+    ///   `margin.l` and `margin.r` in *full-json* mode.
     ///   - paperBackgroundColor: Sets the background color of the paper where the graph is drawn.
     ///   - plotBackgroundColor: Sets the background color of the plotting area in-between x and y axes.
+    ///   - autoTypeNumbers: Using *strict* a numeric string in trace data is not converted to a number.
     ///   - separators: Sets the decimal and thousand separators.
     ///   - hideSources: Determines whether or not a text link citing the data source is placed at the
     ///   bottom-right cored of the figure.
@@ -3152,19 +3241,20 @@ public struct Layout: Encodable {
             Double? = nil, boxGroupGap: Double? = nil, barMode: BarMode? = nil, barNormalization:
             BarNormalization? = nil, barGap: Double? = nil, barGroupGap: Double? = nil, font: Font? = nil,
             title: Title? = nil, uniformText: UniformText? = nil, autoSize: Bool? = nil, width: Double? =
-            nil, height: Double? = nil, margin: Margin? = nil, paperBackgroundColor: Color? = nil,
-            plotBackgroundColor: Color? = nil, separators: String? = nil, hideSources: Bool? = nil,
-            showLegend: Bool? = nil, colorWay: ColorList? = nil, dataRevision: Anything? = nil, uiRevision:
-            Anything? = nil, editRevision: Anything? = nil, selectionRevision: Anything? = nil, template:
-            Anything? = nil, modeBar: ModeBar? = nil, newShape: NewShape? = nil, activeShape: ActiveShape? =
-            nil, meta: Data<Anything>? = nil, transition: Transition? = nil, clickMode: ClickMode? = nil,
-            dragMode: DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil,
-            spikeDistance: Int? = nil, hoverLabel: HoverLabel? = nil, selectDirection: SelectDirection? =
-            nil, grid: Grid? = nil, calendar: Calendar? = nil, xAxis: [XAxis] = [], yAxis: [YAxis] = [],
-            ternary: [Ternary] = [], scene: [Scene] = [], geo: [Geo] = [], mapbox: [Mapbox] = [], polar:
-            [Polar] = [], legend: Legend? = nil, annotations: [Annotation]? = nil, shapes: [Shape]? = nil,
-            images: [Image]? = nil, updateMenus: [UpdateMenu]? = nil, sliders: [Slider]? = nil, colorScale:
-            ColorMap? = nil, colorAxis: [ColorAxis] = []) {
+            nil, height: Double? = nil, margin: Margin? = nil, computed: Anything? = nil,
+            paperBackgroundColor: Color? = nil, plotBackgroundColor: Color? = nil, autoTypeNumbers:
+            AutoTypeNumbers? = nil, separators: String? = nil, hideSources: Bool? = nil, showLegend: Bool? =
+            nil, colorWay: ColorList? = nil, dataRevision: Anything? = nil, uiRevision: Anything? = nil,
+            editRevision: Anything? = nil, selectionRevision: Anything? = nil, template: Anything? = nil,
+            modeBar: ModeBar? = nil, newShape: NewShape? = nil, activeShape: ActiveShape? = nil, meta:
+            Data<Anything>? = nil, transition: Transition? = nil, clickMode: ClickMode? = nil, dragMode:
+            DragMode? = nil, hoverMode: HoverMode? = nil, hoverDistance: Int? = nil, spikeDistance: Int? =
+            nil, hoverLabel: HoverLabel? = nil, selectDirection: SelectDirection? = nil, grid: Grid? = nil,
+            calendar: Calendar? = nil, xAxis: [XAxis] = [], yAxis: [YAxis] = [], ternary: [Ternary] = [],
+            scene: [Scene] = [], geo: [Geo] = [], mapbox: [Mapbox] = [], polar: [Polar] = [], legend:
+            Legend? = nil, annotations: [Annotation]? = nil, shapes: [Shape]? = nil, images: [Image]? = nil,
+            updateMenus: [UpdateMenu]? = nil, sliders: [Slider]? = nil, colorScale: ColorMap? = nil,
+            colorAxis: [ColorAxis] = []) {
         self.funnelAreaColorWay = funnelAreaColorWay
         self.extendFunnelAreaColors = extendFunnelAreaColors
         self.treemapColorWay = treemapColorWay
@@ -3197,8 +3287,10 @@ public struct Layout: Encodable {
         self.width = width
         self.height = height
         self.margin = margin
+        self.computed = computed
         self.paperBackgroundColor = paperBackgroundColor
         self.plotBackgroundColor = plotBackgroundColor
+        self.autoTypeNumbers = autoTypeNumbers
         self.separators = separators
         self.hideSources = hideSources
         self.showLegend = showLegend
@@ -3275,8 +3367,10 @@ public struct Layout: Encodable {
         try container.encodeIfPresent(width, forKey: .width)
         try container.encodeIfPresent(height, forKey: .height)
         try container.encodeIfPresent(margin, forKey: .margin)
+        try container.encodeIfPresent(computed, forKey: .computed)
         try container.encodeIfPresent(paperBackgroundColor, forKey: .paperBackgroundColor)
         try container.encodeIfPresent(plotBackgroundColor, forKey: .plotBackgroundColor)
+        try container.encodeIfPresent(autoTypeNumbers, forKey: .autoTypeNumbers)
         try container.encodeIfPresent(separators, forKey: .separators)
         try container.encodeIfPresent(hideSources, forKey: .hideSources)
         try container.encodeIfPresent(showLegend, forKey: .showLegend)
@@ -3383,6 +3477,7 @@ extension Array where Element == XAxis {
     ///   and grid colors.
     ///   - title:
     ///   - type: Sets the axis type.
+    ///   - autoTypeNumbers: Using *strict* a numeric string in trace data is not converted to a number.
     ///   - autoRange: Determines whether or not the range of this axis is computed in relation to the
     ///   input data.
     ///   - rangeMode: If *normal*, the range is computed in relation to the extrema of the input data.
@@ -3392,8 +3487,8 @@ extension Array where Element == XAxis {
     ///   - scaleRatio: If this axis is linked to another by `scaleanchor`, this determines the pixel to
     ///   unit scale ratio.
     ///   - constrain: If this axis needs to be compressed (either due to its own `scaleanchor` and
-    ///   `scaleratio` or those of the other axis), determines how that happens: by increasing the *range*
-    ///   (default), or by decreasing the *domain*.
+    ///   `scaleratio` or those of the other axis), determines how that happens: by increasing the
+    ///   *range*, or by decreasing the *domain*.
     ///   - constrainToward: If this axis needs to be compressed (either due to its own `scaleanchor` and
     ///   `scaleratio` or those of the other axis), determines which direction we push the originally
     ///   specified plot area.
@@ -3410,6 +3505,8 @@ extension Array where Element == XAxis {
     ///   tick labels.
     ///   - tickLabelMode: Determines where tick labels are drawn with respect to their corresponding
     ///   ticks and grid lines.
+    ///   - tickLabelPosition: Determines where tick labels are drawn with respect to the axis Please note
+    ///   that top or bottom has no effect on x axes or when `ticklabelmode` is set to *period*.
     ///   - mirror: Determines if the axis lines or/and ticks are mirrored to the opposite side of the
     ///   plotting area.
     ///   - tickLength: Sets the tick length (in px).
@@ -3432,6 +3529,7 @@ extension Array where Element == XAxis {
     ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
     ///   - showExponent: If *all*, all exponents are shown besides their significands.
     ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+    ///   - minExponent: Hide SI prefix for 10^n if |n| is below this number.
     ///   - separateThousands: If "true", even 4-digit integers are separated
     ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
     ///   very similar to those in Python.
@@ -3468,33 +3566,36 @@ extension Array where Element == XAxis {
     ///   - rangeSelector:
     ///   - calendar: Sets the calendar system to use for `range` and `tick0` if this is a date axis.
     public static func preset(visible: Bool? = nil, color: Color? = nil, title: XAxis.Title? = nil,
-            type: XAxis.`Type`? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range:
-            InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: XAxis.ScaleAnchor? = nil, scaleRatio:
-            Double? = nil, constrain: XAxis.Constrain? = nil, constrainToward: XAxis.ConstrainToward? = nil,
-            matches: XAxis.Matches? = nil, rangeBreaks: [XAxis.RangeBreak]? = nil, tickMode: TickMode? =
-            nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]?
-            = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, ticksOn: XAxis.TicksOn? = nil,
-            tickLabelMode: XAxis.TickLabelMode? = nil, mirror: Mirror? = nil, tickLength: Double? = nil,
-            tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin:
+            type: XAxis.`Type`? = nil, autoTypeNumbers: AutoTypeNumbers? = nil, autoRange: AutoRange? = nil,
+            rangeMode: RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor:
+            XAxis.ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: XAxis.Constrain? = nil,
+            constrainToward: XAxis.ConstrainToward? = nil, matches: XAxis.Matches? = nil, rangeBreaks:
+            [XAxis.RangeBreak]? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? =
+            nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks:
+            Ticks? = nil, ticksOn: XAxis.TicksOn? = nil, tickLabelMode: XAxis.TickLabelMode? = nil,
+            tickLabelPosition: XAxis.TickLabelPosition? = nil, mirror: Mirror? = nil, tickLength: Double? =
+            nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin:
             Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil,
             spikeDash: String? = nil, spikeMode: XAxis.SpikeMode? = nil, spikeSnap: XAxis.SpikeSnap? = nil,
             tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix:
             ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix? = nil,
-            showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separateThousands:
-            Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat:
-            String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil,
-            showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil,
-            zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil,
-            dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: XAxis.Anchor? = nil, side:
-            XAxis.Side? = nil, overlaying: XAxis.Overlaying? = nil, layer: AxisLayer? = nil, domain:
-            InfoArray? = nil, position: Double? = nil, categoryOrder: CategoryOrder? = nil, categoryArray:
-            [Double]? = nil, uiRevision: Anything? = nil, rangeSlider: XAxis.RangeSlider? = nil,
-            rangeSelector: XAxis.RangeSelector? = nil, calendar: Calendar? = nil) -> [XAxis] {
+            showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, minExponent: Double? =
+            nil, separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops:
+            [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? =
+            nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth:
+            Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil,
+            showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor:
+            XAxis.Anchor? = nil, side: XAxis.Side? = nil, overlaying: XAxis.Overlaying? = nil, layer:
+            AxisLayer? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder:
+            CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, rangeSlider:
+            XAxis.RangeSlider? = nil, rangeSelector: XAxis.RangeSelector? = nil, calendar: Calendar? = nil)
+            -> [XAxis] {
         let axis = XAxis(uid: 1)
         axis.visible = visible
         axis.color = color
         axis.title = title
         axis.type = type
+        axis.autoTypeNumbers = autoTypeNumbers
         axis.autoRange = autoRange
         axis.rangeMode = rangeMode
         axis.range = range
@@ -3514,6 +3615,7 @@ extension Array where Element == XAxis {
         axis.ticks = ticks
         axis.ticksOn = ticksOn
         axis.tickLabelMode = tickLabelMode
+        axis.tickLabelPosition = tickLabelPosition
         axis.mirror = mirror
         axis.tickLength = tickLength
         axis.tickWidth = tickWidth
@@ -3534,6 +3636,7 @@ extension Array where Element == XAxis {
         axis.showTickSuffix = showTickSuffix
         axis.showExponent = showExponent
         axis.exponentFormat = exponentFormat
+        axis.minExponent = minExponent
         axis.separateThousands = separateThousands
         axis.tickFormat = tickFormat
         axis.tickFormatStops = tickFormatStops
@@ -3596,6 +3699,7 @@ extension Array where Element == YAxis {
     ///   and grid colors.
     ///   - title:
     ///   - type: Sets the axis type.
+    ///   - autoTypeNumbers: Using *strict* a numeric string in trace data is not converted to a number.
     ///   - autoRange: Determines whether or not the range of this axis is computed in relation to the
     ///   input data.
     ///   - rangeMode: If *normal*, the range is computed in relation to the extrema of the input data.
@@ -3605,8 +3709,8 @@ extension Array where Element == YAxis {
     ///   - scaleRatio: If this axis is linked to another by `scaleanchor`, this determines the pixel to
     ///   unit scale ratio.
     ///   - constrain: If this axis needs to be compressed (either due to its own `scaleanchor` and
-    ///   `scaleratio` or those of the other axis), determines how that happens: by increasing the *range*
-    ///   (default), or by decreasing the *domain*.
+    ///   `scaleratio` or those of the other axis), determines how that happens: by increasing the
+    ///   *range*, or by decreasing the *domain*.
     ///   - constrainToward: If this axis needs to be compressed (either due to its own `scaleanchor` and
     ///   `scaleratio` or those of the other axis), determines which direction we push the originally
     ///   specified plot area.
@@ -3623,6 +3727,8 @@ extension Array where Element == YAxis {
     ///   tick labels.
     ///   - tickLabelMode: Determines where tick labels are drawn with respect to their corresponding
     ///   ticks and grid lines.
+    ///   - tickLabelPosition: Determines where tick labels are drawn with respect to the axis Please note
+    ///   that top or bottom has no effect on x axes or when `ticklabelmode` is set to *period*.
     ///   - mirror: Determines if the axis lines or/and ticks are mirrored to the opposite side of the
     ///   plotting area.
     ///   - tickLength: Sets the tick length (in px).
@@ -3645,6 +3751,7 @@ extension Array where Element == YAxis {
     ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
     ///   - showExponent: If *all*, all exponents are shown besides their significands.
     ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+    ///   - minExponent: Hide SI prefix for 10^n if |n| is below this number.
     ///   - separateThousands: If "true", even 4-digit integers are separated
     ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
     ///   very similar to those in Python.
@@ -3679,32 +3786,35 @@ extension Array where Element == YAxis {
     ///   `title` if in `editable: true` configuration.
     ///   - calendar: Sets the calendar system to use for `range` and `tick0` if this is a date axis.
     public static func preset(visible: Bool? = nil, color: Color? = nil, title: YAxis.Title? = nil,
-            type: YAxis.`Type`? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range:
-            InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: YAxis.ScaleAnchor? = nil, scaleRatio:
-            Double? = nil, constrain: YAxis.Constrain? = nil, constrainToward: YAxis.ConstrainToward? = nil,
-            matches: YAxis.Matches? = nil, rangeBreaks: [YAxis.RangeBreak]? = nil, tickMode: TickMode? =
-            nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]?
-            = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, ticksOn: YAxis.TicksOn? = nil,
-            tickLabelMode: YAxis.TickLabelMode? = nil, mirror: Mirror? = nil, tickLength: Double? = nil,
-            tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin:
+            type: YAxis.`Type`? = nil, autoTypeNumbers: AutoTypeNumbers? = nil, autoRange: AutoRange? = nil,
+            rangeMode: RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor:
+            YAxis.ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: YAxis.Constrain? = nil,
+            constrainToward: YAxis.ConstrainToward? = nil, matches: YAxis.Matches? = nil, rangeBreaks:
+            [YAxis.RangeBreak]? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? =
+            nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks:
+            Ticks? = nil, ticksOn: YAxis.TicksOn? = nil, tickLabelMode: YAxis.TickLabelMode? = nil,
+            tickLabelPosition: YAxis.TickLabelPosition? = nil, mirror: Mirror? = nil, tickLength: Double? =
+            nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin:
             Bool? = nil, showSpikes: Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil,
             spikeDash: String? = nil, spikeMode: YAxis.SpikeMode? = nil, spikeSnap: YAxis.SpikeSnap? = nil,
             tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String? = nil, showTickPrefix:
             ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix: ShowTickSuffix? = nil,
-            showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separateThousands:
-            Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat:
-            String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil,
-            showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil,
-            zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil,
-            dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor: YAxis.Anchor? = nil, side:
-            YAxis.Side? = nil, overlaying: YAxis.Overlaying? = nil, layer: AxisLayer? = nil, domain:
-            InfoArray? = nil, position: Double? = nil, categoryOrder: CategoryOrder? = nil, categoryArray:
-            [Double]? = nil, uiRevision: Anything? = nil, calendar: Calendar? = nil) -> [YAxis] {
+            showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, minExponent: Double? =
+            nil, separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops:
+            [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? =
+            nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth:
+            Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil,
+            showDividers: Bool? = nil, dividerColor: Color? = nil, dividerWidth: Double? = nil, anchor:
+            YAxis.Anchor? = nil, side: YAxis.Side? = nil, overlaying: YAxis.Overlaying? = nil, layer:
+            AxisLayer? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder:
+            CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, calendar:
+            Calendar? = nil) -> [YAxis] {
         let axis = YAxis(uid: 1)
         axis.visible = visible
         axis.color = color
         axis.title = title
         axis.type = type
+        axis.autoTypeNumbers = autoTypeNumbers
         axis.autoRange = autoRange
         axis.rangeMode = rangeMode
         axis.range = range
@@ -3724,6 +3834,7 @@ extension Array where Element == YAxis {
         axis.ticks = ticks
         axis.ticksOn = ticksOn
         axis.tickLabelMode = tickLabelMode
+        axis.tickLabelPosition = tickLabelPosition
         axis.mirror = mirror
         axis.tickLength = tickLength
         axis.tickWidth = tickWidth
@@ -3744,6 +3855,7 @@ extension Array where Element == YAxis {
         axis.showTickSuffix = showTickSuffix
         axis.showExponent = showExponent
         axis.exponentFormat = exponentFormat
+        axis.minExponent = minExponent
         axis.separateThousands = separateThousands
         axis.tickFormat = tickFormat
         axis.tickFormatStops = tickFormatStops

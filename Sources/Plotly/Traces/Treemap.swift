@@ -595,6 +595,26 @@ public struct Treemap<ValuesData>: Trace, DomainSubplot where ValuesData: Plotab
     /// Sets the positions of the `text` elements.
     public var textPosition: TextPosition? = nil
 
+    /// Determines whether or not the sectors are reordered from largest to smallest.
+    public var sort: Bool? = nil
+
+    public struct Root: Encodable {
+        /// sets the color of the root node for a sunburst or a treemap trace.
+        /// 
+        /// this has no effect when a colorscale is used to set the markers.
+        public var color: Color? = nil
+    
+        /// Creates `Root` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - color: sets the color of the root node for a sunburst or a treemap trace.
+        public init(color: Color? = nil) {
+            self.color = color
+        }
+        
+    }
+    public var root: Root? = nil
+
     public var domain: Domain? = nil
 
     /// Decoding and encoding keys compatible with Plotly schema.
@@ -631,6 +651,8 @@ public struct Treemap<ValuesData>: Trace, DomainSubplot where ValuesData: Plotab
         case insideTextFont = "insidetextfont"
         case outsideTextFont = "outsidetextfont"
         case textPosition = "textposition"
+        case sort
+        case root
         case domain
     }
     
@@ -690,6 +712,8 @@ public struct Treemap<ValuesData>: Trace, DomainSubplot where ValuesData: Plotab
     ///   - insideTextFont: Sets the font used for `textinfo` lying inside the sector.
     ///   - outsideTextFont: Sets the font used for `textinfo` lying outside the sector.
     ///   - textPosition: Sets the positions of the `text` elements.
+    ///   - sort: Determines whether or not the sectors are reordered from largest to smallest.
+    ///   - root:
     ///   - domain:
     public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? =
             nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel:
@@ -700,7 +724,7 @@ public struct Treemap<ValuesData>: Trace, DomainSubplot where ValuesData: Plotab
             textInfo: TextInfo? = nil, textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil,
             hoverInfo: HoverInfo? = nil, hoverTemplate: Data<String>? = nil, textFont: VariableFont? = nil,
             insideTextFont: VariableFont? = nil, outsideTextFont: OutsideTextFont? = nil, textPosition:
-            TextPosition? = nil, domain: Domain? = nil) {
+            TextPosition? = nil, sort: Bool? = nil, root: Root? = nil, domain: Domain? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
@@ -732,6 +756,8 @@ public struct Treemap<ValuesData>: Trace, DomainSubplot where ValuesData: Plotab
         self.insideTextFont = insideTextFont
         self.outsideTextFont = outsideTextFont
         self.textPosition = textPosition
+        self.sort = sort
+        self.root = root
         self.domain = domain
     }
     
@@ -773,6 +799,8 @@ public struct Treemap<ValuesData>: Trace, DomainSubplot where ValuesData: Plotab
         try container.encodeIfPresent(insideTextFont, forKey: .insideTextFont)
         try container.encodeIfPresent(outsideTextFont, forKey: .outsideTextFont)
         try container.encodeIfPresent(textPosition, forKey: .textPosition)
+        try container.encodeIfPresent(sort, forKey: .sort)
+        try container.encodeIfPresent(root, forKey: .root)
         try container.encodeIfPresent(domain, forKey: .domain)
     }
 }

@@ -457,6 +457,11 @@ public struct Indicator: Trace, DomainSubplot {
             /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
             public var exponentFormat: ExponentFormat? = nil
         
+            /// Hide SI prefix for 10^n if |n| is below this number.
+            /// 
+            /// This only has an effect when `tickformat` is *SI* or *B*.
+            public var minExponent: Double? = nil
+        
             /// If *all*, all exponents are shown besides their significands.
             /// 
             /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
@@ -488,6 +493,7 @@ public struct Indicator: Trace, DomainSubplot {
                 case showTickSuffix = "showticksuffix"
                 case separateThousands = "separatethousands"
                 case exponentFormat = "exponentformat"
+                case minExponent = "minexponent"
                 case showExponent = "showexponent"
             }
             
@@ -518,6 +524,7 @@ public struct Indicator: Trace, DomainSubplot {
             ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
             ///   - separateThousands: If "true", even 4-digit integers are separated
             ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+            ///   - minExponent: Hide SI prefix for 10^n if |n| is below this number.
             ///   - showExponent: If *all*, all exponents are shown besides their significands.
             public init(range: InfoArray? = nil, visible: Bool? = nil, tickMode: TickMode? = nil, numTicks:
                     Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil,
@@ -526,7 +533,7 @@ public struct Indicator: Trace, DomainSubplot {
                     Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, tickPrefix:
                     String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix:
                     ShowTickSuffix? = nil, separateThousands: Bool? = nil, exponentFormat: ExponentFormat? = nil,
-                    showExponent: ShowExponent? = nil) {
+                    minExponent: Double? = nil, showExponent: ShowExponent? = nil) {
                 self.range = range
                 self.visible = visible
                 self.tickMode = tickMode
@@ -550,6 +557,7 @@ public struct Indicator: Trace, DomainSubplot {
                 self.showTickSuffix = showTickSuffix
                 self.separateThousands = separateThousands
                 self.exponentFormat = exponentFormat
+                self.minExponent = minExponent
                 self.showExponent = showExponent
             }
             

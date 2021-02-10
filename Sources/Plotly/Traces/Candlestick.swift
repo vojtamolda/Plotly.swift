@@ -101,6 +101,25 @@ public struct Candlestick<XData, OHLCData>: Trace, XYSubplot where XData: Plotab
     /// stays with it as it moves.
     public var uiRevision: Anything? = nil
 
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form
+    /// of *M<n>* could be used to declare the number of months. In this case `n` must be a positive
+    /// integer.
+    public var xPeriod: Anything? = nil
+
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the base for period positioning in milliseconds or date string on the x0 axis. When
+    /// `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e.
+    /// 2000-01-02, otherwise it would be at 2000-01-01.
+    public var xPeriod0: Anything? = nil
+
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the alignment of data points on the x axis.
+    public var xPeriodAlignment: XPeriodAlignment? = nil
+
     /// Sets the x coordinates.
     /// 
     /// If absent, linear coordinate will be generated.
@@ -333,6 +352,9 @@ public struct Candlestick<XData, OHLCData>: Trace, XYSubplot where XData: Plotab
         case stream
         case transforms
         case uiRevision = "uirevision"
+        case xPeriod = "xperiod"
+        case xPeriod0 = "xperiod0"
+        case xPeriodAlignment = "xperiodalignment"
         case x
         case open
         case high
@@ -398,6 +420,9 @@ public struct Candlestick<XData, OHLCData>: Trace, XYSubplot where XData: Plotab
     ///   - uiRevision: Controls persistence of some user-driven changes to the trace: `constraintrange`
     ///   in `parcoords` traces, as well as some `editable: true` modifications such as `name` and
     ///   `colorbar.title`.
+    ///   - xPeriod: Only relevant when the axis `type` is *date*.
+    ///   - xPeriod0: Only relevant when the axis `type` is *date*.
+    ///   - xPeriodAlignment: Only relevant when the axis `type` is *date*.
     ///   - x: Sets the x coordinates.
     ///   - open: Sets the open values.
     ///   - high: Sets the high values.
@@ -417,11 +442,12 @@ public struct Candlestick<XData, OHLCData>: Trace, XYSubplot where XData: Plotab
             opacity: Double? = nil, name: String? = nil, uid: String? = nil, ids: [String]? = nil,
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
             hoverInfo: HoverInfo? = nil, stream: Stream? = nil, transforms: [Transform] = [], uiRevision:
-            Anything? = nil, x: XData? = nil, open: OHLCData? = nil, high: OHLCData? = nil, low: OHLCData? =
-            nil, close: OHLCData? = nil, line: Line? = nil, increasing: Increasing? = nil, decreasing:
-            Decreasing? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil, whiskerWidth:
-            Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Calendar? = nil, xAxis: XAxis =
-            .preset, yAxis: YAxis = .preset) {
+            Anything? = nil, xPeriod: Anything? = nil, xPeriod0: Anything? = nil, xPeriodAlignment:
+            XPeriodAlignment? = nil, x: XData? = nil, open: OHLCData? = nil, high: OHLCData? = nil, low:
+            OHLCData? = nil, close: OHLCData? = nil, line: Line? = nil, increasing: Increasing? = nil,
+            decreasing: Decreasing? = nil, text: Data<String>? = nil, hoverText: Data<String>? = nil,
+            whiskerWidth: Double? = nil, hoverLabel: HoverLabel? = nil, xCalendar: Calendar? = nil, xAxis:
+            XAxis = .preset, yAxis: YAxis = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -436,6 +462,9 @@ public struct Candlestick<XData, OHLCData>: Trace, XYSubplot where XData: Plotab
         self.stream = stream
         self.transforms = transforms
         self.uiRevision = uiRevision
+        self.xPeriod = xPeriod
+        self.xPeriod0 = xPeriod0
+        self.xPeriodAlignment = xPeriodAlignment
         self.x = x
         self.open = open
         self.high = high
@@ -472,6 +501,9 @@ public struct Candlestick<XData, OHLCData>: Trace, XYSubplot where XData: Plotab
         var transformsContainer = container.nestedUnkeyedContainer(forKey: .transforms)
         for transform in transforms { try transform.encode(to: transformsContainer.superEncoder()) }
         try container.encodeIfPresent(uiRevision, forKey: .uiRevision)
+        try container.encodeIfPresent(xPeriod, forKey: .xPeriod)
+        try container.encodeIfPresent(xPeriod0, forKey: .xPeriod0)
+        try container.encodeIfPresent(xPeriodAlignment, forKey: .xPeriodAlignment)
         if let x = self.x {
             try x.encode(toPlotly: container.superEncoder(forKey: .x))
         }

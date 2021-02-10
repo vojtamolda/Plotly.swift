@@ -128,6 +128,44 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
     /// See `y0` for more info.
     public var dy: Double? = nil
 
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form
+    /// of *M<n>* could be used to declare the number of months. In this case `n` must be a positive
+    /// integer.
+    public var xPeriod: Anything? = nil
+
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form
+    /// of *M<n>* could be used to declare the number of months. In this case `n` must be a positive
+    /// integer.
+    public var yPeriod: Anything? = nil
+
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the base for period positioning in milliseconds or date string on the x0 axis. When
+    /// `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e.
+    /// 2000-01-02, otherwise it would be at 2000-01-01.
+    public var xPeriod0: Anything? = nil
+
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the base for period positioning in milliseconds or date string on the y0 axis. When
+    /// `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e.
+    /// 2000-01-02, otherwise it would be at 2000-01-01.
+    public var yPeriod0: Anything? = nil
+
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the alignment of data points on the x axis.
+    public var xPeriodAlignment: XPeriodAlignment? = nil
+
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the alignment of data points on the y axis.
+    public var yPeriodAlignment: YPeriodAlignment? = nil
+
     /// Sets text elements associated with each (x,y) pair.
     /// 
     /// If a single string, the same string appears over all the data points. If an array of string, the
@@ -387,6 +425,12 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
         case y
         case y0
         case dy
+        case xPeriod = "xperiod"
+        case yPeriod = "yperiod"
+        case xPeriod0 = "xperiod0"
+        case yPeriod0 = "yperiod0"
+        case xPeriodAlignment = "xperiodalignment"
+        case yPeriodAlignment = "yperiodalignment"
         case text
         case textTemplate = "texttemplate"
         case hoverText = "hovertext"
@@ -464,6 +508,12 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
     ///   - y: Sets the y coordinates.
     ///   - y0: Alternate to `y`.
     ///   - dy: Sets the y coordinate step.
+    ///   - xPeriod: Only relevant when the axis `type` is *date*.
+    ///   - yPeriod: Only relevant when the axis `type` is *date*.
+    ///   - xPeriod0: Only relevant when the axis `type` is *date*.
+    ///   - yPeriod0: Only relevant when the axis `type` is *date*.
+    ///   - xPeriodAlignment: Only relevant when the axis `type` is *date*.
+    ///   - yPeriodAlignment: Only relevant when the axis `type` is *date*.
     ///   - text: Sets text elements associated with each (x,y) pair.
     ///   - textTemplate: Template string used for rendering the information text that appear on points.
     ///   - hoverText: Sets hover text elements associated with each (x,y) pair.
@@ -500,16 +550,18 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
             customData: [String]? = nil, meta: Data<Anything>? = nil, selectedPoints: Anything? = nil,
             hoverInfo: HoverInfo? = nil, hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms:
             [Transform] = [], uiRevision: Anything? = nil, x: XData? = nil, x0: Anything? = nil, dx: Double?
-            = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, text: Data<String>? = nil,
-            textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil, hoverTemplate: Data<String>?
-            = nil, textPosition: AdjacentPosition? = nil, insideTextAnchor: InsideTextAnchor? = nil,
-            textAngle: Angle? = nil, textFont: VariableFont? = nil, insideTextFont: VariableFont? = nil,
-            outsideTextFont: OutsideTextFont? = nil, constrainText: ConstrainText? = nil, clipOnAxis: Bool?
-            = nil, orientation: Orientation? = nil, base: Data<Anything>? = nil, offset: Data<Double>? =
-            nil, width: Data<Double>? = nil, marker: Marker? = nil, offsetGroup: String? = nil,
-            alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected? = nil, xError:
-            Error? = nil, yError: Error? = nil, xCalendar: Calendar? = nil, yCalendar: Calendar? = nil,
-            xAxis: XAxis = .preset, yAxis: YAxis = .preset) {
+            = nil, y: YData? = nil, y0: Anything? = nil, dy: Double? = nil, xPeriod: Anything? = nil,
+            yPeriod: Anything? = nil, xPeriod0: Anything? = nil, yPeriod0: Anything? = nil,
+            xPeriodAlignment: XPeriodAlignment? = nil, yPeriodAlignment: YPeriodAlignment? = nil, text:
+            Data<String>? = nil, textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil,
+            hoverTemplate: Data<String>? = nil, textPosition: AdjacentPosition? = nil, insideTextAnchor:
+            InsideTextAnchor? = nil, textAngle: Angle? = nil, textFont: VariableFont? = nil, insideTextFont:
+            VariableFont? = nil, outsideTextFont: OutsideTextFont? = nil, constrainText: ConstrainText? =
+            nil, clipOnAxis: Bool? = nil, orientation: Orientation? = nil, base: Data<Anything>? = nil,
+            offset: Data<Double>? = nil, width: Data<Double>? = nil, marker: Marker? = nil, offsetGroup:
+            String? = nil, alignmentGroup: String? = nil, selected: Selected? = nil, unselected: Unselected?
+            = nil, xError: Error? = nil, yError: Error? = nil, xCalendar: Calendar? = nil, yCalendar:
+            Calendar? = nil, xAxis: XAxis = .preset, yAxis: YAxis = .preset) {
         self.visible = visible
         self.showLegend = showLegend
         self.legendGroup = legendGroup
@@ -531,6 +583,12 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
         self.y = y
         self.y0 = y0
         self.dy = dy
+        self.xPeriod = xPeriod
+        self.yPeriod = yPeriod
+        self.xPeriod0 = xPeriod0
+        self.yPeriod0 = yPeriod0
+        self.xPeriodAlignment = xPeriodAlignment
+        self.yPeriodAlignment = yPeriodAlignment
         self.text = text
         self.textTemplate = textTemplate
         self.hoverText = hoverText
@@ -590,6 +648,12 @@ public struct Bar<XData, YData>: Trace, XYSubplot where XData: Plotable, YData: 
         }
         try container.encodeIfPresent(y0, forKey: .y0)
         try container.encodeIfPresent(dy, forKey: .dy)
+        try container.encodeIfPresent(xPeriod, forKey: .xPeriod)
+        try container.encodeIfPresent(yPeriod, forKey: .yPeriod)
+        try container.encodeIfPresent(xPeriod0, forKey: .xPeriod0)
+        try container.encodeIfPresent(yPeriod0, forKey: .yPeriod0)
+        try container.encodeIfPresent(xPeriodAlignment, forKey: .xPeriodAlignment)
+        try container.encodeIfPresent(yPeriodAlignment, forKey: .yPeriodAlignment)
         try container.encodeIfPresent(text, forKey: .text)
         try container.encodeIfPresent(textTemplate, forKey: .textTemplate)
         try container.encodeIfPresent(hoverText, forKey: .hoverText)

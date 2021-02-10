@@ -40,6 +40,23 @@ public enum YAutoAnchor: String, Encodable {
     case bottom
 }
 
+/// Using *strict* a numeric string in trace data is not converted to a number.
+/// 
+/// Using *convert types* a numeric string in trace data may be treated as a number during automatic
+/// axis `type` detection. This is the default value; however it could be overridden for individual
+/// axes.
+/// 
+/// - Note:
+///   Used by `Layout.autoTypeNumbers`, `XAxis.autoTypeNumbers`, `YAxis.autoTypeNumbers`,
+///   `Scene.XAxis.autoTypeNumbers`, `Scene.YAxis.autoTypeNumbers`, `Scene.ZAxis.autoTypeNumbers`,
+///   `Polar.RadialAxis.autoTypeNumbers`, `Polar.AngularAxis.autoTypeNumbers`, `Carpet<XData, YData,
+///   AData, BData>.AAxis.autoTypeNumbers`, `Carpet<XData, YData, AData,
+///   BData>.BAxis.autoTypeNumbers`.
+public enum AutoTypeNumbers: String, Encodable {
+    case convertTypes = "convert types"
+    case strict
+}
+
 /// Sets the orientation of the modebar.
 /// 
 /// - Note:
@@ -614,9 +631,13 @@ public enum TextPosition: String, Encodable {
 
 /// Sets the annotation's x coordinate axis.
 /// 
-/// If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to
-/// *paper*, the `x` position refers to the distance from the left side of the plotting area in
-/// normalized coordinates where 0 (1) corresponds to the left (right) side.
+/// If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to a x coordinate. If set to
+/// *paper*, the `x` position refers to the distance from the left of the plotting area in
+/// normalized coordinates where *0* (*1*) corresponds to the left (right). If set to a x axis ID
+/// followed by *domain* (separated by a space), the position behaves like for *paper*, but refers
+/// to the distance in fractions of the domain length from the left of the domain of that axis:
+/// e.g., *x2 domain* refers to the domain of the second x axis and a x position of 0.5 refers to
+/// the point between the left and the right of the domain of the second x axis.
 /// 
 /// - Note:
 ///   Used by `Layout.Annotation.xReference`, `Layout.Shape.xReference`, `Layout.Image.xReference`.
@@ -636,9 +657,13 @@ public enum XAxisReference: Encodable {
 
 /// Sets the annotation's y coordinate axis.
 /// 
-/// If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to
+/// If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y coordinate. If set to
 /// *paper*, the `y` position refers to the distance from the bottom of the plotting area in
-/// normalized coordinates where 0 (1) corresponds to the bottom (top).
+/// normalized coordinates where *0* (*1*) corresponds to the bottom (top). If set to a y axis ID
+/// followed by *domain* (separated by a space), the position behaves like for *paper*, but refers
+/// to the distance in fractions of the domain length from the bottom of the domain of that axis:
+/// e.g., *y2 domain* refers to the domain of the second y axis and a y position of 0.5 refers to
+/// the point between the bottom and the top of the domain of the second y axis.
 /// 
 /// - Note:
 ///   Used by `Layout.Annotation.yReference`, `Layout.Shape.yReference`, `Layout.Image.yReference`.
@@ -797,6 +822,49 @@ public enum ThicknessMode: String, Encodable {
     case pixels
 }
 
+/// Determines where tick labels are drawn.
+/// 
+/// - Note:
+///   Used by `ColorBar.tickLabelPosition`, `GradientMarker.ColorBar.tickLabelPosition`,
+///   `Marker.ColorBar.tickLabelPosition`, `Heatmap<ZData, XYData>.ColorBar.tickLabelPosition`,
+///   `Histogram<XData, YData>.Marker.ColorBar.tickLabelPosition`, `Histogram2D<XData, YData,
+///   ZData>.ColorBar.tickLabelPosition`, `Histogram2DContour<XData, YData,
+///   ZData>.ColorBar.tickLabelPosition`, `Contour<ZData, XData, YData>.ColorBar.tickLabelPosition`,
+///   `ScatterTernary<AData, BData, CData>.GradientMarker.ColorBar.tickLabelPosition`, `Funnel<XData,
+///   YData>.Marker.ColorBar.tickLabelPosition`,
+///   `Sunburst<ValuesData>.Marker.ColorBar.tickLabelPosition`,
+///   `Treemap<ValuesData>.Marker.ColorBar.tickLabelPosition`, `Scatter3D<XData, YData,
+///   ZData>.DashedMarkerLine.ColorBar.tickLabelPosition`,
+///   `SymbolicMarker.ColorBar.tickLabelPosition`, `Surface<ZSurfaceData,
+///   XYData>.ColorBar.tickLabelPosition`, `Isosurface<XData, YData, ZData,
+///   ValueData>.ColorBar.tickLabelPosition`, `Volume<XYZData, ValueData>.ColorBar.tickLabelPosition`,
+///   `Mesh3D<XData, YData, ZData, IntensityData, VertexcolorData,
+///   FacecolorData>.ColorBar.tickLabelPosition`, `Cone<XYZData, UVWData>.ColorBar.tickLabelPosition`,
+///   `StreamTube<XYZData, UVWData>.ColorBar.tickLabelPosition`, `ScatterGeo<CoordinateData,
+///   LocationsData>.GradientMarker.ColorBar.tickLabelPosition`, `Choropleth<LocationsData,
+///   ZData>.ColorBar.tickLabelPosition`, `ScatterGL<XData,
+///   YData>.SymbolicMarker.ColorBar.tickLabelPosition`,
+///   `ScatterPlotMatrix.SymbolicMarker.ColorBar.tickLabelPosition`, `HeatmapGL<ZData,
+///   XYData>.ColorBar.tickLabelPosition`,
+///   `ParallelCoordinates.MarkerLine.ColorBar.tickLabelPosition`,
+///   `ParallelCategories.ShapedMarkerLine.ColorBar.tickLabelPosition`,
+///   `ScatterMapbox<CoordinateData>.SymbolicMarker.ColorBar.tickLabelPosition`,
+///   `ChoroplethMapbox<LocationsData, ZData>.ColorBar.tickLabelPosition`,
+///   `DensityMapbox<CoordinateData, ZData>.ColorBar.tickLabelPosition`, `ScatterCarpet<AData,
+///   BData>.GradientMarker.ColorBar.tickLabelPosition`, `ContourCarpet<ZData, AData,
+///   BData>.ColorBar.tickLabelPosition`, `ScatterPolar<RData,
+///   ThetaData>.GradientMarker.ColorBar.tickLabelPosition`, `ScatterPolarGL<RData,
+///   ThetaData>.SymbolicMarker.ColorBar.tickLabelPosition`, `BarPolar<RData,
+///   ThetaData>.Marker.ColorBar.tickLabelPosition`.
+public enum TickLabelPosition: String, Encodable {
+    case outside
+    case inside
+    case outsideTop = "outside top"
+    case insideTop = "inside top"
+    case outsideBottom = "outside bottom"
+    case insideBottom = "inside bottom"
+}
+
 /// Determines the location of color bar's title with respect to the color bar.
 /// 
 /// Note that the title's location used to be set by the now deprecated `titleside` attribute.
@@ -879,6 +947,37 @@ public enum Visible: Encodable {
             try container.encode("legendonly")
         }
     }
+}
+
+/// Only relevant when the axis `type` is *date*.
+/// 
+/// Sets the alignment of data points on the x axis.
+/// 
+/// - Note:
+///   Used by `Scatter<XData, YData>.xPeriodAlignment`, `Bar<XData, YData>.xPeriodAlignment`,
+///   `Box<YData, XData, QData>.xPeriodAlignment`, `Heatmap<ZData, XYData>.xPeriodAlignment`,
+///   `Contour<ZData, XData, YData>.xPeriodAlignment`, `Funnel<XData, YData>.xPeriodAlignment`,
+///   `Waterfall<XData, YData>.xPeriodAlignment`, `ScatterGL<XData, YData>.xPeriodAlignment`,
+///   `OHLC<XData, OHLCData>.xPeriodAlignment`, `Candlestick<XData, OHLCData>.xPeriodAlignment`.
+public enum XPeriodAlignment: String, Encodable {
+    case start
+    case middle
+    case end
+}
+
+/// Only relevant when the axis `type` is *date*.
+/// 
+/// Sets the alignment of data points on the y axis.
+/// 
+/// - Note:
+///   Used by `Scatter<XData, YData>.yPeriodAlignment`, `Bar<XData, YData>.yPeriodAlignment`,
+///   `Box<YData, XData, QData>.yPeriodAlignment`, `Heatmap<ZData, XYData>.yPeriodAlignment`,
+///   `Contour<ZData, XData, YData>.yPeriodAlignment`, `Funnel<XData, YData>.yPeriodAlignment`,
+///   `Waterfall<XData, YData>.yPeriodAlignment`, `ScatterGL<XData, YData>.yPeriodAlignment`.
+public enum YPeriodAlignment: String, Encodable {
+    case start
+    case middle
+    case end
 }
 
 /// Sets the area to fill with a solid color.
@@ -1771,6 +1870,12 @@ public final class XAxis: Encodable, SubplotAxis {
     /// that referenced the axis in question.
     public var type: `Type`? = nil
 
+    /// Using *strict* a numeric string in trace data is not converted to a number.
+    /// 
+    /// Using *convert types* a numeric string in trace data may be treated as a number during automatic
+    /// axis `type` detection. Defaults to layout.autotypenumbers.
+    public var autoTypeNumbers: AutoTypeNumbers? = nil
+
     /// Determines whether or not the range of this axis is computed in relation to the input data.
     /// 
     /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -1844,15 +1949,19 @@ public final class XAxis: Encodable, SubplotAxis {
     public var scaleRatio: Double? = nil
 
     /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
-    /// those of the other axis), determines how that happens: by increasing the *range* (default), or
-    /// by decreasing the *domain*.
+    /// those of the other axis), determines how that happens: by increasing the *range*, or by
+    /// decreasing the *domain*.
+    /// 
+    /// Default is *domain* for axes containing image traces, *range* otherwise.
     public enum Constrain: String, Encodable {
         case range
         case domain
     }
     /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
-    /// those of the other axis), determines how that happens: by increasing the *range* (default), or
-    /// by decreasing the *domain*.
+    /// those of the other axis), determines how that happens: by increasing the *range*, or by
+    /// decreasing the *domain*.
+    /// 
+    /// Default is *domain* for axes containing image traces, *range* otherwise.
     public var constrain: Constrain? = nil
 
     /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
@@ -2086,6 +2195,34 @@ public final class XAxis: Encodable, SubplotAxis {
     /// middle of the period between ticks.
     public var tickLabelMode: TickLabelMode? = nil
 
+    /// Determines where tick labels are drawn with respect to the axis Please note that top or bottom
+    /// has no effect on x axes or when `ticklabelmode` is set to *period*.
+    /// 
+    /// Similarly left or right has no effect on y axes or when `ticklabelmode` is set to *period*. Has
+    /// no effect on *multicategory* axes or when `tickson` is set to *boundaries*. When used on axes
+    /// linked by `matches` or `scaleanchor`, no extra padding for inside labels would be added by
+    /// autorange, so that the scales could match.
+    public enum TickLabelPosition: String, Encodable {
+        case outside
+        case inside
+        case outsideTop = "outside top"
+        case insideTop = "inside top"
+        case outsideLeft = "outside left"
+        case insideLeft = "inside left"
+        case outsideRight = "outside right"
+        case insideRight = "inside right"
+        case outsideBottom = "outside bottom"
+        case insideBottom = "inside bottom"
+    }
+    /// Determines where tick labels are drawn with respect to the axis Please note that top or bottom
+    /// has no effect on x axes or when `ticklabelmode` is set to *period*.
+    /// 
+    /// Similarly left or right has no effect on y axes or when `ticklabelmode` is set to *period*. Has
+    /// no effect on *multicategory* axes or when `tickson` is set to *boundaries*. When used on axes
+    /// linked by `matches` or `scaleanchor`, no extra padding for inside labels would be added by
+    /// autorange, so that the scales could match.
+    public var tickLabelPosition: TickLabelPosition? = nil
+
     /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting
     /// area.
     /// 
@@ -2202,6 +2339,11 @@ public final class XAxis: Encodable, SubplotAxis {
     /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
     /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
     public var exponentFormat: ExponentFormat? = nil
+
+    /// Hide SI prefix for 10^n if |n| is below this number.
+    /// 
+    /// This only has an effect when `tickformat` is *SI* or *B*.
+    public var minExponent: Double? = nil
 
     /// If "true", even 4-digit integers are separated
     public var separateThousands: Bool? = nil
@@ -2692,6 +2834,7 @@ public final class XAxis: Encodable, SubplotAxis {
         case color
         case title
         case type
+        case autoTypeNumbers = "autotypenumbers"
         case autoRange = "autorange"
         case rangeMode = "rangemode"
         case range
@@ -2711,6 +2854,7 @@ public final class XAxis: Encodable, SubplotAxis {
         case ticks
         case ticksOn = "tickson"
         case tickLabelMode = "ticklabelmode"
+        case tickLabelPosition = "ticklabelposition"
         case mirror
         case tickLength = "ticklen"
         case tickWidth = "tickwidth"
@@ -2731,6 +2875,7 @@ public final class XAxis: Encodable, SubplotAxis {
         case showTickSuffix = "showticksuffix"
         case showExponent = "showexponent"
         case exponentFormat = "exponentformat"
+        case minExponent = "minexponent"
         case separateThousands = "separatethousands"
         case tickFormat = "tickformat"
         case tickFormatStops = "tickformatstops"
@@ -2789,6 +2934,7 @@ public final class XAxis: Encodable, SubplotAxis {
     ///   and grid colors.
     ///   - title:
     ///   - type: Sets the axis type.
+    ///   - autoTypeNumbers: Using *strict* a numeric string in trace data is not converted to a number.
     ///   - autoRange: Determines whether or not the range of this axis is computed in relation to the
     ///   input data.
     ///   - rangeMode: If *normal*, the range is computed in relation to the extrema of the input data.
@@ -2798,8 +2944,8 @@ public final class XAxis: Encodable, SubplotAxis {
     ///   - scaleRatio: If this axis is linked to another by `scaleanchor`, this determines the pixel to
     ///   unit scale ratio.
     ///   - constrain: If this axis needs to be compressed (either due to its own `scaleanchor` and
-    ///   `scaleratio` or those of the other axis), determines how that happens: by increasing the *range*
-    ///   (default), or by decreasing the *domain*.
+    ///   `scaleratio` or those of the other axis), determines how that happens: by increasing the
+    ///   *range*, or by decreasing the *domain*.
     ///   - constrainToward: If this axis needs to be compressed (either due to its own `scaleanchor` and
     ///   `scaleratio` or those of the other axis), determines which direction we push the originally
     ///   specified plot area.
@@ -2816,6 +2962,8 @@ public final class XAxis: Encodable, SubplotAxis {
     ///   tick labels.
     ///   - tickLabelMode: Determines where tick labels are drawn with respect to their corresponding
     ///   ticks and grid lines.
+    ///   - tickLabelPosition: Determines where tick labels are drawn with respect to the axis Please note
+    ///   that top or bottom has no effect on x axes or when `ticklabelmode` is set to *period*.
     ///   - mirror: Determines if the axis lines or/and ticks are mirrored to the opposite side of the
     ///   plotting area.
     ///   - tickLength: Sets the tick length (in px).
@@ -2838,6 +2986,7 @@ public final class XAxis: Encodable, SubplotAxis {
     ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
     ///   - showExponent: If *all*, all exponents are shown besides their significands.
     ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+    ///   - minExponent: Hide SI prefix for 10^n if |n| is below this number.
     ///   - separateThousands: If "true", even 4-digit integers are separated
     ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
     ///   very similar to those in Python.
@@ -2874,32 +3023,35 @@ public final class XAxis: Encodable, SubplotAxis {
     ///   - rangeSelector:
     ///   - calendar: Sets the calendar system to use for `range` and `tick0` if this is a date axis.
     public init(uid: UInt = UInt.random(in: 2...UInt.max), visible: Bool? = nil, color: Color? =
-            nil, title: Title? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode:
-            RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor? =
-            nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward: ConstrainToward? =
-            nil, matches: Matches? = nil, rangeBreaks: [RangeBreak]? = nil, tickMode: TickMode? = nil,
-            numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? =
-            nil, tickText: [Double]? = nil, ticks: Ticks? = nil, ticksOn: TicksOn? = nil, tickLabelMode:
-            TickLabelMode? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? =
+            nil, title: Title? = nil, type: `Type`? = nil, autoTypeNumbers: AutoTypeNumbers? = nil,
+            autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, fixedRange:
+            Bool? = nil, scaleAnchor: ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Constrain? =
+            nil, constrainToward: ConstrainToward? = nil, matches: Matches? = nil, rangeBreaks:
+            [RangeBreak]? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil,
+            dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? =
+            nil, ticksOn: TicksOn? = nil, tickLabelMode: TickLabelMode? = nil, tickLabelPosition:
+            TickLabelPosition? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? =
             nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes:
             Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil,
             spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? = nil, tickFont: Font? = nil, tickAngle:
             Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix:
             String? = nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil,
-            exponentFormat: ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat: String? =
-            nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? =
-            nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color?
-            = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil,
-            zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil,
-            dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? =
-            nil, layer: AxisLayer? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder:
-            CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, rangeSlider:
-            RangeSlider? = nil, rangeSelector: RangeSelector? = nil, calendar: Calendar? = nil) {
+            exponentFormat: ExponentFormat? = nil, minExponent: Double? = nil, separateThousands: Bool? =
+            nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? =
+            nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? =
+            nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor:
+            Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? =
+            nil, dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying:
+            Overlaying? = nil, layer: AxisLayer? = nil, domain: InfoArray? = nil, position: Double? = nil,
+            categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? =
+            nil, rangeSlider: RangeSlider? = nil, rangeSelector: RangeSelector? = nil, calendar: Calendar? =
+            nil) {
         self.uid = uid
         self.visible = visible
         self.color = color
         self.title = title
         self.type = type
+        self.autoTypeNumbers = autoTypeNumbers
         self.autoRange = autoRange
         self.rangeMode = rangeMode
         self.range = range
@@ -2919,6 +3071,7 @@ public final class XAxis: Encodable, SubplotAxis {
         self.ticks = ticks
         self.ticksOn = ticksOn
         self.tickLabelMode = tickLabelMode
+        self.tickLabelPosition = tickLabelPosition
         self.mirror = mirror
         self.tickLength = tickLength
         self.tickWidth = tickWidth
@@ -2939,6 +3092,7 @@ public final class XAxis: Encodable, SubplotAxis {
         self.showTickSuffix = showTickSuffix
         self.showExponent = showExponent
         self.exponentFormat = exponentFormat
+        self.minExponent = minExponent
         self.separateThousands = separateThousands
         self.tickFormat = tickFormat
         self.tickFormatStops = tickFormatStops
@@ -3138,6 +3292,12 @@ public final class YAxis: Encodable, SubplotAxis {
     /// that referenced the axis in question.
     public var type: `Type`? = nil
 
+    /// Using *strict* a numeric string in trace data is not converted to a number.
+    /// 
+    /// Using *convert types* a numeric string in trace data may be treated as a number during automatic
+    /// axis `type` detection. Defaults to layout.autotypenumbers.
+    public var autoTypeNumbers: AutoTypeNumbers? = nil
+
     /// Determines whether or not the range of this axis is computed in relation to the input data.
     /// 
     /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -3211,15 +3371,19 @@ public final class YAxis: Encodable, SubplotAxis {
     public var scaleRatio: Double? = nil
 
     /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
-    /// those of the other axis), determines how that happens: by increasing the *range* (default), or
-    /// by decreasing the *domain*.
+    /// those of the other axis), determines how that happens: by increasing the *range*, or by
+    /// decreasing the *domain*.
+    /// 
+    /// Default is *domain* for axes containing image traces, *range* otherwise.
     public enum Constrain: String, Encodable {
         case range
         case domain
     }
     /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
-    /// those of the other axis), determines how that happens: by increasing the *range* (default), or
-    /// by decreasing the *domain*.
+    /// those of the other axis), determines how that happens: by increasing the *range*, or by
+    /// decreasing the *domain*.
+    /// 
+    /// Default is *domain* for axes containing image traces, *range* otherwise.
     public var constrain: Constrain? = nil
 
     /// If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or
@@ -3453,6 +3617,34 @@ public final class YAxis: Encodable, SubplotAxis {
     /// middle of the period between ticks.
     public var tickLabelMode: TickLabelMode? = nil
 
+    /// Determines where tick labels are drawn with respect to the axis Please note that top or bottom
+    /// has no effect on x axes or when `ticklabelmode` is set to *period*.
+    /// 
+    /// Similarly left or right has no effect on y axes or when `ticklabelmode` is set to *period*. Has
+    /// no effect on *multicategory* axes or when `tickson` is set to *boundaries*. When used on axes
+    /// linked by `matches` or `scaleanchor`, no extra padding for inside labels would be added by
+    /// autorange, so that the scales could match.
+    public enum TickLabelPosition: String, Encodable {
+        case outside
+        case inside
+        case outsideTop = "outside top"
+        case insideTop = "inside top"
+        case outsideLeft = "outside left"
+        case insideLeft = "inside left"
+        case outsideRight = "outside right"
+        case insideRight = "inside right"
+        case outsideBottom = "outside bottom"
+        case insideBottom = "inside bottom"
+    }
+    /// Determines where tick labels are drawn with respect to the axis Please note that top or bottom
+    /// has no effect on x axes or when `ticklabelmode` is set to *period*.
+    /// 
+    /// Similarly left or right has no effect on y axes or when `ticklabelmode` is set to *period*. Has
+    /// no effect on *multicategory* axes or when `tickson` is set to *boundaries*. When used on axes
+    /// linked by `matches` or `scaleanchor`, no extra padding for inside labels would be added by
+    /// autorange, so that the scales could match.
+    public var tickLabelPosition: TickLabelPosition? = nil
+
     /// Determines if the axis lines or/and ticks are mirrored to the opposite side of the plotting
     /// area.
     /// 
@@ -3569,6 +3761,11 @@ public final class YAxis: Encodable, SubplotAxis {
     /// For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*,
     /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
     public var exponentFormat: ExponentFormat? = nil
+
+    /// Hide SI prefix for 10^n if |n| is below this number.
+    /// 
+    /// This only has an effect when `tickformat` is *SI* or *B*.
+    public var minExponent: Double? = nil
 
     /// If "true", even 4-digit integers are separated
     public var separateThousands: Bool? = nil
@@ -3756,6 +3953,7 @@ public final class YAxis: Encodable, SubplotAxis {
         case color
         case title
         case type
+        case autoTypeNumbers = "autotypenumbers"
         case autoRange = "autorange"
         case rangeMode = "rangemode"
         case range
@@ -3775,6 +3973,7 @@ public final class YAxis: Encodable, SubplotAxis {
         case ticks
         case ticksOn = "tickson"
         case tickLabelMode = "ticklabelmode"
+        case tickLabelPosition = "ticklabelposition"
         case mirror
         case tickLength = "ticklen"
         case tickWidth = "tickwidth"
@@ -3795,6 +3994,7 @@ public final class YAxis: Encodable, SubplotAxis {
         case showTickSuffix = "showticksuffix"
         case showExponent = "showexponent"
         case exponentFormat = "exponentformat"
+        case minExponent = "minexponent"
         case separateThousands = "separatethousands"
         case tickFormat = "tickformat"
         case tickFormatStops = "tickformatstops"
@@ -3851,6 +4051,7 @@ public final class YAxis: Encodable, SubplotAxis {
     ///   and grid colors.
     ///   - title:
     ///   - type: Sets the axis type.
+    ///   - autoTypeNumbers: Using *strict* a numeric string in trace data is not converted to a number.
     ///   - autoRange: Determines whether or not the range of this axis is computed in relation to the
     ///   input data.
     ///   - rangeMode: If *normal*, the range is computed in relation to the extrema of the input data.
@@ -3860,8 +4061,8 @@ public final class YAxis: Encodable, SubplotAxis {
     ///   - scaleRatio: If this axis is linked to another by `scaleanchor`, this determines the pixel to
     ///   unit scale ratio.
     ///   - constrain: If this axis needs to be compressed (either due to its own `scaleanchor` and
-    ///   `scaleratio` or those of the other axis), determines how that happens: by increasing the *range*
-    ///   (default), or by decreasing the *domain*.
+    ///   `scaleratio` or those of the other axis), determines how that happens: by increasing the
+    ///   *range*, or by decreasing the *domain*.
     ///   - constrainToward: If this axis needs to be compressed (either due to its own `scaleanchor` and
     ///   `scaleratio` or those of the other axis), determines which direction we push the originally
     ///   specified plot area.
@@ -3878,6 +4079,8 @@ public final class YAxis: Encodable, SubplotAxis {
     ///   tick labels.
     ///   - tickLabelMode: Determines where tick labels are drawn with respect to their corresponding
     ///   ticks and grid lines.
+    ///   - tickLabelPosition: Determines where tick labels are drawn with respect to the axis Please note
+    ///   that top or bottom has no effect on x axes or when `ticklabelmode` is set to *period*.
     ///   - mirror: Determines if the axis lines or/and ticks are mirrored to the opposite side of the
     ///   plotting area.
     ///   - tickLength: Sets the tick length (in px).
@@ -3900,6 +4103,7 @@ public final class YAxis: Encodable, SubplotAxis {
     ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
     ///   - showExponent: If *all*, all exponents are shown besides their significands.
     ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+    ///   - minExponent: Hide SI prefix for 10^n if |n| is below this number.
     ///   - separateThousands: If "true", even 4-digit integers are separated
     ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
     ///   very similar to those in Python.
@@ -3934,32 +4138,34 @@ public final class YAxis: Encodable, SubplotAxis {
     ///   `title` if in `editable: true` configuration.
     ///   - calendar: Sets the calendar system to use for `range` and `tick0` if this is a date axis.
     public init(uid: UInt = UInt.random(in: 2...UInt.max), visible: Bool? = nil, color: Color? =
-            nil, title: Title? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode:
-            RangeMode? = nil, range: InfoArray? = nil, fixedRange: Bool? = nil, scaleAnchor: ScaleAnchor? =
-            nil, scaleRatio: Double? = nil, constrain: Constrain? = nil, constrainToward: ConstrainToward? =
-            nil, matches: Matches? = nil, rangeBreaks: [RangeBreak]? = nil, tickMode: TickMode? = nil,
-            numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? =
-            nil, tickText: [Double]? = nil, ticks: Ticks? = nil, ticksOn: TicksOn? = nil, tickLabelMode:
-            TickLabelMode? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? =
+            nil, title: Title? = nil, type: `Type`? = nil, autoTypeNumbers: AutoTypeNumbers? = nil,
+            autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, fixedRange:
+            Bool? = nil, scaleAnchor: ScaleAnchor? = nil, scaleRatio: Double? = nil, constrain: Constrain? =
+            nil, constrainToward: ConstrainToward? = nil, matches: Matches? = nil, rangeBreaks:
+            [RangeBreak]? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil,
+            dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? =
+            nil, ticksOn: TicksOn? = nil, tickLabelMode: TickLabelMode? = nil, tickLabelPosition:
+            TickLabelPosition? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? =
             nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, autoMargin: Bool? = nil, showSpikes:
             Bool? = nil, spikeColor: Color? = nil, spikeThickness: Double? = nil, spikeDash: String? = nil,
             spikeMode: SpikeMode? = nil, spikeSnap: SpikeSnap? = nil, tickFont: Font? = nil, tickAngle:
             Angle? = nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix:
             String? = nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil,
-            exponentFormat: ExponentFormat? = nil, separateThousands: Bool? = nil, tickFormat: String? =
-            nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? =
-            nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color?
-            = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color? = nil,
-            zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? = nil,
-            dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying: Overlaying? =
-            nil, layer: AxisLayer? = nil, domain: InfoArray? = nil, position: Double? = nil, categoryOrder:
-            CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? = nil, calendar:
-            Calendar? = nil) {
+            exponentFormat: ExponentFormat? = nil, minExponent: Double? = nil, separateThousands: Bool? =
+            nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? =
+            nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? =
+            nil, gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor:
+            Color? = nil, zeroLineWidth: Double? = nil, showDividers: Bool? = nil, dividerColor: Color? =
+            nil, dividerWidth: Double? = nil, anchor: Anchor? = nil, side: Side? = nil, overlaying:
+            Overlaying? = nil, layer: AxisLayer? = nil, domain: InfoArray? = nil, position: Double? = nil,
+            categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, uiRevision: Anything? =
+            nil, calendar: Calendar? = nil) {
         self.uid = uid
         self.visible = visible
         self.color = color
         self.title = title
         self.type = type
+        self.autoTypeNumbers = autoTypeNumbers
         self.autoRange = autoRange
         self.rangeMode = rangeMode
         self.range = range
@@ -3979,6 +4185,7 @@ public final class YAxis: Encodable, SubplotAxis {
         self.ticks = ticks
         self.ticksOn = ticksOn
         self.tickLabelMode = tickLabelMode
+        self.tickLabelPosition = tickLabelPosition
         self.mirror = mirror
         self.tickLength = tickLength
         self.tickWidth = tickWidth
@@ -3999,6 +4206,7 @@ public final class YAxis: Encodable, SubplotAxis {
         self.showTickSuffix = showTickSuffix
         self.showExponent = showExponent
         self.exponentFormat = exponentFormat
+        self.minExponent = minExponent
         self.separateThousands = separateThousands
         self.tickFormat = tickFormat
         self.tickFormatStops = tickFormatStops
@@ -4147,6 +4355,11 @@ public final class Ternary: Encodable, SubplotAxis {
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
         public var exponentFormat: ExponentFormat? = nil
     
+        /// Hide SI prefix for 10^n if |n| is below this number.
+        /// 
+        /// This only has an effect when `tickformat` is *SI* or *B*.
+        public var minExponent: Double? = nil
+    
         /// If "true", even 4-digit integers are separated
         public var separateThousands: Bool? = nil
     
@@ -4239,6 +4452,7 @@ public final class Ternary: Encodable, SubplotAxis {
             case tickSuffix = "ticksuffix"
             case showExponent = "showexponent"
             case exponentFormat = "exponentformat"
+            case minExponent = "minexponent"
             case separateThousands = "separatethousands"
             case tickFont = "tickfont"
             case tickAngle = "tickangle"
@@ -4279,6 +4493,7 @@ public final class Ternary: Encodable, SubplotAxis {
         ///   - tickSuffix: Sets a tick label suffix.
         ///   - showExponent: If *all*, all exponents are shown besides their significands.
         ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+        ///   - minExponent: Hide SI prefix for 10^n if |n| is below this number.
         ///   - separateThousands: If "true", even 4-digit integers are separated
         ///   - tickFont: Sets the tick font.
         ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
@@ -4302,12 +4517,12 @@ public final class Ternary: Encodable, SubplotAxis {
                 [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil,
                 tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil,
                 tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil,
-                showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separateThousands:
-                Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil,
-                tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil,
-                lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? =
-                nil, gridWidth: Double? = nil, layer: AxisLayer? = nil, min: Double? = nil, uiRevision:
-                Anything? = nil) {
+                showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, minExponent: Double? =
+                nil, separateThousands: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat:
+                String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine:
+                Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil,
+                gridColor: Color? = nil, gridWidth: Double? = nil, layer: AxisLayer? = nil, min: Double? = nil,
+                uiRevision: Anything? = nil) {
             self.title = title
             self.color = color
             self.tickMode = tickMode
@@ -4327,6 +4542,7 @@ public final class Ternary: Encodable, SubplotAxis {
             self.tickSuffix = tickSuffix
             self.showExponent = showExponent
             self.exponentFormat = exponentFormat
+            self.minExponent = minExponent
             self.separateThousands = separateThousands
             self.tickFont = tickFont
             self.tickAngle = tickAngle
@@ -4453,6 +4669,11 @@ public final class Ternary: Encodable, SubplotAxis {
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
         public var exponentFormat: ExponentFormat? = nil
     
+        /// Hide SI prefix for 10^n if |n| is below this number.
+        /// 
+        /// This only has an effect when `tickformat` is *SI* or *B*.
+        public var minExponent: Double? = nil
+    
         /// If "true", even 4-digit integers are separated
         public var separateThousands: Bool? = nil
     
@@ -4545,6 +4766,7 @@ public final class Ternary: Encodable, SubplotAxis {
             case tickSuffix = "ticksuffix"
             case showExponent = "showexponent"
             case exponentFormat = "exponentformat"
+            case minExponent = "minexponent"
             case separateThousands = "separatethousands"
             case tickFont = "tickfont"
             case tickAngle = "tickangle"
@@ -4585,6 +4807,7 @@ public final class Ternary: Encodable, SubplotAxis {
         ///   - tickSuffix: Sets a tick label suffix.
         ///   - showExponent: If *all*, all exponents are shown besides their significands.
         ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+        ///   - minExponent: Hide SI prefix for 10^n if |n| is below this number.
         ///   - separateThousands: If "true", even 4-digit integers are separated
         ///   - tickFont: Sets the tick font.
         ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
@@ -4608,12 +4831,12 @@ public final class Ternary: Encodable, SubplotAxis {
                 [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil,
                 tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil,
                 tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil,
-                showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separateThousands:
-                Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil,
-                tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil,
-                lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? =
-                nil, gridWidth: Double? = nil, layer: AxisLayer? = nil, min: Double? = nil, uiRevision:
-                Anything? = nil) {
+                showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, minExponent: Double? =
+                nil, separateThousands: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat:
+                String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine:
+                Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil,
+                gridColor: Color? = nil, gridWidth: Double? = nil, layer: AxisLayer? = nil, min: Double? = nil,
+                uiRevision: Anything? = nil) {
             self.title = title
             self.color = color
             self.tickMode = tickMode
@@ -4633,6 +4856,7 @@ public final class Ternary: Encodable, SubplotAxis {
             self.tickSuffix = tickSuffix
             self.showExponent = showExponent
             self.exponentFormat = exponentFormat
+            self.minExponent = minExponent
             self.separateThousands = separateThousands
             self.tickFont = tickFont
             self.tickAngle = tickAngle
@@ -4759,6 +4983,11 @@ public final class Ternary: Encodable, SubplotAxis {
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
         public var exponentFormat: ExponentFormat? = nil
     
+        /// Hide SI prefix for 10^n if |n| is below this number.
+        /// 
+        /// This only has an effect when `tickformat` is *SI* or *B*.
+        public var minExponent: Double? = nil
+    
         /// If "true", even 4-digit integers are separated
         public var separateThousands: Bool? = nil
     
@@ -4851,6 +5080,7 @@ public final class Ternary: Encodable, SubplotAxis {
             case tickSuffix = "ticksuffix"
             case showExponent = "showexponent"
             case exponentFormat = "exponentformat"
+            case minExponent = "minexponent"
             case separateThousands = "separatethousands"
             case tickFont = "tickfont"
             case tickAngle = "tickangle"
@@ -4891,6 +5121,7 @@ public final class Ternary: Encodable, SubplotAxis {
         ///   - tickSuffix: Sets a tick label suffix.
         ///   - showExponent: If *all*, all exponents are shown besides their significands.
         ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+        ///   - minExponent: Hide SI prefix for 10^n if |n| is below this number.
         ///   - separateThousands: If "true", even 4-digit integers are separated
         ///   - tickFont: Sets the tick font.
         ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
@@ -4914,12 +5145,12 @@ public final class Ternary: Encodable, SubplotAxis {
                 [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil,
                 tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil,
                 tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil,
-                showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, separateThousands:
-                Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil,
-                tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine: Bool? = nil,
-                lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? =
-                nil, gridWidth: Double? = nil, layer: AxisLayer? = nil, min: Double? = nil, uiRevision:
-                Anything? = nil) {
+                showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil, minExponent: Double? =
+                nil, separateThousands: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat:
+                String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine:
+                Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil,
+                gridColor: Color? = nil, gridWidth: Double? = nil, layer: AxisLayer? = nil, min: Double? = nil,
+                uiRevision: Anything? = nil) {
             self.title = title
             self.color = color
             self.tickMode = tickMode
@@ -4939,6 +5170,7 @@ public final class Ternary: Encodable, SubplotAxis {
             self.tickSuffix = tickSuffix
             self.showExponent = showExponent
             self.exponentFormat = exponentFormat
+            self.minExponent = minExponent
             self.separateThousands = separateThousands
             self.tickFont = tickFont
             self.tickAngle = tickAngle
@@ -5310,6 +5542,12 @@ public final class Scene: Encodable, SubplotAxis {
         /// that referenced the axis in question.
         public var type: `Type`? = nil
     
+        /// Using *strict* a numeric string in trace data is not converted to a number.
+        /// 
+        /// Using *convert types* a numeric string in trace data may be treated as a number during automatic
+        /// axis `type` detection. Defaults to layout.autotypenumbers.
+        public var autoTypeNumbers: AutoTypeNumbers? = nil
+    
         /// Determines whether or not the range of this axis is computed in relation to the input data.
         /// 
         /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -5442,6 +5680,11 @@ public final class Scene: Encodable, SubplotAxis {
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
         public var exponentFormat: ExponentFormat? = nil
     
+        /// Hide SI prefix for 10^n if |n| is below this number.
+        /// 
+        /// This only has an effect when `tickformat` is *SI* or *B*.
+        public var minExponent: Double? = nil
+    
         /// If "true", even 4-digit integers are separated
         public var separateThousands: Bool? = nil
     
@@ -5517,6 +5760,7 @@ public final class Scene: Encodable, SubplotAxis {
             case categoryArray = "categoryarray"
             case title
             case type
+            case autoTypeNumbers = "autotypenumbers"
             case autoRange = "autorange"
             case rangeMode = "rangemode"
             case range
@@ -5540,6 +5784,7 @@ public final class Scene: Encodable, SubplotAxis {
             case showTickSuffix = "showticksuffix"
             case showExponent = "showexponent"
             case exponentFormat = "exponentformat"
+            case minExponent = "minexponent"
             case separateThousands = "separatethousands"
             case tickFormat = "tickformat"
             case tickFormatStops = "tickformatstops"
@@ -5575,6 +5820,7 @@ public final class Scene: Encodable, SubplotAxis {
         ///   - categoryArray: Sets the order in which categories on this axis appear.
         ///   - title:
         ///   - type: Sets the axis type.
+        ///   - autoTypeNumbers: Using *strict* a numeric string in trace data is not converted to a number.
         ///   - autoRange: Determines whether or not the range of this axis is computed in relation to the
         ///   input data.
         ///   - rangeMode: If *normal*, the range is computed in relation to the extrema of the input data.
@@ -5600,6 +5846,7 @@ public final class Scene: Encodable, SubplotAxis {
         ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
         ///   - showExponent: If *all*, all exponents are shown besides their significands.
         ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+        ///   - minExponent: Hide SI prefix for 10^n if |n| is below this number.
         ///   - separateThousands: If "true", even 4-digit integers are separated
         ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
         ///   very similar to those in Python.
@@ -5620,18 +5867,18 @@ public final class Scene: Encodable, SubplotAxis {
                 spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil,
                 backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder:
                 CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Title? = nil, type: `Type`? = nil,
-                autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, tickMode:
-                TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil,
-                tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, mirror: Mirror? =
-                nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil,
-                showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String?
-                = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix:
-                ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil,
-                separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? =
-                nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth:
-                Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil,
-                zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar:
-                Calendar? = nil) {
+                autoTypeNumbers: AutoTypeNumbers? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? =
+                nil, range: InfoArray? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything?
+                = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks:
+                Ticks? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil,
+                tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? =
+                nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? =
+                nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat:
+                ExponentFormat? = nil, minExponent: Double? = nil, separateThousands: Bool? = nil, tickFormat:
+                String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine:
+                Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil,
+                gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color?
+                = nil, zeroLineWidth: Double? = nil, calendar: Calendar? = nil) {
             self.visible = visible
             self.showSpikes = showSpikes
             self.spikeSides = spikeSides
@@ -5645,6 +5892,7 @@ public final class Scene: Encodable, SubplotAxis {
             self.categoryArray = categoryArray
             self.title = title
             self.type = type
+            self.autoTypeNumbers = autoTypeNumbers
             self.autoRange = autoRange
             self.rangeMode = rangeMode
             self.range = range
@@ -5668,6 +5916,7 @@ public final class Scene: Encodable, SubplotAxis {
             self.showTickSuffix = showTickSuffix
             self.showExponent = showExponent
             self.exponentFormat = exponentFormat
+            self.minExponent = minExponent
             self.separateThousands = separateThousands
             self.tickFormat = tickFormat
             self.tickFormatStops = tickFormatStops
@@ -5759,6 +6008,12 @@ public final class Scene: Encodable, SubplotAxis {
         /// that referenced the axis in question.
         public var type: `Type`? = nil
     
+        /// Using *strict* a numeric string in trace data is not converted to a number.
+        /// 
+        /// Using *convert types* a numeric string in trace data may be treated as a number during automatic
+        /// axis `type` detection. Defaults to layout.autotypenumbers.
+        public var autoTypeNumbers: AutoTypeNumbers? = nil
+    
         /// Determines whether or not the range of this axis is computed in relation to the input data.
         /// 
         /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -5891,6 +6146,11 @@ public final class Scene: Encodable, SubplotAxis {
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
         public var exponentFormat: ExponentFormat? = nil
     
+        /// Hide SI prefix for 10^n if |n| is below this number.
+        /// 
+        /// This only has an effect when `tickformat` is *SI* or *B*.
+        public var minExponent: Double? = nil
+    
         /// If "true", even 4-digit integers are separated
         public var separateThousands: Bool? = nil
     
@@ -5966,6 +6226,7 @@ public final class Scene: Encodable, SubplotAxis {
             case categoryArray = "categoryarray"
             case title
             case type
+            case autoTypeNumbers = "autotypenumbers"
             case autoRange = "autorange"
             case rangeMode = "rangemode"
             case range
@@ -5989,6 +6250,7 @@ public final class Scene: Encodable, SubplotAxis {
             case showTickSuffix = "showticksuffix"
             case showExponent = "showexponent"
             case exponentFormat = "exponentformat"
+            case minExponent = "minexponent"
             case separateThousands = "separatethousands"
             case tickFormat = "tickformat"
             case tickFormatStops = "tickformatstops"
@@ -6024,6 +6286,7 @@ public final class Scene: Encodable, SubplotAxis {
         ///   - categoryArray: Sets the order in which categories on this axis appear.
         ///   - title:
         ///   - type: Sets the axis type.
+        ///   - autoTypeNumbers: Using *strict* a numeric string in trace data is not converted to a number.
         ///   - autoRange: Determines whether or not the range of this axis is computed in relation to the
         ///   input data.
         ///   - rangeMode: If *normal*, the range is computed in relation to the extrema of the input data.
@@ -6049,6 +6312,7 @@ public final class Scene: Encodable, SubplotAxis {
         ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
         ///   - showExponent: If *all*, all exponents are shown besides their significands.
         ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+        ///   - minExponent: Hide SI prefix for 10^n if |n| is below this number.
         ///   - separateThousands: If "true", even 4-digit integers are separated
         ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
         ///   very similar to those in Python.
@@ -6069,18 +6333,18 @@ public final class Scene: Encodable, SubplotAxis {
                 spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil,
                 backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder:
                 CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Title? = nil, type: `Type`? = nil,
-                autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, tickMode:
-                TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil,
-                tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, mirror: Mirror? =
-                nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil,
-                showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String?
-                = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix:
-                ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil,
-                separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? =
-                nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth:
-                Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil,
-                zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar:
-                Calendar? = nil) {
+                autoTypeNumbers: AutoTypeNumbers? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? =
+                nil, range: InfoArray? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything?
+                = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks:
+                Ticks? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil,
+                tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? =
+                nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? =
+                nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat:
+                ExponentFormat? = nil, minExponent: Double? = nil, separateThousands: Bool? = nil, tickFormat:
+                String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine:
+                Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil,
+                gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color?
+                = nil, zeroLineWidth: Double? = nil, calendar: Calendar? = nil) {
             self.visible = visible
             self.showSpikes = showSpikes
             self.spikeSides = spikeSides
@@ -6094,6 +6358,7 @@ public final class Scene: Encodable, SubplotAxis {
             self.categoryArray = categoryArray
             self.title = title
             self.type = type
+            self.autoTypeNumbers = autoTypeNumbers
             self.autoRange = autoRange
             self.rangeMode = rangeMode
             self.range = range
@@ -6117,6 +6382,7 @@ public final class Scene: Encodable, SubplotAxis {
             self.showTickSuffix = showTickSuffix
             self.showExponent = showExponent
             self.exponentFormat = exponentFormat
+            self.minExponent = minExponent
             self.separateThousands = separateThousands
             self.tickFormat = tickFormat
             self.tickFormatStops = tickFormatStops
@@ -6208,6 +6474,12 @@ public final class Scene: Encodable, SubplotAxis {
         /// that referenced the axis in question.
         public var type: `Type`? = nil
     
+        /// Using *strict* a numeric string in trace data is not converted to a number.
+        /// 
+        /// Using *convert types* a numeric string in trace data may be treated as a number during automatic
+        /// axis `type` detection. Defaults to layout.autotypenumbers.
+        public var autoTypeNumbers: AutoTypeNumbers? = nil
+    
         /// Determines whether or not the range of this axis is computed in relation to the input data.
         /// 
         /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -6340,6 +6612,11 @@ public final class Scene: Encodable, SubplotAxis {
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
         public var exponentFormat: ExponentFormat? = nil
     
+        /// Hide SI prefix for 10^n if |n| is below this number.
+        /// 
+        /// This only has an effect when `tickformat` is *SI* or *B*.
+        public var minExponent: Double? = nil
+    
         /// If "true", even 4-digit integers are separated
         public var separateThousands: Bool? = nil
     
@@ -6415,6 +6692,7 @@ public final class Scene: Encodable, SubplotAxis {
             case categoryArray = "categoryarray"
             case title
             case type
+            case autoTypeNumbers = "autotypenumbers"
             case autoRange = "autorange"
             case rangeMode = "rangemode"
             case range
@@ -6438,6 +6716,7 @@ public final class Scene: Encodable, SubplotAxis {
             case showTickSuffix = "showticksuffix"
             case showExponent = "showexponent"
             case exponentFormat = "exponentformat"
+            case minExponent = "minexponent"
             case separateThousands = "separatethousands"
             case tickFormat = "tickformat"
             case tickFormatStops = "tickformatstops"
@@ -6473,6 +6752,7 @@ public final class Scene: Encodable, SubplotAxis {
         ///   - categoryArray: Sets the order in which categories on this axis appear.
         ///   - title:
         ///   - type: Sets the axis type.
+        ///   - autoTypeNumbers: Using *strict* a numeric string in trace data is not converted to a number.
         ///   - autoRange: Determines whether or not the range of this axis is computed in relation to the
         ///   input data.
         ///   - rangeMode: If *normal*, the range is computed in relation to the extrema of the input data.
@@ -6498,6 +6778,7 @@ public final class Scene: Encodable, SubplotAxis {
         ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
         ///   - showExponent: If *all*, all exponents are shown besides their significands.
         ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+        ///   - minExponent: Hide SI prefix for 10^n if |n| is below this number.
         ///   - separateThousands: If "true", even 4-digit integers are separated
         ///   - tickFormat: Sets the tick label formatting rule using d3 formatting mini-languages which are
         ///   very similar to those in Python.
@@ -6518,18 +6799,18 @@ public final class Scene: Encodable, SubplotAxis {
                 spikeThickness: Double? = nil, spikeColor: Color? = nil, showBackground: Bool? = nil,
                 backgroundColor: Color? = nil, showAxesLabels: Bool? = nil, color: Color? = nil, categoryOrder:
                 CategoryOrder? = nil, categoryArray: [Double]? = nil, title: Title? = nil, type: `Type`? = nil,
-                autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil, tickMode:
-                TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil,
-                tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, mirror: Mirror? =
-                nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil,
-                showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickPrefix: String?
-                = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix:
-                ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? = nil,
-                separateThousands: Bool? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? =
-                nil, hoverFormat: String? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth:
-                Double? = nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil,
-                zeroLine: Bool? = nil, zeroLineColor: Color? = nil, zeroLineWidth: Double? = nil, calendar:
-                Calendar? = nil) {
+                autoTypeNumbers: AutoTypeNumbers? = nil, autoRange: AutoRange? = nil, rangeMode: RangeMode? =
+                nil, range: InfoArray? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything?
+                = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks:
+                Ticks? = nil, mirror: Mirror? = nil, tickLength: Double? = nil, tickWidth: Double? = nil,
+                tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? =
+                nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? =
+                nil, showTickSuffix: ShowTickSuffix? = nil, showExponent: ShowExponent? = nil, exponentFormat:
+                ExponentFormat? = nil, minExponent: Double? = nil, separateThousands: Bool? = nil, tickFormat:
+                String? = nil, tickFormatStops: [TickFormatStop]? = nil, hoverFormat: String? = nil, showLine:
+                Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil,
+                gridColor: Color? = nil, gridWidth: Double? = nil, zeroLine: Bool? = nil, zeroLineColor: Color?
+                = nil, zeroLineWidth: Double? = nil, calendar: Calendar? = nil) {
             self.visible = visible
             self.showSpikes = showSpikes
             self.spikeSides = spikeSides
@@ -6543,6 +6824,7 @@ public final class Scene: Encodable, SubplotAxis {
             self.categoryArray = categoryArray
             self.title = title
             self.type = type
+            self.autoTypeNumbers = autoTypeNumbers
             self.autoRange = autoRange
             self.rangeMode = rangeMode
             self.range = range
@@ -6566,6 +6848,7 @@ public final class Scene: Encodable, SubplotAxis {
             self.showTickSuffix = showTickSuffix
             self.showExponent = showExponent
             self.exponentFormat = exponentFormat
+            self.minExponent = minExponent
             self.separateThousands = separateThousands
             self.tickFormat = tickFormat
             self.tickFormatStops = tickFormatStops
@@ -8034,6 +8317,12 @@ public final class Polar: Encodable, SubplotAxis {
         /// that referenced the axis in question.
         public var type: `Type`? = nil
     
+        /// Using *strict* a numeric string in trace data is not converted to a number.
+        /// 
+        /// Using *convert types* a numeric string in trace data may be treated as a number during automatic
+        /// axis `type` detection. Defaults to layout.autotypenumbers.
+        public var autoTypeNumbers: AutoTypeNumbers? = nil
+    
         /// Determines whether or not the range of this axis is computed in relation to the input data.
         /// 
         /// See `rangemode` for more info. If `range` is provided, then `autorange` is set to *false*.
@@ -8237,6 +8526,11 @@ public final class Polar: Encodable, SubplotAxis {
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
         public var exponentFormat: ExponentFormat? = nil
     
+        /// Hide SI prefix for 10^n if |n| is below this number.
+        /// 
+        /// This only has an effect when `tickformat` is *SI* or *B*.
+        public var minExponent: Double? = nil
+    
         /// If "true", even 4-digit integers are separated
         public var separateThousands: Bool? = nil
     
@@ -8277,6 +8571,7 @@ public final class Polar: Encodable, SubplotAxis {
         enum CodingKeys: String, CodingKey {
             case visible
             case type
+            case autoTypeNumbers = "autotypenumbers"
             case autoRange = "autorange"
             case rangeMode = "rangemode"
             case range
@@ -8311,6 +8606,7 @@ public final class Polar: Encodable, SubplotAxis {
             case tickSuffix = "ticksuffix"
             case showExponent = "showexponent"
             case exponentFormat = "exponentformat"
+            case minExponent = "minexponent"
             case separateThousands = "separatethousands"
             case tickFont = "tickfont"
             case tickAngle = "tickangle"
@@ -8325,6 +8621,7 @@ public final class Polar: Encodable, SubplotAxis {
         /// - Parameters:
         ///   - visible: A single toggle to hide the axis while preserving interaction like dragging.
         ///   - type: Sets the axis type.
+        ///   - autoTypeNumbers: Using *strict* a numeric string in trace data is not converted to a number.
         ///   - autoRange: Determines whether or not the range of this axis is computed in relation to the
         ///   input data.
         ///   - rangeMode: If *tozero*`, the range extends to 0, regardless of the input data If
@@ -8364,6 +8661,7 @@ public final class Polar: Encodable, SubplotAxis {
         ///   - tickSuffix: Sets a tick label suffix.
         ///   - showExponent: If *all*, all exponents are shown besides their significands.
         ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+        ///   - minExponent: Hide SI prefix for 10^n if |n| is below this number.
         ///   - separateThousands: If "true", even 4-digit integers are separated
         ///   - tickFont: Sets the tick font.
         ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
@@ -8372,21 +8670,23 @@ public final class Polar: Encodable, SubplotAxis {
         ///   - tickFormatStops:
         ///   - layer: Sets the layer on which this axis is displayed.
         ///   - calendar: Sets the calendar system to use for `range` and `tick0` if this is a date axis.
-        public init(visible: Bool? = nil, type: `Type`? = nil, autoRange: AutoRange? = nil, rangeMode:
-                RangeMode? = nil, range: InfoArray? = nil, categoryOrder: CategoryOrder? = nil, categoryArray:
-                [Double]? = nil, angle: Angle? = nil, side: Side? = nil, title: Title? = nil, hoverFormat:
-                String? = nil, uiRevision: Anything? = nil, color: Color? = nil, showLine: Bool? = nil,
-                lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? =
-                nil, gridWidth: Double? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything?
-                = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks:
-                Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil,
-                showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil, tickPrefix: String? = nil,
-                showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: ShowExponent? =
-                nil, exponentFormat: ExponentFormat? = nil, separateThousands: Bool? = nil, tickFont: Font? =
-                nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? =
-                nil, layer: AxisLayer? = nil, calendar: Calendar? = nil) {
+        public init(visible: Bool? = nil, type: `Type`? = nil, autoTypeNumbers: AutoTypeNumbers? = nil,
+                autoRange: AutoRange? = nil, rangeMode: RangeMode? = nil, range: InfoArray? = nil,
+                categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, angle: Angle? = nil, side:
+                Side? = nil, title: Title? = nil, hoverFormat: String? = nil, uiRevision: Anything? = nil,
+                color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? = nil,
+                showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode: TickMode? =
+                nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil, tickValues: [Double]?
+                = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth:
+                Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, showTickPrefix:
+                ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix: ShowTickSuffix? = nil,
+                tickSuffix: String? = nil, showExponent: ShowExponent? = nil, exponentFormat: ExponentFormat? =
+                nil, minExponent: Double? = nil, separateThousands: Bool? = nil, tickFont: Font? = nil,
+                tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil,
+                layer: AxisLayer? = nil, calendar: Calendar? = nil) {
             self.visible = visible
             self.type = type
+            self.autoTypeNumbers = autoTypeNumbers
             self.autoRange = autoRange
             self.rangeMode = rangeMode
             self.range = range
@@ -8421,6 +8721,7 @@ public final class Polar: Encodable, SubplotAxis {
             self.tickSuffix = tickSuffix
             self.showExponent = showExponent
             self.exponentFormat = exponentFormat
+            self.minExponent = minExponent
             self.separateThousands = separateThousands
             self.tickFont = tickFont
             self.tickAngle = tickAngle
@@ -8453,6 +8754,12 @@ public final class Polar: Encodable, SubplotAxis {
         /// If *linear*, set `thetaunit` to determine the unit in which axis value are shown. If *category,
         /// use `period` to set the number of integer coordinates around polar axis.
         public var type: `Type`? = nil
+    
+        /// Using *strict* a numeric string in trace data is not converted to a number.
+        /// 
+        /// Using *convert types* a numeric string in trace data may be treated as a number during automatic
+        /// axis `type` detection. Defaults to layout.autotypenumbers.
+        public var autoTypeNumbers: AutoTypeNumbers? = nil
     
         /// Specifies the ordering logic for the case of categorical variables.
         /// 
@@ -8642,6 +8949,11 @@ public final class Polar: Encodable, SubplotAxis {
         /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
         public var exponentFormat: ExponentFormat? = nil
     
+        /// Hide SI prefix for 10^n if |n| is below this number.
+        /// 
+        /// This only has an effect when `tickformat` is *SI* or *B*.
+        public var minExponent: Double? = nil
+    
         /// If "true", even 4-digit integers are separated
         public var separateThousands: Bool? = nil
     
@@ -8676,6 +8988,7 @@ public final class Polar: Encodable, SubplotAxis {
         enum CodingKeys: String, CodingKey {
             case visible
             case type
+            case autoTypeNumbers = "autotypenumbers"
             case categoryOrder = "categoryorder"
             case categoryArray = "categoryarray"
             case thetaUnit = "thetaunit"
@@ -8708,6 +9021,7 @@ public final class Polar: Encodable, SubplotAxis {
             case tickSuffix = "ticksuffix"
             case showExponent = "showexponent"
             case exponentFormat = "exponentformat"
+            case minExponent = "minexponent"
             case separateThousands = "separatethousands"
             case tickFont = "tickfont"
             case tickAngle = "tickangle"
@@ -8721,6 +9035,7 @@ public final class Polar: Encodable, SubplotAxis {
         /// - Parameters:
         ///   - visible: A single toggle to hide the axis while preserving interaction like dragging.
         ///   - type: Sets the angular axis type.
+        ///   - autoTypeNumbers: Using *strict* a numeric string in trace data is not converted to a number.
         ///   - categoryOrder: Specifies the ordering logic for the case of categorical variables.
         ///   - categoryArray: Sets the order in which categories on this axis appear.
         ///   - thetaUnit: Sets the format unit of the formatted *theta* values.
@@ -8757,6 +9072,7 @@ public final class Polar: Encodable, SubplotAxis {
         ///   - tickSuffix: Sets a tick label suffix.
         ///   - showExponent: If *all*, all exponents are shown besides their significands.
         ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+        ///   - minExponent: Hide SI prefix for 10^n if |n| is below this number.
         ///   - separateThousands: If "true", even 4-digit integers are separated
         ///   - tickFont: Sets the tick font.
         ///   - tickAngle: Sets the angle of the tick labels with respect to the horizontal.
@@ -8764,21 +9080,22 @@ public final class Polar: Encodable, SubplotAxis {
         ///   very similar to those in Python.
         ///   - tickFormatStops:
         ///   - layer: Sets the layer on which this axis is displayed.
-        public init(visible: Bool? = nil, type: `Type`? = nil, categoryOrder: CategoryOrder? = nil,
-                categoryArray: [Double]? = nil, thetaUnit: ThetaUnit? = nil, period: Double? = nil, direction:
-                Direction? = nil, rotation: Angle? = nil, hoverFormat: String? = nil, uiRevision: Anything? =
-                nil, color: Color? = nil, showLine: Bool? = nil, lineColor: Color? = nil, lineWidth: Double? =
-                nil, showGrid: Bool? = nil, gridColor: Color? = nil, gridWidth: Double? = nil, tickMode:
-                TickMode? = nil, numTicks: Int? = nil, tick0: Anything? = nil, dTick: Anything? = nil,
-                tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks: Ticks? = nil, tickLength: Double?
-                = nil, tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil,
-                showTickPrefix: ShowTickPrefix? = nil, tickPrefix: String? = nil, showTickSuffix:
-                ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: ShowExponent? = nil,
-                exponentFormat: ExponentFormat? = nil, separateThousands: Bool? = nil, tickFont: Font? = nil,
-                tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? = nil,
-                layer: AxisLayer? = nil) {
+        public init(visible: Bool? = nil, type: `Type`? = nil, autoTypeNumbers: AutoTypeNumbers? = nil,
+                categoryOrder: CategoryOrder? = nil, categoryArray: [Double]? = nil, thetaUnit: ThetaUnit? =
+                nil, period: Double? = nil, direction: Direction? = nil, rotation: Angle? = nil, hoverFormat:
+                String? = nil, uiRevision: Anything? = nil, color: Color? = nil, showLine: Bool? = nil,
+                lineColor: Color? = nil, lineWidth: Double? = nil, showGrid: Bool? = nil, gridColor: Color? =
+                nil, gridWidth: Double? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0: Anything?
+                = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil, ticks:
+                Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? = nil,
+                showTickLabels: Bool? = nil, showTickPrefix: ShowTickPrefix? = nil, tickPrefix: String? = nil,
+                showTickSuffix: ShowTickSuffix? = nil, tickSuffix: String? = nil, showExponent: ShowExponent? =
+                nil, exponentFormat: ExponentFormat? = nil, minExponent: Double? = nil, separateThousands: Bool?
+                = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat: String? = nil,
+                tickFormatStops: [TickFormatStop]? = nil, layer: AxisLayer? = nil) {
             self.visible = visible
             self.type = type
+            self.autoTypeNumbers = autoTypeNumbers
             self.categoryOrder = categoryOrder
             self.categoryArray = categoryArray
             self.thetaUnit = thetaUnit
@@ -8811,6 +9128,7 @@ public final class Polar: Encodable, SubplotAxis {
             self.tickSuffix = tickSuffix
             self.showExponent = showExponent
             self.exponentFormat = exponentFormat
+            self.minExponent = minExponent
             self.separateThousands = separateThousands
             self.tickFont = tickFont
             self.tickAngle = tickAngle
@@ -9194,6 +9512,9 @@ public struct ColorBar: Encodable {
     /// (inside) the axis lines.
     public var ticks: Ticks? = nil
 
+    /// Determines where tick labels are drawn.
+    public var tickLabelPosition: TickLabelPosition? = nil
+
     /// Sets the tick length (in px).
     public var tickLength: Double? = nil
 
@@ -9249,6 +9570,11 @@ public struct ColorBar: Encodable {
     /// 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B.
     public var exponentFormat: ExponentFormat? = nil
 
+    /// Hide SI prefix for 10^n if |n| is below this number.
+    /// 
+    /// This only has an effect when `tickformat` is *SI* or *B*.
+    public var minExponent: Double? = nil
+
     /// If *all*, all exponents are shown besides their significands.
     /// 
     /// If *first*, only the exponent of the first tick is shown. If *last*, only the exponent of the
@@ -9281,6 +9607,7 @@ public struct ColorBar: Encodable {
         case tickValues = "tickvals"
         case tickText = "ticktext"
         case ticks
+        case tickLabelPosition = "ticklabelposition"
         case tickLength = "ticklen"
         case tickWidth = "tickwidth"
         case tickColor = "tickcolor"
@@ -9295,6 +9622,7 @@ public struct ColorBar: Encodable {
         case showTickSuffix = "showticksuffix"
         case separateThousands = "separatethousands"
         case exponentFormat = "exponentformat"
+        case minExponent = "minexponent"
         case showExponent = "showexponent"
         case title
     }
@@ -9326,6 +9654,7 @@ public struct ColorBar: Encodable {
     ///   - tickValues: Sets the values at which ticks on this axis appear.
     ///   - tickText: Sets the text displayed at the ticks position via `tickvals`.
     ///   - ticks: Determines whether ticks are drawn or not.
+    ///   - tickLabelPosition: Determines where tick labels are drawn.
     ///   - tickLength: Sets the tick length (in px).
     ///   - tickWidth: Sets the tick width (in px).
     ///   - tickColor: Sets the tick color.
@@ -9341,6 +9670,7 @@ public struct ColorBar: Encodable {
     ///   - showTickSuffix: Same as `showtickprefix` but for tick suffixes.
     ///   - separateThousands: If "true", even 4-digit integers are separated
     ///   - exponentFormat: Determines a formatting rule for the tick exponents.
+    ///   - minExponent: Hide SI prefix for 10^n if |n| is below this number.
     ///   - showExponent: If *all*, all exponents are shown besides their significands.
     ///   - title:
     public init(thicknessMode: ThicknessMode? = nil, thickness: Double? = nil, lengthMode:
@@ -9349,12 +9679,13 @@ public struct ColorBar: Encodable {
             Color? = nil, outlineWidth: Double? = nil, borderColor: Color? = nil, borderWidth: Double? =
             nil, backgroundColor: Color? = nil, tickMode: TickMode? = nil, numTicks: Int? = nil, tick0:
             Anything? = nil, dTick: Anything? = nil, tickValues: [Double]? = nil, tickText: [Double]? = nil,
-            ticks: Ticks? = nil, tickLength: Double? = nil, tickWidth: Double? = nil, tickColor: Color? =
-            nil, showTickLabels: Bool? = nil, tickFont: Font? = nil, tickAngle: Angle? = nil, tickFormat:
-            String? = nil, tickFormatStops: [TickFormatStop]? = nil, tickPrefix: String? = nil,
-            showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? = nil, showTickSuffix:
-            ShowTickSuffix? = nil, separateThousands: Bool? = nil, exponentFormat: ExponentFormat? = nil,
-            showExponent: ShowExponent? = nil, title: LegendTitle? = nil) {
+            ticks: Ticks? = nil, tickLabelPosition: TickLabelPosition? = nil, tickLength: Double? = nil,
+            tickWidth: Double? = nil, tickColor: Color? = nil, showTickLabels: Bool? = nil, tickFont: Font?
+            = nil, tickAngle: Angle? = nil, tickFormat: String? = nil, tickFormatStops: [TickFormatStop]? =
+            nil, tickPrefix: String? = nil, showTickPrefix: ShowTickPrefix? = nil, tickSuffix: String? =
+            nil, showTickSuffix: ShowTickSuffix? = nil, separateThousands: Bool? = nil, exponentFormat:
+            ExponentFormat? = nil, minExponent: Double? = nil, showExponent: ShowExponent? = nil, title:
+            LegendTitle? = nil) {
         self.thicknessMode = thicknessMode
         self.thickness = thickness
         self.lengthMode = lengthMode
@@ -9377,6 +9708,7 @@ public struct ColorBar: Encodable {
         self.tickValues = tickValues
         self.tickText = tickText
         self.ticks = ticks
+        self.tickLabelPosition = tickLabelPosition
         self.tickLength = tickLength
         self.tickWidth = tickWidth
         self.tickColor = tickColor
@@ -9391,6 +9723,7 @@ public struct ColorBar: Encodable {
         self.showTickSuffix = showTickSuffix
         self.separateThousands = separateThousands
         self.exponentFormat = exponentFormat
+        self.minExponent = minExponent
         self.showExponent = showExponent
         self.title = title
     }
@@ -9898,7 +10231,7 @@ public struct Error: Encodable {
     /// 
     /// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
     /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
-    /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
+    /// `value`. If *sqrt*, the bar lengths correspond to the square of the underlying data. If *data*,
     /// the bar lengths are set with data set `array`.
     public enum `Type`: String, Encodable {
         case percent
@@ -9910,7 +10243,7 @@ public struct Error: Encodable {
     /// 
     /// If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If
     /// *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in
-    /// `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*,
+    /// `value`. If *sqrt*, the bar lengths correspond to the square of the underlying data. If *data*,
     /// the bar lengths are set with data set `array`.
     public var type: `Type`? = nil
 

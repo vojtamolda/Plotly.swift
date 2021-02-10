@@ -481,6 +481,56 @@
                     "anim": true,
                     "description": "Sets the y coordinate step. See `y0` for more info."
                 },
+                "xperiod": {
+                    "valType": "any",
+                    "dflt": 0,
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer."
+                },
+                "yperiod": {
+                    "valType": "any",
+                    "dflt": 0,
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer."
+                },
+                "xperiod0": {
+                    "valType": "any",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01."
+                },
+                "yperiod0": {
+                    "valType": "any",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01."
+                },
+                "xperiodalignment": {
+                    "valType": "enumerated",
+                    "values": [
+                        "start",
+                        "middle",
+                        "end"
+                    ],
+                    "dflt": "middle",
+                    "role": "style",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the x axis."
+                },
+                "yperiodalignment": {
+                    "valType": "enumerated",
+                    "values": [
+                        "start",
+                        "middle",
+                        "end"
+                    ],
+                    "dflt": "middle",
+                    "role": "style",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the y axis."
+                },
                 "stackgroup": {
                     "valType": "string",
                     "role": "info",
@@ -1630,6 +1680,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "colorbars"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -1810,6 +1875,14 @@
                             "role": "style",
                             "editType": "colorbars",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "colorbars",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -2133,7 +2206,7 @@
                         ],
                         "role": "info",
                         "editType": "calc",
-                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*, the bar lengths are set with data set `array`."
+                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the square of the underlying data. If *data*, the bar lengths are set with data set `array`."
                     },
                     "symmetric": {
                         "valType": "boolean",
@@ -2249,7 +2322,7 @@
                         ],
                         "role": "info",
                         "editType": "calc",
-                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*, the bar lengths are set with data set `array`."
+                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the square of the underlying data. If *data*, the bar lengths are set with data set `array`."
                     },
                     "symmetric": {
                         "valType": "boolean",
@@ -2790,6 +2863,56 @@
                     "editType": "calc",
                     "anim": true,
                     "description": "Sets the y coordinate step. See `y0` for more info."
+                },
+                "xperiod": {
+                    "valType": "any",
+                    "dflt": 0,
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer."
+                },
+                "yperiod": {
+                    "valType": "any",
+                    "dflt": 0,
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer."
+                },
+                "xperiod0": {
+                    "valType": "any",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01."
+                },
+                "yperiod0": {
+                    "valType": "any",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01."
+                },
+                "xperiodalignment": {
+                    "valType": "enumerated",
+                    "values": [
+                        "start",
+                        "middle",
+                        "end"
+                    ],
+                    "dflt": "middle",
+                    "role": "style",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the x axis."
+                },
+                "yperiodalignment": {
+                    "valType": "enumerated",
+                    "values": [
+                        "start",
+                        "middle",
+                        "end"
+                    ],
+                    "dflt": "middle",
+                    "role": "style",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the y axis."
                 },
                 "text": {
                     "valType": "string",
@@ -3421,6 +3544,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "colorbars"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -3601,6 +3739,14 @@
                             "role": "style",
                             "editType": "colorbars",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "colorbars",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -3870,7 +4016,7 @@
                         ],
                         "role": "info",
                         "editType": "calc",
-                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*, the bar lengths are set with data set `array`."
+                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the square of the underlying data. If *data*, the bar lengths are set with data set `array`."
                     },
                     "symmetric": {
                         "valType": "boolean",
@@ -3986,7 +4132,7 @@
                         ],
                         "role": "info",
                         "editType": "calc",
-                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*, the bar lengths are set with data set `array`."
+                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the square of the underlying data. If *data*, the bar lengths are set with data set `array`."
                     },
                     "symmetric": {
                         "valType": "boolean",
@@ -4571,6 +4717,56 @@
                     "role": "info",
                     "editType": "calc",
                     "description": "Sets the y coordinate step for multi-box traces set using q1/median/q3."
+                },
+                "xperiod": {
+                    "valType": "any",
+                    "dflt": 0,
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer."
+                },
+                "yperiod": {
+                    "valType": "any",
+                    "dflt": 0,
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer."
+                },
+                "xperiod0": {
+                    "valType": "any",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01."
+                },
+                "yperiod0": {
+                    "valType": "any",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01."
+                },
+                "xperiodalignment": {
+                    "valType": "enumerated",
+                    "values": [
+                        "start",
+                        "middle",
+                        "end"
+                    ],
+                    "dflt": "middle",
+                    "role": "style",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the x axis."
+                },
+                "yperiodalignment": {
+                    "valType": "enumerated",
+                    "values": [
+                        "start",
+                        "middle",
+                        "end"
+                    ],
+                    "dflt": "middle",
+                    "role": "style",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the y axis."
                 },
                 "name": {
                     "valType": "string",
@@ -5908,6 +6104,74 @@
                         "ytype": "scaled"
                     }
                 },
+                "xperiod": {
+                    "valType": "any",
+                    "dflt": 0,
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.",
+                    "impliedEdits": {
+                        "xtype": "scaled"
+                    }
+                },
+                "yperiod": {
+                    "valType": "any",
+                    "dflt": 0,
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.",
+                    "impliedEdits": {
+                        "ytype": "scaled"
+                    }
+                },
+                "xperiod0": {
+                    "valType": "any",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.",
+                    "impliedEdits": {
+                        "xtype": "scaled"
+                    }
+                },
+                "yperiod0": {
+                    "valType": "any",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01.",
+                    "impliedEdits": {
+                        "ytype": "scaled"
+                    }
+                },
+                "xperiodalignment": {
+                    "valType": "enumerated",
+                    "values": [
+                        "start",
+                        "middle",
+                        "end"
+                    ],
+                    "dflt": "middle",
+                    "role": "style",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the x axis.",
+                    "impliedEdits": {
+                        "xtype": "scaled"
+                    }
+                },
+                "yperiodalignment": {
+                    "valType": "enumerated",
+                    "values": [
+                        "start",
+                        "middle",
+                        "end"
+                    ],
+                    "dflt": "middle",
+                    "role": "style",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the y axis.",
+                    "impliedEdits": {
+                        "ytype": "scaled"
+                    }
+                },
                 "text": {
                     "valType": "data_array",
                     "editType": "calc",
@@ -6274,6 +6538,21 @@
                         "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                         "dflt": ""
                     },
+                    "ticklabelposition": {
+                        "valType": "enumerated",
+                        "values": [
+                            "outside",
+                            "inside",
+                            "outside top",
+                            "inside top",
+                            "outside bottom",
+                            "inside bottom"
+                        ],
+                        "dflt": "outside",
+                        "role": "info",
+                        "description": "Determines where tick labels are drawn.",
+                        "editType": "colorbars"
+                    },
                     "ticklen": {
                         "valType": "number",
                         "min": 0,
@@ -6454,6 +6733,14 @@
                         "role": "style",
                         "editType": "colorbars",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "colorbars",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "showexponent": {
                         "valType": "enumerated",
@@ -7525,6 +7812,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "colorbars"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -7705,6 +8007,14 @@
                             "role": "style",
                             "editType": "colorbars",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "colorbars",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -7962,7 +8272,7 @@
                         ],
                         "role": "info",
                         "editType": "calc",
-                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*, the bar lengths are set with data set `array`."
+                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the square of the underlying data. If *data*, the bar lengths are set with data set `array`."
                     },
                     "symmetric": {
                         "valType": "boolean",
@@ -8078,7 +8388,7 @@
                         ],
                         "role": "info",
                         "editType": "calc",
-                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*, the bar lengths are set with data set `array`."
+                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the square of the underlying data. If *data*, the bar lengths are set with data set `array`."
                     },
                     "symmetric": {
                         "valType": "boolean",
@@ -9048,6 +9358,21 @@
                         "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                         "dflt": ""
                     },
+                    "ticklabelposition": {
+                        "valType": "enumerated",
+                        "values": [
+                            "outside",
+                            "inside",
+                            "outside top",
+                            "inside top",
+                            "outside bottom",
+                            "inside bottom"
+                        ],
+                        "dflt": "outside",
+                        "role": "info",
+                        "description": "Determines where tick labels are drawn.",
+                        "editType": "colorbars"
+                    },
                     "ticklen": {
                         "valType": "number",
                         "min": 0,
@@ -9228,6 +9553,14 @@
                         "role": "style",
                         "editType": "colorbars",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "colorbars",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "showexponent": {
                         "valType": "enumerated",
@@ -10348,6 +10681,21 @@
                         "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                         "dflt": ""
                     },
+                    "ticklabelposition": {
+                        "valType": "enumerated",
+                        "values": [
+                            "outside",
+                            "inside",
+                            "outside top",
+                            "inside top",
+                            "outside bottom",
+                            "inside bottom"
+                        ],
+                        "dflt": "outside",
+                        "role": "info",
+                        "description": "Determines where tick labels are drawn.",
+                        "editType": "colorbars"
+                    },
                     "ticklen": {
                         "valType": "number",
                         "min": 0,
@@ -10528,6 +10876,14 @@
                         "role": "style",
                         "editType": "colorbars",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "colorbars",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "showexponent": {
                         "valType": "enumerated",
@@ -11079,6 +11435,68 @@
                         "ytype": "scaled"
                     }
                 },
+                "xperiod": {
+                    "valType": "any",
+                    "dflt": 0,
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.",
+                    "impliedEdits": {
+                        "xtype": "scaled"
+                    }
+                },
+                "yperiod": {
+                    "valType": "any",
+                    "dflt": 0,
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer.",
+                    "impliedEdits": {
+                        "ytype": "scaled"
+                    }
+                },
+                "xperiod0": {
+                    "valType": "any",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01."
+                },
+                "yperiod0": {
+                    "valType": "any",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01."
+                },
+                "xperiodalignment": {
+                    "valType": "enumerated",
+                    "values": [
+                        "start",
+                        "middle",
+                        "end"
+                    ],
+                    "dflt": "middle",
+                    "role": "style",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the x axis.",
+                    "impliedEdits": {
+                        "xtype": "scaled"
+                    }
+                },
+                "yperiodalignment": {
+                    "valType": "enumerated",
+                    "values": [
+                        "start",
+                        "middle",
+                        "end"
+                    ],
+                    "dflt": "middle",
+                    "role": "style",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the y axis.",
+                    "impliedEdits": {
+                        "ytype": "scaled"
+                    }
+                },
                 "text": {
                     "valType": "data_array",
                     "editType": "calc",
@@ -11610,6 +12028,21 @@
                         "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                         "dflt": ""
                     },
+                    "ticklabelposition": {
+                        "valType": "enumerated",
+                        "values": [
+                            "outside",
+                            "inside",
+                            "outside top",
+                            "inside top",
+                            "outside bottom",
+                            "inside bottom"
+                        ],
+                        "dflt": "outside",
+                        "role": "info",
+                        "description": "Determines where tick labels are drawn.",
+                        "editType": "colorbars"
+                    },
                     "ticklen": {
                         "valType": "number",
                         "min": 0,
@@ -11790,6 +12223,14 @@
                         "role": "style",
                         "editType": "colorbars",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "colorbars",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "showexponent": {
                         "valType": "enumerated",
@@ -13371,6 +13812,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "colorbars"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -13551,6 +14007,14 @@
                             "role": "style",
                             "editType": "colorbars",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "colorbars",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -15488,6 +15952,56 @@
                     "editType": "calc",
                     "description": "Sets the y coordinate step. See `y0` for more info."
                 },
+                "xperiod": {
+                    "valType": "any",
+                    "dflt": 0,
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer."
+                },
+                "yperiod": {
+                    "valType": "any",
+                    "dflt": 0,
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer."
+                },
+                "xperiod0": {
+                    "valType": "any",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01."
+                },
+                "yperiod0": {
+                    "valType": "any",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01."
+                },
+                "xperiodalignment": {
+                    "valType": "enumerated",
+                    "values": [
+                        "start",
+                        "middle",
+                        "end"
+                    ],
+                    "dflt": "middle",
+                    "role": "style",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the x axis."
+                },
+                "yperiodalignment": {
+                    "valType": "enumerated",
+                    "values": [
+                        "start",
+                        "middle",
+                        "end"
+                    ],
+                    "dflt": "middle",
+                    "role": "style",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the y axis."
+                },
                 "hovertext": {
                     "valType": "string",
                     "role": "info",
@@ -16149,6 +16663,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "colorbars"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -16329,6 +16858,14 @@
                             "role": "style",
                             "editType": "colorbars",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "colorbars",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -16945,6 +17482,56 @@
                     "role": "info",
                     "editType": "calc",
                     "description": "Sets the y coordinate step. See `y0` for more info."
+                },
+                "xperiod": {
+                    "valType": "any",
+                    "dflt": 0,
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer."
+                },
+                "yperiod": {
+                    "valType": "any",
+                    "dflt": 0,
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer."
+                },
+                "xperiod0": {
+                    "valType": "any",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01."
+                },
+                "yperiod0": {
+                    "valType": "any",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01."
+                },
+                "xperiodalignment": {
+                    "valType": "enumerated",
+                    "values": [
+                        "start",
+                        "middle",
+                        "end"
+                    ],
+                    "dflt": "middle",
+                    "role": "style",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the x axis."
+                },
+                "yperiodalignment": {
+                    "valType": "enumerated",
+                    "values": [
+                        "start",
+                        "middle",
+                        "end"
+                    ],
+                    "dflt": "middle",
+                    "role": "style",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the y axis."
                 },
                 "hovertext": {
                     "valType": "string",
@@ -19390,6 +19977,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "colorbars"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -19570,6 +20172,14 @@
                             "role": "style",
                             "editType": "colorbars",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "colorbars",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -19934,6 +20544,31 @@
                         "description": "Sets the source reference on Chart Studio Cloud for  color .",
                         "editType": "none"
                     }
+                },
+                "rotation": {
+                    "valType": "angle",
+                    "role": "style",
+                    "dflt": 0,
+                    "editType": "plot",
+                    "description": "Rotates the whole diagram counterclockwise by some angle. By default the first slice starts at 3 o'clock."
+                },
+                "sort": {
+                    "valType": "boolean",
+                    "role": "style",
+                    "dflt": true,
+                    "editType": "calc",
+                    "description": "Determines whether or not the sectors are reordered from largest to smallest."
+                },
+                "root": {
+                    "color": {
+                        "valType": "color",
+                        "editType": "calc",
+                        "role": "style",
+                        "dflt": "rgba(0,0,0,0)",
+                        "description": "sets the color of the root node for a sunburst or a treemap trace. this has no effect when a colorscale is used to set the markers."
+                    },
+                    "editType": "calc",
+                    "role": "object"
                 },
                 "domain": {
                     "x": {
@@ -20743,6 +21378,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "colorbars"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -20923,6 +21573,14 @@
                             "role": "style",
                             "editType": "colorbars",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "colorbars",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -21368,6 +22026,24 @@
                     "role": "style",
                     "editType": "plot",
                     "description": "Sets the positions of the `text` elements."
+                },
+                "sort": {
+                    "valType": "boolean",
+                    "role": "style",
+                    "dflt": true,
+                    "editType": "calc",
+                    "description": "Determines whether or not the sectors are reordered from largest to smallest."
+                },
+                "root": {
+                    "color": {
+                        "valType": "color",
+                        "editType": "calc",
+                        "role": "style",
+                        "dflt": "rgba(0,0,0,0)",
+                        "description": "sets the color of the root node for a sunburst or a treemap trace. this has no effect when a colorscale is used to set the markers."
+                    },
+                    "editType": "calc",
+                    "role": "object"
                 },
                 "domain": {
                     "x": {
@@ -22946,6 +23622,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "calc"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -23126,6 +23817,14 @@
                             "role": "style",
                             "editType": "calc",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "calc",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -23520,6 +24219,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "calc"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -23700,6 +24414,14 @@
                             "role": "style",
                             "editType": "calc",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "calc",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -24110,7 +24832,7 @@
                         ],
                         "role": "info",
                         "editType": "calc",
-                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*, the bar lengths are set with data set `array`."
+                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the square of the underlying data. If *data*, the bar lengths are set with data set `array`."
                     },
                     "symmetric": {
                         "valType": "boolean",
@@ -24226,7 +24948,7 @@
                         ],
                         "role": "info",
                         "editType": "calc",
-                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*, the bar lengths are set with data set `array`."
+                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the square of the underlying data. If *data*, the bar lengths are set with data set `array`."
                     },
                     "symmetric": {
                         "valType": "boolean",
@@ -24342,7 +25064,7 @@
                         ],
                         "role": "info",
                         "editType": "calc",
-                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*, the bar lengths are set with data set `array`."
+                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the square of the underlying data. If *data*, the bar lengths are set with data set `array`."
                     },
                     "symmetric": {
                         "valType": "boolean",
@@ -25110,6 +25832,21 @@
                         "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                         "dflt": ""
                     },
+                    "ticklabelposition": {
+                        "valType": "enumerated",
+                        "values": [
+                            "outside",
+                            "inside",
+                            "outside top",
+                            "inside top",
+                            "outside bottom",
+                            "inside bottom"
+                        ],
+                        "dflt": "outside",
+                        "role": "info",
+                        "description": "Determines where tick labels are drawn.",
+                        "editType": "calc"
+                    },
                     "ticklen": {
                         "valType": "number",
                         "min": 0,
@@ -25290,6 +26027,14 @@
                         "role": "style",
                         "editType": "calc",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "calc",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "showexponent": {
                         "valType": "enumerated",
@@ -26788,6 +27533,21 @@
                         "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                         "dflt": ""
                     },
+                    "ticklabelposition": {
+                        "valType": "enumerated",
+                        "values": [
+                            "outside",
+                            "inside",
+                            "outside top",
+                            "inside top",
+                            "outside bottom",
+                            "inside bottom"
+                        ],
+                        "dflt": "outside",
+                        "role": "info",
+                        "description": "Determines where tick labels are drawn.",
+                        "editType": "calc"
+                    },
                     "ticklen": {
                         "valType": "number",
                         "min": 0,
@@ -26968,6 +27728,14 @@
                         "role": "style",
                         "editType": "calc",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "calc",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "showexponent": {
                         "valType": "enumerated",
@@ -28086,6 +28854,21 @@
                         "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                         "dflt": ""
                     },
+                    "ticklabelposition": {
+                        "valType": "enumerated",
+                        "values": [
+                            "outside",
+                            "inside",
+                            "outside top",
+                            "inside top",
+                            "outside bottom",
+                            "inside bottom"
+                        ],
+                        "dflt": "outside",
+                        "role": "info",
+                        "description": "Determines where tick labels are drawn.",
+                        "editType": "calc"
+                    },
                     "ticklen": {
                         "valType": "number",
                         "min": 0,
@@ -28266,6 +29049,14 @@
                         "role": "style",
                         "editType": "calc",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "calc",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "showexponent": {
                         "valType": "enumerated",
@@ -29217,6 +30008,21 @@
                         "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                         "dflt": ""
                     },
+                    "ticklabelposition": {
+                        "valType": "enumerated",
+                        "values": [
+                            "outside",
+                            "inside",
+                            "outside top",
+                            "inside top",
+                            "outside bottom",
+                            "inside bottom"
+                        ],
+                        "dflt": "outside",
+                        "role": "info",
+                        "description": "Determines where tick labels are drawn.",
+                        "editType": "colorbars"
+                    },
                     "ticklen": {
                         "valType": "number",
                         "min": 0,
@@ -29397,6 +30203,14 @@
                         "role": "style",
                         "editType": "colorbars",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "colorbars",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "showexponent": {
                         "valType": "enumerated",
@@ -30431,6 +31245,21 @@
                         "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                         "dflt": ""
                     },
+                    "ticklabelposition": {
+                        "valType": "enumerated",
+                        "values": [
+                            "outside",
+                            "inside",
+                            "outside top",
+                            "inside top",
+                            "outside bottom",
+                            "inside bottom"
+                        ],
+                        "dflt": "outside",
+                        "role": "info",
+                        "description": "Determines where tick labels are drawn.",
+                        "editType": "colorbars"
+                    },
                     "ticklen": {
                         "valType": "number",
                         "min": 0,
@@ -30611,6 +31440,14 @@
                         "role": "style",
                         "editType": "colorbars",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "colorbars",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "showexponent": {
                         "valType": "enumerated",
@@ -31538,6 +32375,21 @@
                         "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                         "dflt": ""
                     },
+                    "ticklabelposition": {
+                        "valType": "enumerated",
+                        "values": [
+                            "outside",
+                            "inside",
+                            "outside top",
+                            "inside top",
+                            "outside bottom",
+                            "inside bottom"
+                        ],
+                        "dflt": "outside",
+                        "role": "info",
+                        "description": "Determines where tick labels are drawn.",
+                        "editType": "colorbars"
+                    },
                     "ticklen": {
                         "valType": "number",
                         "min": 0,
@@ -31718,6 +32570,14 @@
                         "role": "style",
                         "editType": "colorbars",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "colorbars",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "showexponent": {
                         "valType": "enumerated",
@@ -33196,6 +34056,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "calc"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -33376,6 +34251,14 @@
                             "role": "style",
                             "editType": "calc",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "calc",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -34597,6 +35480,21 @@
                         "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                         "dflt": ""
                     },
+                    "ticklabelposition": {
+                        "valType": "enumerated",
+                        "values": [
+                            "outside",
+                            "inside",
+                            "outside top",
+                            "inside top",
+                            "outside bottom",
+                            "inside bottom"
+                        ],
+                        "dflt": "outside",
+                        "role": "info",
+                        "description": "Determines where tick labels are drawn.",
+                        "editType": "colorbars"
+                    },
                     "ticklen": {
                         "valType": "number",
                         "min": 0,
@@ -34777,6 +35675,14 @@
                         "role": "style",
                         "editType": "colorbars",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "colorbars",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "showexponent": {
                         "valType": "enumerated",
@@ -35253,6 +36159,56 @@
                     "editType": "calc",
                     "description": "Sets the y coordinate step. See `y0` for more info."
                 },
+                "xperiod": {
+                    "valType": "any",
+                    "dflt": 0,
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer."
+                },
+                "yperiod": {
+                    "valType": "any",
+                    "dflt": 0,
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer."
+                },
+                "xperiod0": {
+                    "valType": "any",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01."
+                },
+                "yperiod0": {
+                    "valType": "any",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the y0 axis. When `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01."
+                },
+                "xperiodalignment": {
+                    "valType": "enumerated",
+                    "values": [
+                        "start",
+                        "middle",
+                        "end"
+                    ],
+                    "dflt": "middle",
+                    "role": "style",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the x axis."
+                },
+                "yperiodalignment": {
+                    "valType": "enumerated",
+                    "values": [
+                        "start",
+                        "middle",
+                        "end"
+                    ],
+                    "dflt": "middle",
+                    "role": "style",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the y axis."
+                },
                 "text": {
                     "valType": "string",
                     "role": "info",
@@ -35666,6 +36622,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "calc"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -35846,6 +36817,14 @@
                             "role": "style",
                             "editType": "calc",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "calc",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -36776,7 +37755,7 @@
                         ],
                         "role": "info",
                         "editType": "calc",
-                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*, the bar lengths are set with data set `array`."
+                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the square of the underlying data. If *data*, the bar lengths are set with data set `array`."
                     },
                     "symmetric": {
                         "valType": "boolean",
@@ -36892,7 +37871,7 @@
                         ],
                         "role": "info",
                         "editType": "calc",
-                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the sqaure of the underlying data. If *data*, the bar lengths are set with data set `array`."
+                        "description": "Determines the rule used to generate the error bars. If *constant`, the bar lengths are of a constant value. Set this constant in `value`. If *percent*, the bar lengths correspond to a percentage of underlying data. Set this percentage in `value`. If *sqrt*, the bar lengths correspond to the square of the underlying data. If *data*, the bar lengths are set with data set `array`."
                     },
                     "symmetric": {
                         "valType": "boolean",
@@ -37728,6 +38707,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "colorbars"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -37908,6 +38902,14 @@
                             "role": "style",
                             "editType": "colorbars",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "colorbars",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -38696,7 +39698,7 @@
                     "editType": "calc",
                     "items": {
                         "valType": "subplotid",
-                        "regex": "/^x([2-9]|[1-9][0-9]+)?$/",
+                        "regex": "/^x([2-9]|[1-9][0-9]+)?( domain)?$/",
                         "editType": "plot"
                     },
                     "description": "Sets the list of x axes corresponding to dimensions of this splom trace. By default, a splom will match the first N xaxes where N is the number of input dimensions. Note that, in case where `diagonal.visible` is false and `showupperhalf` or `showlowerhalf` is false, this splom trace will generate one less x-axis and one less y-axis."
@@ -38708,7 +39710,7 @@
                     "editType": "calc",
                     "items": {
                         "valType": "subplotid",
-                        "regex": "/^y([2-9]|[1-9][0-9]+)?$/",
+                        "regex": "/^y([2-9]|[1-9][0-9]+)?( domain)?$/",
                         "editType": "plot"
                     },
                     "description": "Sets the list of y axes corresponding to dimensions of this splom trace. By default, a splom will match the first N yaxes where N is the number of input dimensions. Note that, in case where `diagonal.visible` is false and `showupperhalf` or `showlowerhalf` is false, this splom trace will generate one less x-axis and one less y-axis."
@@ -39878,6 +40880,21 @@
                         "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                         "dflt": ""
                     },
+                    "ticklabelposition": {
+                        "valType": "enumerated",
+                        "values": [
+                            "outside",
+                            "inside",
+                            "outside top",
+                            "inside top",
+                            "outside bottom",
+                            "inside bottom"
+                        ],
+                        "dflt": "outside",
+                        "role": "info",
+                        "description": "Determines where tick labels are drawn.",
+                        "editType": "calc"
+                    },
                     "ticklen": {
                         "valType": "number",
                         "min": 0,
@@ -40058,6 +41075,14 @@
                         "role": "style",
                         "editType": "calc",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "calc",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "showexponent": {
                         "valType": "enumerated",
@@ -40961,6 +41986,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "colorbars"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -41141,6 +42181,14 @@
                             "role": "style",
                             "editType": "colorbars",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "colorbars",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -41908,6 +42956,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "colorbars"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -42088,6 +43151,14 @@
                             "role": "style",
                             "editType": "colorbars",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "colorbars",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -42912,6 +43983,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "calc"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -43092,6 +44178,14 @@
                             "role": "style",
                             "editType": "calc",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "calc",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -44119,6 +45213,21 @@
                         "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                         "dflt": ""
                     },
+                    "ticklabelposition": {
+                        "valType": "enumerated",
+                        "values": [
+                            "outside",
+                            "inside",
+                            "outside top",
+                            "inside top",
+                            "outside bottom",
+                            "inside bottom"
+                        ],
+                        "dflt": "outside",
+                        "role": "info",
+                        "description": "Determines where tick labels are drawn.",
+                        "editType": "colorbars"
+                    },
                     "ticklen": {
                         "valType": "number",
                         "min": 0,
@@ -44299,6 +45408,14 @@
                         "role": "style",
                         "editType": "colorbars",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "colorbars",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "showexponent": {
                         "valType": "enumerated",
@@ -45055,6 +46172,21 @@
                         "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                         "dflt": ""
                     },
+                    "ticklabelposition": {
+                        "valType": "enumerated",
+                        "values": [
+                            "outside",
+                            "inside",
+                            "outside top",
+                            "inside top",
+                            "outside bottom",
+                            "inside bottom"
+                        ],
+                        "dflt": "outside",
+                        "role": "info",
+                        "description": "Determines where tick labels are drawn.",
+                        "editType": "colorbars"
+                    },
                     "ticklen": {
                         "valType": "number",
                         "min": 0,
@@ -45235,6 +46367,14 @@
                         "role": "style",
                         "editType": "colorbars",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "colorbars",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "showexponent": {
                         "valType": "enumerated",
@@ -47102,6 +48242,14 @@
                             "editType": "plot",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
                         },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "plot",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
+                        },
                         "showexponent": {
                             "valType": "enumerated",
                             "values": [
@@ -48057,7 +49205,7 @@
                 "x": {
                     "valType": "data_array",
                     "editType": "calc+clearAxisTypes",
-                    "description": "A two dimensional array of x coordinates at each carpet point. If ommitted, the plot is a cheater plot and the xaxis is hidden by default.",
+                    "description": "A two dimensional array of x coordinates at each carpet point. If omitted, the plot is a cheater plot and the xaxis is hidden by default.",
                     "role": "data"
                 },
                 "y": {
@@ -48111,7 +49259,7 @@
                     "role": "info",
                     "dflt": 1,
                     "editType": "calc",
-                    "description": "The shift applied to each successive row of data in creating a cheater plot. Only used if `x` is been ommitted."
+                    "description": "The shift applied to each successive row of data in creating a cheater plot. Only used if `x` is been omitted."
                 },
                 "aaxis": {
                     "color": {
@@ -48182,6 +49330,17 @@
                         "role": "info",
                         "editType": "calc",
                         "description": "Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question."
+                    },
+                    "autotypenumbers": {
+                        "valType": "enumerated",
+                        "values": [
+                            "convert types",
+                            "strict"
+                        ],
+                        "dflt": "convert types",
+                        "role": "info",
+                        "editType": "calc",
+                        "description": "Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers."
                     },
                     "autorange": {
                         "valType": "enumerated",
@@ -48381,6 +49540,14 @@
                         "role": "style",
                         "editType": "calc",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "calc",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number"
                     },
                     "separatethousands": {
                         "valType": "boolean",
@@ -48751,6 +49918,17 @@
                         "editType": "calc",
                         "description": "Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question."
                     },
+                    "autotypenumbers": {
+                        "valType": "enumerated",
+                        "values": [
+                            "convert types",
+                            "strict"
+                        ],
+                        "dflt": "convert types",
+                        "role": "info",
+                        "editType": "calc",
+                        "description": "Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers."
+                    },
                     "autorange": {
                         "valType": "enumerated",
                         "values": [
@@ -48949,6 +50127,14 @@
                         "role": "style",
                         "editType": "calc",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "calc",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number"
                     },
                     "separatethousands": {
                         "valType": "boolean",
@@ -50657,6 +51843,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "colorbars"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -50837,6 +52038,14 @@
                             "role": "style",
                             "editType": "colorbars",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "colorbars",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -51936,6 +53145,21 @@
                         "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                         "dflt": ""
                     },
+                    "ticklabelposition": {
+                        "valType": "enumerated",
+                        "values": [
+                            "outside",
+                            "inside",
+                            "outside top",
+                            "inside top",
+                            "outside bottom",
+                            "inside bottom"
+                        ],
+                        "dflt": "outside",
+                        "role": "info",
+                        "description": "Determines where tick labels are drawn.",
+                        "editType": "colorbars"
+                    },
                     "ticklen": {
                         "valType": "number",
                         "min": 0,
@@ -52116,6 +53340,14 @@
                         "role": "style",
                         "editType": "colorbars",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "colorbars",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "showexponent": {
                         "valType": "enumerated",
@@ -52447,6 +53679,31 @@
                     "role": "info",
                     "editType": "none",
                     "description": "Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves."
+                },
+                "xperiod": {
+                    "valType": "any",
+                    "dflt": 0,
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer."
+                },
+                "xperiod0": {
+                    "valType": "any",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01."
+                },
+                "xperiodalignment": {
+                    "valType": "enumerated",
+                    "values": [
+                        "start",
+                        "middle",
+                        "end"
+                    ],
+                    "dflt": "middle",
+                    "role": "style",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the x axis."
                 },
                 "x": {
                     "valType": "data_array",
@@ -52972,6 +54229,31 @@
                     "role": "info",
                     "editType": "none",
                     "description": "Controls persistence of some user-driven changes to the trace: `constraintrange` in `parcoords` traces, as well as some `editable: true` modifications such as `name` and `colorbar.title`. Defaults to `layout.uirevision`. Note that other user-driven trace attribute changes are controlled by `layout` attributes: `trace.visible` is controlled by `layout.legend.uirevision`, `selectedpoints` is controlled by `layout.selectionrevision`, and `colorbar.(x|y)` (accessible with `config: {editable: true}`) is controlled by `layout.editrevision`. Trace changes are tracked by `uid`, which only falls back on trace index if no `uid` is provided. So if your app can add/remove traces before the end of the `data` array, such that the same trace has a different index, you can still preserve user-driven changes if you give each trace a `uid` that stays with it as it moves."
+                },
+                "xperiod": {
+                    "valType": "any",
+                    "dflt": 0,
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form of *M<n>* could be used to declare the number of months. In this case `n` must be a positive integer."
+                },
+                "xperiod0": {
+                    "valType": "any",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the base for period positioning in milliseconds or date string on the x0 axis. When `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e. 2000-01-02, otherwise it would be at 2000-01-01."
+                },
+                "xperiodalignment": {
+                    "valType": "enumerated",
+                    "values": [
+                        "start",
+                        "middle",
+                        "end"
+                    ],
+                    "dflt": "middle",
+                    "role": "style",
+                    "editType": "calc",
+                    "description": "Only relevant when the axis `type` is *date*. Sets the alignment of data points on the x axis."
                 },
                 "x": {
                     "valType": "data_array",
@@ -54680,6 +55962,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "colorbars"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -54860,6 +56157,14 @@
                             "role": "style",
                             "editType": "colorbars",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "colorbars",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -55949,6 +57254,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "calc"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -56129,6 +57449,14 @@
                             "role": "style",
                             "editType": "calc",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "calc",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -57866,6 +59194,21 @@
                             "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                             "dflt": ""
                         },
+                        "ticklabelposition": {
+                            "valType": "enumerated",
+                            "values": [
+                                "outside",
+                                "inside",
+                                "outside top",
+                                "inside top",
+                                "outside bottom",
+                                "inside bottom"
+                            ],
+                            "dflt": "outside",
+                            "role": "info",
+                            "description": "Determines where tick labels are drawn.",
+                            "editType": "colorbars"
+                        },
                         "ticklen": {
                             "valType": "number",
                             "min": 0,
@@ -58046,6 +59389,14 @@
                             "role": "style",
                             "editType": "colorbars",
                             "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                        },
+                        "minexponent": {
+                            "valType": "number",
+                            "dflt": 3,
+                            "min": 0,
+                            "role": "style",
+                            "editType": "colorbars",
+                            "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                         },
                         "showexponent": {
                             "valType": "enumerated",
@@ -59477,6 +60828,12 @@
                 "editType": "plot",
                 "role": "object"
             },
+            "computed": {
+                "valType": "any",
+                "role": "info",
+                "editType": "none",
+                "description": "Placeholder for exporting automargin-impacting values namely `margin.t`, `margin.b`, `margin.l` and `margin.r` in *full-json* mode."
+            },
             "paper_bgcolor": {
                 "valType": "color",
                 "role": "style",
@@ -59490,6 +60847,17 @@
                 "dflt": "#fff",
                 "editType": "layoutstyle",
                 "description": "Sets the background color of the plotting area in-between x and y axes."
+            },
+            "autotypenumbers": {
+                "valType": "enumerated",
+                "values": [
+                    "convert types",
+                    "strict"
+                ],
+                "dflt": "convert types",
+                "role": "info",
+                "editType": "calc",
+                "description": "Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric string in trace data may be treated as a number during automatic axis `type` detection. This is the default value; however it could be overridden for individual axes."
             },
             "separators": {
                 "valType": "string",
@@ -60000,7 +61368,7 @@
                     "items": {
                         "valType": "enumerated",
                         "values": [
-                            "/^x([2-9]|[1-9][0-9]+)?$/",
+                            "/^x([2-9]|[1-9][0-9]+)?( domain)?$/",
                             ""
                         ],
                         "editType": "plot"
@@ -60015,7 +61383,7 @@
                     "items": {
                         "valType": "enumerated",
                         "values": [
-                            "/^y([2-9]|[1-9][0-9]+)?$/",
+                            "/^y([2-9]|[1-9][0-9]+)?( domain)?$/",
                             ""
                         ],
                         "editType": "plot"
@@ -60228,6 +61596,17 @@
                     "_noTemplating": true,
                     "description": "Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question."
                 },
+                "autotypenumbers": {
+                    "valType": "enumerated",
+                    "values": [
+                        "convert types",
+                        "strict"
+                    ],
+                    "dflt": "convert types",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers."
+                },
                 "autorange": {
                     "valType": "enumerated",
                     "values": [
@@ -60291,8 +61670,8 @@
                 "scaleanchor": {
                     "valType": "enumerated",
                     "values": [
-                        "/^x([2-9]|[1-9][0-9]+)?$/",
-                        "/^y([2-9]|[1-9][0-9]+)?$/"
+                        "/^x([2-9]|[1-9][0-9]+)?( domain)?$/",
+                        "/^y([2-9]|[1-9][0-9]+)?( domain)?$/"
                     ],
                     "role": "info",
                     "editType": "plot",
@@ -60312,10 +61691,9 @@
                         "range",
                         "domain"
                     ],
-                    "dflt": "range",
                     "role": "info",
                     "editType": "plot",
-                    "description": "If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other axis), determines how that happens: by increasing the *range* (default), or by decreasing the *domain*."
+                    "description": "If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other axis), determines how that happens: by increasing the *range*, or by decreasing the *domain*. Default is *domain* for axes containing image traces, *range* otherwise."
                 },
                 "constraintoward": {
                     "valType": "enumerated",
@@ -60334,8 +61712,8 @@
                 "matches": {
                     "valType": "enumerated",
                     "values": [
-                        "/^x([2-9]|[1-9][0-9]+)?$/",
-                        "/^y([2-9]|[1-9][0-9]+)?$/"
+                        "/^x([2-9]|[1-9][0-9]+)?( domain)?$/",
+                        "/^y([2-9]|[1-9][0-9]+)?( domain)?$/"
                     ],
                     "role": "info",
                     "editType": "calc",
@@ -60497,6 +61875,25 @@
                     "role": "info",
                     "editType": "ticks",
                     "description": "Determines where tick labels are drawn with respect to their corresponding ticks and grid lines. Only has an effect for axes of `type` *date* When set to *period*, tick labels are drawn in the middle of the period between ticks."
+                },
+                "ticklabelposition": {
+                    "valType": "enumerated",
+                    "values": [
+                        "outside",
+                        "inside",
+                        "outside top",
+                        "inside top",
+                        "outside left",
+                        "inside left",
+                        "outside right",
+                        "inside right",
+                        "outside bottom",
+                        "inside bottom"
+                    ],
+                    "dflt": "outside",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Determines where tick labels are drawn with respect to the axis Please note that top or bottom has no effect on x axes or when `ticklabelmode` is set to *period*. Similarly left or right has no effect on y axes or when `ticklabelmode` is set to *period*. Has no effect on *multicategory* axes or when `tickson` is set to *boundaries*. When used on axes linked by `matches` or `scaleanchor`, no extra padding for inside labels would be added by autorange, so that the scales could match."
                 },
                 "mirror": {
                     "valType": "enumerated",
@@ -60708,6 +62105,14 @@
                     "editType": "ticks",
                     "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
                 },
+                "minexponent": {
+                    "valType": "number",
+                    "dflt": 3,
+                    "min": 0,
+                    "role": "style",
+                    "editType": "ticks",
+                    "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
+                },
                 "separatethousands": {
                     "valType": "boolean",
                     "dflt": false,
@@ -60868,8 +62273,8 @@
                     "valType": "enumerated",
                     "values": [
                         "free",
-                        "/^x([2-9]|[1-9][0-9]+)?$/",
-                        "/^y([2-9]|[1-9][0-9]+)?$/"
+                        "/^x([2-9]|[1-9][0-9]+)?( domain)?$/",
+                        "/^y([2-9]|[1-9][0-9]+)?( domain)?$/"
                     ],
                     "role": "info",
                     "editType": "plot",
@@ -60891,8 +62296,8 @@
                     "valType": "enumerated",
                     "values": [
                         "free",
-                        "/^x([2-9]|[1-9][0-9]+)?$/",
-                        "/^y([2-9]|[1-9][0-9]+)?$/"
+                        "/^x([2-9]|[1-9][0-9]+)?( domain)?$/",
+                        "/^y([2-9]|[1-9][0-9]+)?( domain)?$/"
                     ],
                     "role": "info",
                     "editType": "plot",
@@ -61416,6 +62821,17 @@
                     "_noTemplating": true,
                     "description": "Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question."
                 },
+                "autotypenumbers": {
+                    "valType": "enumerated",
+                    "values": [
+                        "convert types",
+                        "strict"
+                    ],
+                    "dflt": "convert types",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers."
+                },
                 "autorange": {
                     "valType": "enumerated",
                     "values": [
@@ -61479,8 +62895,8 @@
                 "scaleanchor": {
                     "valType": "enumerated",
                     "values": [
-                        "/^x([2-9]|[1-9][0-9]+)?$/",
-                        "/^y([2-9]|[1-9][0-9]+)?$/"
+                        "/^x([2-9]|[1-9][0-9]+)?( domain)?$/",
+                        "/^y([2-9]|[1-9][0-9]+)?( domain)?$/"
                     ],
                     "role": "info",
                     "editType": "plot",
@@ -61500,10 +62916,9 @@
                         "range",
                         "domain"
                     ],
-                    "dflt": "range",
                     "role": "info",
                     "editType": "plot",
-                    "description": "If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other axis), determines how that happens: by increasing the *range* (default), or by decreasing the *domain*."
+                    "description": "If this axis needs to be compressed (either due to its own `scaleanchor` and `scaleratio` or those of the other axis), determines how that happens: by increasing the *range*, or by decreasing the *domain*. Default is *domain* for axes containing image traces, *range* otherwise."
                 },
                 "constraintoward": {
                     "valType": "enumerated",
@@ -61522,8 +62937,8 @@
                 "matches": {
                     "valType": "enumerated",
                     "values": [
-                        "/^x([2-9]|[1-9][0-9]+)?$/",
-                        "/^y([2-9]|[1-9][0-9]+)?$/"
+                        "/^x([2-9]|[1-9][0-9]+)?( domain)?$/",
+                        "/^y([2-9]|[1-9][0-9]+)?( domain)?$/"
                     ],
                     "role": "info",
                     "editType": "calc",
@@ -61685,6 +63100,25 @@
                     "role": "info",
                     "editType": "ticks",
                     "description": "Determines where tick labels are drawn with respect to their corresponding ticks and grid lines. Only has an effect for axes of `type` *date* When set to *period*, tick labels are drawn in the middle of the period between ticks."
+                },
+                "ticklabelposition": {
+                    "valType": "enumerated",
+                    "values": [
+                        "outside",
+                        "inside",
+                        "outside top",
+                        "inside top",
+                        "outside left",
+                        "inside left",
+                        "outside right",
+                        "inside right",
+                        "outside bottom",
+                        "inside bottom"
+                    ],
+                    "dflt": "outside",
+                    "role": "info",
+                    "editType": "calc",
+                    "description": "Determines where tick labels are drawn with respect to the axis Please note that top or bottom has no effect on x axes or when `ticklabelmode` is set to *period*. Similarly left or right has no effect on y axes or when `ticklabelmode` is set to *period*. Has no effect on *multicategory* axes or when `tickson` is set to *boundaries*. When used on axes linked by `matches` or `scaleanchor`, no extra padding for inside labels would be added by autorange, so that the scales could match."
                 },
                 "mirror": {
                     "valType": "enumerated",
@@ -61896,6 +63330,14 @@
                     "editType": "ticks",
                     "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
                 },
+                "minexponent": {
+                    "valType": "number",
+                    "dflt": 3,
+                    "min": 0,
+                    "role": "style",
+                    "editType": "ticks",
+                    "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
+                },
                 "separatethousands": {
                     "valType": "boolean",
                     "dflt": false,
@@ -62056,8 +63498,8 @@
                     "valType": "enumerated",
                     "values": [
                         "free",
-                        "/^x([2-9]|[1-9][0-9]+)?$/",
-                        "/^y([2-9]|[1-9][0-9]+)?$/"
+                        "/^x([2-9]|[1-9][0-9]+)?( domain)?$/",
+                        "/^y([2-9]|[1-9][0-9]+)?( domain)?$/"
                     ],
                     "role": "info",
                     "editType": "plot",
@@ -62079,8 +63521,8 @@
                     "valType": "enumerated",
                     "values": [
                         "free",
-                        "/^x([2-9]|[1-9][0-9]+)?$/",
-                        "/^y([2-9]|[1-9][0-9]+)?$/"
+                        "/^x([2-9]|[1-9][0-9]+)?( domain)?$/",
+                        "/^y([2-9]|[1-9][0-9]+)?( domain)?$/"
                     ],
                     "role": "info",
                     "editType": "plot",
@@ -62536,6 +63978,14 @@
                         "editType": "plot",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
                     },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "plot",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
+                    },
                     "separatethousands": {
                         "valType": "boolean",
                         "dflt": false,
@@ -62955,6 +64405,14 @@
                         "editType": "plot",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
                     },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "plot",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
+                    },
                     "separatethousands": {
                         "valType": "boolean",
                         "dflt": false,
@@ -63373,6 +64831,14 @@
                         "role": "style",
                         "editType": "plot",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "plot",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "separatethousands": {
                         "valType": "boolean",
@@ -63962,6 +65428,17 @@
                         "_noTemplating": true,
                         "description": "Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question."
                     },
+                    "autotypenumbers": {
+                        "valType": "enumerated",
+                        "values": [
+                            "convert types",
+                            "strict"
+                        ],
+                        "dflt": "convert types",
+                        "role": "info",
+                        "editType": "plot",
+                        "description": "Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers."
+                    },
                     "autorange": {
                         "valType": "enumerated",
                         "values": [
@@ -64216,6 +65693,14 @@
                         "role": "style",
                         "editType": "plot",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "plot",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "separatethousands": {
                         "valType": "boolean",
@@ -64573,6 +66058,17 @@
                         "_noTemplating": true,
                         "description": "Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question."
                     },
+                    "autotypenumbers": {
+                        "valType": "enumerated",
+                        "values": [
+                            "convert types",
+                            "strict"
+                        ],
+                        "dflt": "convert types",
+                        "role": "info",
+                        "editType": "plot",
+                        "description": "Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers."
+                    },
                     "autorange": {
                         "valType": "enumerated",
                         "values": [
@@ -64827,6 +66323,14 @@
                         "role": "style",
                         "editType": "plot",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "plot",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "separatethousands": {
                         "valType": "boolean",
@@ -65184,6 +66688,17 @@
                         "_noTemplating": true,
                         "description": "Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question."
                     },
+                    "autotypenumbers": {
+                        "valType": "enumerated",
+                        "values": [
+                            "convert types",
+                            "strict"
+                        ],
+                        "dflt": "convert types",
+                        "role": "info",
+                        "editType": "plot",
+                        "description": "Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers."
+                    },
                     "autorange": {
                         "valType": "enumerated",
                         "values": [
@@ -65438,6 +66953,14 @@
                         "role": "style",
                         "editType": "plot",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "plot",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "separatethousands": {
                         "valType": "boolean",
@@ -67056,6 +68579,17 @@
                         "_noTemplating": true,
                         "description": "Sets the axis type. By default, plotly attempts to determined the axis type by looking into the data of the traces that referenced the axis in question."
                     },
+                    "autotypenumbers": {
+                        "valType": "enumerated",
+                        "values": [
+                            "convert types",
+                            "strict"
+                        ],
+                        "dflt": "convert types",
+                        "role": "info",
+                        "editType": "calc",
+                        "description": "Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers."
+                    },
                     "autorange": {
                         "valType": "enumerated",
                         "values": [
@@ -67445,6 +68979,14 @@
                         "editType": "plot",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
                     },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "plot",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
+                    },
                     "separatethousands": {
                         "valType": "boolean",
                         "dflt": false,
@@ -67617,6 +69159,17 @@
                         "editType": "calc",
                         "_noTemplating": true,
                         "description": "Sets the angular axis type. If *linear*, set `thetaunit` to determine the unit in which axis value are shown. If *category, use `period` to set the number of integer coordinates around polar axis."
+                    },
+                    "autotypenumbers": {
+                        "valType": "enumerated",
+                        "values": [
+                            "convert types",
+                            "strict"
+                        ],
+                        "dflt": "convert types",
+                        "role": "info",
+                        "editType": "calc",
+                        "description": "Using *strict* a numeric string in trace data is not converted to a number. Using *convert types* a numeric string in trace data may be treated as a number during automatic axis `type` detection. Defaults to layout.autotypenumbers."
                     },
                     "categoryorder": {
                         "valType": "enumerated",
@@ -67907,6 +69460,14 @@
                         "role": "style",
                         "editType": "plot",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "plot",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "separatethousands": {
                         "valType": "boolean",
@@ -68364,6 +69925,14 @@
                     "editType": "legend",
                     "description": "Determines if the legend items symbols scale with their corresponding *trace* attributes or remain *constant* independent of the symbol size on the graph."
                 },
+                "itemwidth": {
+                    "valType": "number",
+                    "min": 30,
+                    "dflt": 30,
+                    "role": "style",
+                    "editType": "legend",
+                    "description": "Sets the width (in px) of the legend item symbols (the part other than the title.text)."
+                },
                 "itemclick": {
                     "valType": "enumerated",
                     "values": [
@@ -68710,45 +70279,45 @@
                             "valType": "any",
                             "role": "info",
                             "editType": "calc+arraydraw",
-                            "description": "Sets the x component of the arrow tail about the arrow head. If `axref` is `pixel`, a positive (negative)  component corresponds to an arrow pointing from right to left (left to right). If `axref` is an axis, this is an absolute value on that axis, like `x`, NOT a relative value."
+                            "description": "Sets the x component of the arrow tail about the arrow head. If `axref` is `pixel`, a positive (negative) component corresponds to an arrow pointing from right to left (left to right). If `axref` is not `pixel` and is exactly the same as `xref`, this is an absolute value on that axis, like `x`, specified in the same coordinates as `xref`."
                         },
                         "ay": {
                             "valType": "any",
                             "role": "info",
                             "editType": "calc+arraydraw",
-                            "description": "Sets the y component of the arrow tail about the arrow head. If `ayref` is `pixel`, a positive (negative)  component corresponds to an arrow pointing from bottom to top (top to bottom). If `ayref` is an axis, this is an absolute value on that axis, like `y`, NOT a relative value."
+                            "description": "Sets the y component of the arrow tail about the arrow head. If `ayref` is `pixel`, a positive (negative) component corresponds to an arrow pointing from bottom to top (top to bottom). If `ayref` is not `pixel` and is exactly the same as `yref`, this is an absolute value on that axis, like `y`, specified in the same coordinates as `yref`."
                         },
                         "axref": {
                             "valType": "enumerated",
                             "dflt": "pixel",
                             "values": [
                                 "pixel",
-                                "/^x([2-9]|[1-9][0-9]+)?$/"
+                                "/^x([2-9]|[1-9][0-9]+)?( domain)?$/"
                             ],
                             "role": "info",
                             "editType": "calc",
-                            "description": "Indicates in what terms the tail of the annotation (ax,ay)  is specified. If `pixel`, `ax` is a relative offset in pixels  from `x`. If set to an x axis id (e.g. *x* or *x2*), `ax` is  specified in the same terms as that axis. This is useful  for trendline annotations which should continue to indicate  the correct trend when zoomed."
+                            "description": "Indicates in what coordinates the tail of the annotation (ax,ay) is specified. If set to a ax axis id (e.g. *ax* or *ax2*), the `ax` position refers to a ax coordinate. If set to *paper*, the `ax` position refers to the distance from the left of the plotting area in normalized coordinates where *0* (*1*) corresponds to the left (right). If set to a ax axis ID followed by *domain* (separated by a space), the position behaves like for *paper*, but refers to the distance in fractions of the domain length from the left of the domain of that axis: e.g., *ax2 domain* refers to the domain of the second ax  axis and a ax position of 0.5 refers to the point between the left and the right of the domain of the second ax axis. In order for absolute positioning of the arrow to work, *axref* must be exactly the same as *xref*, otherwise *axref* will revert to *pixel* (explained next). For relative positioning, *axref* can be set to *pixel*, in which case the *ax* value is specified in pixels relative to *x*. Absolute positioning is useful for trendline annotations which should continue to indicate the correct trend when zoomed. Relative positioning is useful for specifying the text offset for an annotated point."
                         },
                         "ayref": {
                             "valType": "enumerated",
                             "dflt": "pixel",
                             "values": [
                                 "pixel",
-                                "/^y([2-9]|[1-9][0-9]+)?$/"
+                                "/^y([2-9]|[1-9][0-9]+)?( domain)?$/"
                             ],
                             "role": "info",
                             "editType": "calc",
-                            "description": "Indicates in what terms the tail of the annotation (ax,ay)  is specified. If `pixel`, `ay` is a relative offset in pixels  from `y`. If set to a y axis id (e.g. *y* or *y2*), `ay` is  specified in the same terms as that axis. This is useful  for trendline annotations which should continue to indicate  the correct trend when zoomed."
+                            "description": "Indicates in what coordinates the tail of the annotation (ax,ay) is specified. If set to a ay axis id (e.g. *ay* or *ay2*), the `ay` position refers to a ay coordinate. If set to *paper*, the `ay` position refers to the distance from the bottom of the plotting area in normalized coordinates where *0* (*1*) corresponds to the bottom (top). If set to a ay axis ID followed by *domain* (separated by a space), the position behaves like for *paper*, but refers to the distance in fractions of the domain length from the bottom of the domain of that axis: e.g., *ay2 domain* refers to the domain of the second ay  axis and a ay position of 0.5 refers to the point between the bottom and the top of the domain of the second ay axis. In order for absolute positioning of the arrow to work, *ayref* must be exactly the same as *yref*, otherwise *ayref* will revert to *pixel* (explained next). For relative positioning, *ayref* can be set to *pixel*, in which case the *ay* value is specified in pixels relative to *y*. Absolute positioning is useful for trendline annotations which should continue to indicate the correct trend when zoomed. Relative positioning is useful for specifying the text offset for an annotated point."
                         },
                         "xref": {
                             "valType": "enumerated",
                             "values": [
                                 "paper",
-                                "/^x([2-9]|[1-9][0-9]+)?$/"
+                                "/^x([2-9]|[1-9][0-9]+)?( domain)?$/"
                             ],
                             "role": "info",
                             "editType": "calc",
-                            "description": "Sets the annotation's x coordinate axis. If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate If set to *paper*, the `x` position refers to the distance from the left side of the plotting area in normalized coordinates where 0 (1) corresponds to the left (right) side."
+                            "description": "Sets the annotation's x coordinate axis. If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to a x coordinate. If set to *paper*, the `x` position refers to the distance from the left of the plotting area in normalized coordinates where *0* (*1*) corresponds to the left (right). If set to a x axis ID followed by *domain* (separated by a space), the position behaves like for *paper*, but refers to the distance in fractions of the domain length from the left of the domain of that axis: e.g., *x2 domain* refers to the domain of the second x  axis and a x position of 0.5 refers to the point between the left and the right of the domain of the second x axis."
                         },
                         "x": {
                             "valType": "any",
@@ -68780,11 +70349,11 @@
                             "valType": "enumerated",
                             "values": [
                                 "paper",
-                                "/^y([2-9]|[1-9][0-9]+)?$/"
+                                "/^y([2-9]|[1-9][0-9]+)?( domain)?$/"
                             ],
                             "role": "info",
                             "editType": "calc",
-                            "description": "Sets the annotation's y coordinate axis. If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to *paper*, the `y` position refers to the distance from the bottom of the plotting area in normalized coordinates where 0 (1) corresponds to the bottom (top)."
+                            "description": "Sets the annotation's y coordinate axis. If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y coordinate. If set to *paper*, the `y` position refers to the distance from the bottom of the plotting area in normalized coordinates where *0* (*1*) corresponds to the bottom (top). If set to a y axis ID followed by *domain* (separated by a space), the position behaves like for *paper*, but refers to the distance in fractions of the domain length from the bottom of the domain of that axis: e.g., *y2 domain* refers to the domain of the second y  axis and a y position of 0.5 refers to the point between the bottom and the top of the domain of the second y axis."
                         },
                         "y": {
                             "valType": "any",
@@ -68951,11 +70520,11 @@
                             "valType": "enumerated",
                             "values": [
                                 "paper",
-                                "/^x([2-9]|[1-9][0-9]+)?$/"
+                                "/^x([2-9]|[1-9][0-9]+)?( domain)?$/"
                             ],
                             "role": "info",
                             "editType": "calc",
-                            "description": "Sets the shape's x coordinate axis. If set to an x axis id (e.g. *x* or *x2*), the `x` position refers to an x coordinate. If set to *paper*, the `x` position refers to the distance from the left side of the plotting area in normalized coordinates where *0* (*1*) corresponds to the left (right) side. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, then you must convert the date to unix time in milliseconds."
+                            "description": "Sets the shape's x coordinate axis. If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to a x coordinate. If set to *paper*, the `x` position refers to the distance from the left of the plotting area in normalized coordinates where *0* (*1*) corresponds to the left (right). If set to a x axis ID followed by *domain* (separated by a space), the position behaves like for *paper*, but refers to the distance in fractions of the domain length from the left of the domain of that axis: e.g., *x2 domain* refers to the domain of the second x  axis and a x position of 0.5 refers to the point between the left and the right of the domain of the second x axis. If the axis `type` is *log*, then you must take the log of your desired range. If the axis `type` is *date*, then you must convert the date to unix time in milliseconds."
                         },
                         "xsizemode": {
                             "valType": "enumerated",
@@ -68990,11 +70559,11 @@
                             "valType": "enumerated",
                             "values": [
                                 "paper",
-                                "/^y([2-9]|[1-9][0-9]+)?$/"
+                                "/^y([2-9]|[1-9][0-9]+)?( domain)?$/"
                             ],
                             "role": "info",
                             "editType": "calc",
-                            "description": "Sets the annotation's y coordinate axis. If set to an y axis id (e.g. *y* or *y2*), the `y` position refers to an y coordinate If set to *paper*, the `y` position refers to the distance from the bottom of the plotting area in normalized coordinates where *0* (*1*) corresponds to the bottom (top)."
+                            "description": "Sets the annotation's y coordinate axis. If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y coordinate. If set to *paper*, the `y` position refers to the distance from the bottom of the plotting area in normalized coordinates where *0* (*1*) corresponds to the bottom (top). If set to a y axis ID followed by *domain* (separated by a space), the position behaves like for *paper*, but refers to the distance in fractions of the domain length from the bottom of the domain of that axis: e.g., *y2 domain* refers to the domain of the second y  axis and a y position of 0.5 refers to the point between the bottom and the top of the domain of the second y axis."
                         },
                         "ysizemode": {
                             "valType": "enumerated",
@@ -69150,14 +70719,14 @@
                             "role": "info",
                             "dflt": 0,
                             "editType": "arraydraw",
-                            "description": "Sets the image container size horizontally. The image will be sized based on the `position` value. When `xref` is set to `paper`, units are sized relative to the plot width."
+                            "description": "Sets the image container size horizontally. The image will be sized based on the `position` value. When `xref` is set to `paper`, units are sized relative to the plot width. When `xref` ends with ` domain`, units are sized relative to the axis width."
                         },
                         "sizey": {
                             "valType": "number",
                             "role": "info",
                             "dflt": 0,
                             "editType": "arraydraw",
-                            "description": "Sets the image container size vertically. The image will be sized based on the `position` value. When `yref` is set to `paper`, units are sized relative to the plot height."
+                            "description": "Sets the image container size vertically. The image will be sized based on the `position` value. When `yref` is set to `paper`, units are sized relative to the plot height. When `yref` ends with ` domain`, units are sized relative to the axis height."
                         },
                         "sizing": {
                             "valType": "enumerated",
@@ -69222,23 +70791,23 @@
                             "valType": "enumerated",
                             "values": [
                                 "paper",
-                                "/^x([2-9]|[1-9][0-9]+)?$/"
+                                "/^x([2-9]|[1-9][0-9]+)?( domain)?$/"
                             ],
                             "dflt": "paper",
                             "role": "info",
                             "editType": "arraydraw",
-                            "description": "Sets the images's x coordinate axis. If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to an x data coordinate If set to *paper*, the `x` position refers to the distance from the left of plot in normalized coordinates where *0* (*1*) corresponds to the left (right)."
+                            "description": "Sets the images's x coordinate axis. If set to a x axis id (e.g. *x* or *x2*), the `x` position refers to a x coordinate. If set to *paper*, the `x` position refers to the distance from the left of the plotting area in normalized coordinates where *0* (*1*) corresponds to the left (right). If set to a x axis ID followed by *domain* (separated by a space), the position behaves like for *paper*, but refers to the distance in fractions of the domain length from the left of the domain of that axis: e.g., *x2 domain* refers to the domain of the second x  axis and a x position of 0.5 refers to the point between the left and the right of the domain of the second x axis."
                         },
                         "yref": {
                             "valType": "enumerated",
                             "values": [
                                 "paper",
-                                "/^y([2-9]|[1-9][0-9]+)?$/"
+                                "/^y([2-9]|[1-9][0-9]+)?( domain)?$/"
                             ],
                             "dflt": "paper",
                             "role": "info",
                             "editType": "arraydraw",
-                            "description": "Sets the images's y coordinate axis. If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y data coordinate. If set to *paper*, the `y` position refers to the distance from the bottom of the plot in normalized coordinates where *0* (*1*) corresponds to the bottom (top)."
+                            "description": "Sets the images's y coordinate axis. If set to a y axis id (e.g. *y* or *y2*), the `y` position refers to a y coordinate. If set to *paper*, the `y` position refers to the distance from the bottom of the plotting area in normalized coordinates where *0* (*1*) corresponds to the bottom (top). If set to a y axis ID followed by *domain* (separated by a space), the position behaves like for *paper*, but refers to the distance in fractions of the domain length from the bottom of the domain of that axis: e.g., *y2 domain* refers to the domain of the second y  axis and a y position of 0.5 refers to the point between the bottom and the top of the domain of the second y axis."
                         },
                         "editType": "arraydraw",
                         "name": {
@@ -70327,6 +71896,21 @@
                         "description": "Determines whether ticks are drawn or not. If **, this axis' ticks are not drawn. If *outside* (*inside*), this axis' are drawn outside (inside) the axis lines.",
                         "dflt": ""
                     },
+                    "ticklabelposition": {
+                        "valType": "enumerated",
+                        "values": [
+                            "outside",
+                            "inside",
+                            "outside top",
+                            "inside top",
+                            "outside bottom",
+                            "inside bottom"
+                        ],
+                        "dflt": "outside",
+                        "role": "info",
+                        "description": "Determines where tick labels are drawn.",
+                        "editType": "colorbars"
+                    },
                     "ticklen": {
                         "valType": "number",
                         "min": 0,
@@ -70507,6 +72091,14 @@
                         "role": "style",
                         "editType": "colorbars",
                         "description": "Determines a formatting rule for the tick exponents. For example, consider the number 1,000,000,000. If *none*, it appears as 1,000,000,000. If *e*, 1e+9. If *E*, 1E+9. If *power*, 1x10^9 (with 9 in a super script). If *SI*, 1G. If *B*, 1B."
+                    },
+                    "minexponent": {
+                        "valType": "number",
+                        "dflt": 3,
+                        "min": 0,
+                        "role": "style",
+                        "editType": "colorbars",
+                        "description": "Hide SI prefix for 10^n if |n| is below this number. This only has an effect when `tickformat` is *SI* or *B*."
                     },
                     "showexponent": {
                         "valType": "enumerated",

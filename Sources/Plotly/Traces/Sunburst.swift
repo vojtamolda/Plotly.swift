@@ -448,6 +448,31 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
     /// `insidetextfont` would be used.
     public var outsideTextFont: OutsideTextFont? = nil
 
+    /// Rotates the whole diagram counterclockwise by some angle.
+    /// 
+    /// By default the first slice starts at 3 o'clock.
+    public var rotation: Angle? = nil
+
+    /// Determines whether or not the sectors are reordered from largest to smallest.
+    public var sort: Bool? = nil
+
+    public struct Root: Encodable {
+        /// sets the color of the root node for a sunburst or a treemap trace.
+        /// 
+        /// this has no effect when a colorscale is used to set the markers.
+        public var color: Color? = nil
+    
+        /// Creates `Root` object with specified properties.
+        /// 
+        /// - Parameters:
+        ///   - color: sets the color of the root node for a sunburst or a treemap trace.
+        public init(color: Color? = nil) {
+            self.color = color
+        }
+        
+    }
+    public var root: Root? = nil
+
     public var domain: Domain? = nil
 
     /// Decoding and encoding keys compatible with Plotly schema.
@@ -483,6 +508,9 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
         case insideTextOrientation = "insidetextorientation"
         case insideTextFont = "insidetextfont"
         case outsideTextFont = "outsidetextfont"
+        case rotation
+        case sort
+        case root
         case domain
     }
     
@@ -541,6 +569,9 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
     ///   - insideTextOrientation: Controls the orientation of the text inside chart sectors.
     ///   - insideTextFont: Sets the font used for `textinfo` lying inside the sector.
     ///   - outsideTextFont: Sets the font used for `textinfo` lying outside the sector.
+    ///   - rotation: Rotates the whole diagram counterclockwise by some angle.
+    ///   - sort: Determines whether or not the sectors are reordered from largest to smallest.
+    ///   - root:
     ///   - domain:
     public init(visible: Visible? = nil, opacity: Double? = nil, name: String? = nil, uid: String? =
             nil, ids: [String]? = nil, customData: [String]? = nil, meta: Data<Anything>? = nil, hoverLabel:
@@ -551,7 +582,8 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
             textTemplate: Data<String>? = nil, hoverText: Data<String>? = nil, hoverInfo: HoverInfo? = nil,
             hoverTemplate: Data<String>? = nil, textFont: VariableFont? = nil, insideTextOrientation:
             InsideTextOrientation? = nil, insideTextFont: VariableFont? = nil, outsideTextFont:
-            OutsideTextFont? = nil, domain: Domain? = nil) {
+            OutsideTextFont? = nil, rotation: Angle? = nil, sort: Bool? = nil, root: Root? = nil, domain:
+            Domain? = nil) {
         self.visible = visible
         self.opacity = opacity
         self.name = name
@@ -582,6 +614,9 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
         self.insideTextOrientation = insideTextOrientation
         self.insideTextFont = insideTextFont
         self.outsideTextFont = outsideTextFont
+        self.rotation = rotation
+        self.sort = sort
+        self.root = root
         self.domain = domain
     }
     
@@ -622,6 +657,9 @@ public struct Sunburst<ValuesData>: Trace, DomainSubplot where ValuesData: Plota
         try container.encodeIfPresent(insideTextOrientation, forKey: .insideTextOrientation)
         try container.encodeIfPresent(insideTextFont, forKey: .insideTextFont)
         try container.encodeIfPresent(outsideTextFont, forKey: .outsideTextFont)
+        try container.encodeIfPresent(rotation, forKey: .rotation)
+        try container.encodeIfPresent(sort, forKey: .sort)
+        try container.encodeIfPresent(root, forKey: .root)
         try container.encodeIfPresent(domain, forKey: .domain)
     }
 }

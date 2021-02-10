@@ -126,6 +126,44 @@ public struct Contour<ZData, XData, YData>: Trace, XYSubplot where ZData: Plotab
     /// See `y0` for more info.
     public var dy: Double? = nil
 
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the period positioning in milliseconds or *M<n>* on the x axis. Special values in the form
+    /// of *M<n>* could be used to declare the number of months. In this case `n` must be a positive
+    /// integer.
+    public var xPeriod: Anything? = nil
+
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the period positioning in milliseconds or *M<n>* on the y axis. Special values in the form
+    /// of *M<n>* could be used to declare the number of months. In this case `n` must be a positive
+    /// integer.
+    public var yPeriod: Anything? = nil
+
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the base for period positioning in milliseconds or date string on the x0 axis. When
+    /// `x0period` is round number of weeks, the `x0period0` by default would be on a Sunday i.e.
+    /// 2000-01-02, otherwise it would be at 2000-01-01.
+    public var xPeriod0: Anything? = nil
+
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the base for period positioning in milliseconds or date string on the y0 axis. When
+    /// `y0period` is round number of weeks, the `y0period0` by default would be on a Sunday i.e.
+    /// 2000-01-02, otherwise it would be at 2000-01-01.
+    public var yPeriod0: Anything? = nil
+
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the alignment of data points on the x axis.
+    public var xPeriodAlignment: XPeriodAlignment? = nil
+
+    /// Only relevant when the axis `type` is *date*.
+    /// 
+    /// Sets the alignment of data points on the y axis.
+    public var yPeriodAlignment: YPeriodAlignment? = nil
+
     /// Sets the text elements associated with each z value.
     public var text: Data<String>? = nil
 
@@ -302,6 +340,12 @@ public struct Contour<ZData, XData, YData>: Trace, XYSubplot where ZData: Plotab
         case y
         case y0
         case dy
+        case xPeriod = "xperiod"
+        case yPeriod = "yperiod"
+        case xPeriod0 = "xperiod0"
+        case yPeriod0 = "yperiod0"
+        case xPeriodAlignment = "xperiodalignment"
+        case yPeriodAlignment = "yperiodalignment"
         case text
         case hoverText = "hovertext"
         case transpose
@@ -387,6 +431,12 @@ public struct Contour<ZData, XData, YData>: Trace, XYSubplot where ZData: Plotab
     ///   - y: Sets the y coordinates.
     ///   - y0: Alternate to `y`.
     ///   - dy: Sets the y coordinate step.
+    ///   - xPeriod: Only relevant when the axis `type` is *date*.
+    ///   - yPeriod: Only relevant when the axis `type` is *date*.
+    ///   - xPeriod0: Only relevant when the axis `type` is *date*.
+    ///   - yPeriod0: Only relevant when the axis `type` is *date*.
+    ///   - xPeriodAlignment: Only relevant when the axis `type` is *date*.
+    ///   - yPeriodAlignment: Only relevant when the axis `type` is *date*.
     ///   - text: Sets the text elements associated with each z value.
     ///   - hoverText: Same as `text`.
     ///   - transpose: Transposes the z data.
@@ -429,12 +479,14 @@ public struct Contour<ZData, XData, YData>: Trace, XYSubplot where ZData: Plotab
             customData: [String]? = nil, meta: Data<Anything>? = nil, hoverInfo: HoverInfo? = nil,
             hoverLabel: HoverLabel? = nil, stream: Stream? = nil, transforms: [Transform] = [], uiRevision:
             Anything? = nil, z: ZData? = nil, x: XData? = nil, x0: Anything? = nil, dx: Double? = nil, y:
-            YData? = nil, y0: Anything? = nil, dy: Double? = nil, text: Data<String>? = nil, hoverText:
-            Data<String>? = nil, transpose: Bool? = nil, xType: AxisType? = nil, yType: AxisType? = nil,
-            zHoverFormat: String? = nil, hoverTemplate: Data<String>? = nil, hoverOnGaps: Bool? = nil,
-            connectGaps: Bool? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours: Int? =
-            nil, contours: Contours? = nil, line: SmoothDashedLine? = nil, zAuto: Bool? = nil, zMin: Double?
-            = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil,
+            YData? = nil, y0: Anything? = nil, dy: Double? = nil, xPeriod: Anything? = nil, yPeriod:
+            Anything? = nil, xPeriod0: Anything? = nil, yPeriod0: Anything? = nil, xPeriodAlignment:
+            XPeriodAlignment? = nil, yPeriodAlignment: YPeriodAlignment? = nil, text: Data<String>? = nil,
+            hoverText: Data<String>? = nil, transpose: Bool? = nil, xType: AxisType? = nil, yType: AxisType?
+            = nil, zHoverFormat: String? = nil, hoverTemplate: Data<String>? = nil, hoverOnGaps: Bool? =
+            nil, connectGaps: Bool? = nil, fillColor: Color? = nil, autoContour: Bool? = nil, nContours:
+            Int? = nil, contours: Contours? = nil, line: SmoothDashedLine? = nil, zAuto: Bool? = nil, zMin:
+            Double? = nil, zMax: Double? = nil, zMiddle: Double? = nil, colorScale: ColorScale? = nil,
             autoColorScale: Bool? = nil, reverseScale: Bool? = nil, showScale: Bool? = nil, colorBar:
             ColorBar? = nil, colorAxis: ColorAxis = .preset, xCalendar: Calendar? = nil, yCalendar:
             Calendar? = nil, xAxis: XAxis = .preset, yAxis: YAxis = .preset) {
@@ -459,6 +511,12 @@ public struct Contour<ZData, XData, YData>: Trace, XYSubplot where ZData: Plotab
         self.y = y
         self.y0 = y0
         self.dy = dy
+        self.xPeriod = xPeriod
+        self.yPeriod = yPeriod
+        self.xPeriod0 = xPeriod0
+        self.yPeriod0 = yPeriod0
+        self.xPeriodAlignment = xPeriodAlignment
+        self.yPeriodAlignment = yPeriodAlignment
         self.text = text
         self.hoverText = hoverText
         self.transpose = transpose
@@ -521,6 +579,12 @@ public struct Contour<ZData, XData, YData>: Trace, XYSubplot where ZData: Plotab
         }
         try container.encodeIfPresent(y0, forKey: .y0)
         try container.encodeIfPresent(dy, forKey: .dy)
+        try container.encodeIfPresent(xPeriod, forKey: .xPeriod)
+        try container.encodeIfPresent(yPeriod, forKey: .yPeriod)
+        try container.encodeIfPresent(xPeriod0, forKey: .xPeriod0)
+        try container.encodeIfPresent(yPeriod0, forKey: .yPeriod0)
+        try container.encodeIfPresent(xPeriodAlignment, forKey: .xPeriodAlignment)
+        try container.encodeIfPresent(yPeriodAlignment, forKey: .yPeriodAlignment)
         try container.encodeIfPresent(text, forKey: .text)
         try container.encodeIfPresent(hoverText, forKey: .hoverText)
         try container.encodeIfPresent(transpose, forKey: .transpose)
