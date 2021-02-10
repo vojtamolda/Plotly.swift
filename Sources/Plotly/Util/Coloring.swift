@@ -1,17 +1,18 @@
 
 /// Constant or variable coloring of a property.
-public enum Coloring: Encodable {
+public enum Coloring {
 
     /// Coloring by a single, constant color.
     case constant(_ color: Color)
 
-    /// Variable coloring specified by a collection of `colors`.
+    /// Variable coloring specified by the provided collection of `colors`.
     case variable(_ colors: [Color])
 
     /// Coloring by numerical values with colors derived from the associated `ColorScale`.
     case colorScale(_ values: [Double])
+}
 
-    // TODO: Docs
+extension Coloring: Encodable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
@@ -25,13 +26,11 @@ public enum Coloring: Encodable {
     }
 }
 
-
 extension Coloring: ExpressibleByIntegerLiteral {
     public init(integerLiteral integer: UInt32) {
         self = .constant(Color(integerLiteral: integer))
     }
 }
-
 
 extension Coloring: ExpressibleByArrayLiteral {
     public init(arrayLiteral values: Double...) {

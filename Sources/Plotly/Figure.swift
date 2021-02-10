@@ -1,40 +1,13 @@
-/// Swift representation of a _Plotly.js_ chart.
+import Foundation
+
+
+/// Representation of a _Plotly_ chart.
 ///
-/// _Plotly.js_ charts are described declaratively as JSON objects. Every aspect of a plotly chart
-/// (the colors, the grids, the data, and so on) has a corresponding JSON attribute. Exhaustive
-/// list of the attributes can be found in the
-/// [documentation](https://plot.ly/javascript/reference/page)
-///
-/// Plotly's graph description places attributes into two categories: traces (objects that describe
-/// a single series of data in a graph) and layout (attributes that apply to the rest of the chart,
-/// like the title, xaxis, or annotations). Traces are categorized by chart type (e.g. scatter,
-/// heatmap, ...).
-///
-/// Here is a simple example of a Scatter plot chart:
-/// ```swift
-/// let data = [
-///     Scatter(
-///         name: "Example scatter plot",
-///         x: [1, 2, 3],
-///         y: [3, 1, 6],
-///         mode: [.lines, .markers])
-/// ]
-/// ```
-///
-/// Here is the equivalent _Plotly.js_ JSON serialization:
-/// ```javascript
-/// var data = [
-///    {
-///        type: 'scatter',
-///        name: 'Example scatter plot',
-///        x: [1, 2, 3],
-///        y: [3, 1, 6],
-///        mode: 'lines+markers'
-///    }
-/// ];
-/// ```
+/// _Plotly_'s graphs are built from two main types of building blocks - traces and layout. Trace describes a single series of data
+/// visible in a graph. Traces can be constructed from a wide variety of predefined types, e.g. scatter, heatmap, bar or polar. Layout
+/// applies to the entire chart and affect properties like the title, axis annotations and many more.
 public struct Figure {
-    /// Collection of `Scatter`, `Bar`, `Heatmap` ... objects that are displayed in the figure.
+    /// Collection of traces that are displayed on the figure, e.g. `Scatter`, `Bar` `Polar` or  `Heatmap`.
     public var data: [Trace]
 
     /// Structure containing layout of the figure.
@@ -86,7 +59,37 @@ public struct Figure {
         self.config = config
     }
 
-    /// Shows the `Figure` in the default browser available on your OS.
+    
+    /// If the provided `axis0`, `axis1` pair isn't the same instance, the function returns the one that isn't equal to the preset.
+    ///
+    /// If the pair is not identical, i.e not the same instance, and neither of the axis is equal to the preset, the function issues an
+    /// assertion to alert the user about duplication. This error means that the trace to layout association contains different objects
+    /// with the same `uid`. Figure with duplicated subplot axis `uid`s won't look and work as expected.
+    ///
+    /// - Note:
+    ///   The error assertion is triggered only in debug builds.
+    static private func ignorePreset<T: SubplotAxis & Encodable>(axis0: T, axis1: T) -> T {
+        if axis0 === T.preset { return axis1 }
+        if axis1 === T.preset { return axis0 }
+        
+        let axis1Address = Unmanaged.passUnretained(axis0).toOpaque()
+        let axis2Address = Unmanaged.passUnretained(axis1).toOpaque()
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted]
+        let axis1Json = String(data: try! encoder.encode(axis0), encoding: .utf8) ?? ""
+        let axis2Json = String(data: try! encoder.encode(axis1), encoding: .utf8) ?? ""
+        
+        assert(axis0 === axis1,
+               "Two axis/subplot instances have identical, non-unique UIDs:\n" +
+               "\(axis0)@\(axis1Address) with uid = \(axis0.uid):\n" +
+               "\(axis1Json)\n" +
+               "\(axis1)@\(axis2Address) with uid = \(axis1.uid):\n" +
+               "\(axis2Json)\n"
+        )
+        return axis0
+    }
+
+    /// Shows the chart in the default browser.
     ///
     /// Here's an example that shows figure with a scatter trace:
     /// ```swift
@@ -99,14 +102,15 @@ public struct Figure {
         try! Browser.show(figure: self, javaScript: bundle)
     }
 
-    /// Writes representation of the `Figure` object to a URL using the specified format.
+    /// Writes chart to a URL using the specified format.
     ///
-    /// - Parameter toFile: File where to save the `Figure` object.
-    /// - Parameter as: Output format (HTML, JSON, ...)
-    /// - Parameter javaScript: Bundling option (include, online, exclude, ...) for _MathJax_ and
-    ///   _Plotly_ JavaScript libraries. Used only for HTML format.
+    /// - Parameters:
+    ///   - path: File where to save the `Figure` object.
+    ///   - format: Output format (HTML, JSON, ...)
+    ///   - bundle: JavaScript bundling option (i.e. include, online, exclude) for _MathJax_ and _Plotly_ libraries.
+    ///    Used only for HTML format.
     ///
-    /// - Warning: Calling may take a few seconds because the function needs internet access.
+    /// - Warning: Execution may take a few seconds because the function needs internet access.
     ///   Current implementation of `.included` option downloads the library from the CDN
     ///   server and returns `<script>` tag with the file content.
     @available(iOS 11.0, *)
@@ -122,7 +126,6 @@ public struct Figure {
         }
     }
 }
-
 
 extension Figure: Encodable {
     enum CodingKeys: String, CodingKey {
@@ -149,7 +152,6 @@ extension Figure: Encodable {
     }
 }
 
-
 #if canImport(PythonKit)
 import PythonKit
 
@@ -157,12 +159,10 @@ public extension Figure {
     /// Displays interactive figure in Jupyter notebook.
     ///
     /// Here's an example displaying a figure with a scatter and a bar trace:
-    ///
     /// ```swift
     /// let barTrace = Scatter(x: [1, 2, 3], y: [4, 6, 5])
     /// let scatterTrace = Scatter(x: [1, 2, 3], y: [4, 6, 5])
-    /// let figure = Figure(data: [barTrace, scatterTrace])
-    /// figure.display()
+    /// Figure(data: [barTrace, scatterTrace]).display()
     /// ```
     ///
     /// - Important:
@@ -172,11 +172,10 @@ public extension Figure {
     ///   ```
     ///
     /// - Bug:
-    ///   Google Colab seems to be a bit broken. I wasn't able to figure out a Swift-only
-    ///   communication with the Jupyter kernel. There's more details in the `Workaround.ipynb`
-    ///   notebook. A Swift only solution that works locally in Jupyter breaks in the Colab
-    ///   environment. For the time being, to make the display method work, the communication
-    ///   with the kernel has to be routed via the Python bridge.
+    ///   Google Colab seems to be a bit broken. I wasn't able to figure out a Swift-only communication with the Jupyter kernel.
+    ///   There's more details in the `Workaround.ipynb` notebook. A Swift only solution that works locally in Jupyter breaks in
+    ///   the Colab environment. For the time being, to make the display method work, the communication with the kernel has to
+    ///   be routed via the Python bridge.
     func display() {
         let htmlContent = try! HTML.create(from: self, plotly: .online, mathJax: .online, document: false)
         let iPythonDisplay = Python.import("IPython.display")
@@ -184,8 +183,3 @@ public extension Figure {
     }
 }
 #endif
-
-
-public protocol Transform: Encodable {
-    var enabled: Bool? { get }
-}

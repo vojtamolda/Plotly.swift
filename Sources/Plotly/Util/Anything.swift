@@ -15,7 +15,6 @@ public enum Anything: Encodable {
     }
 }
 
-
 extension Anything: ExpressibleByFloatLiteral {
     public typealias FloatLiteralElement = Double
 
@@ -24,7 +23,6 @@ extension Anything: ExpressibleByFloatLiteral {
     }
 }
 
-
 extension Anything: ExpressibleByIntegerLiteral {
     public typealias IntegerLiteralElement = Int
 
@@ -32,7 +30,6 @@ extension Anything: ExpressibleByIntegerLiteral {
         self = .numeric(Double(integer))
     }
 }
-
 
 extension Anything: ExpressibleByStringLiteral {
     public typealias StringLiteralElement = String

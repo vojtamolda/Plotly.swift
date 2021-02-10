@@ -32,6 +32,7 @@ extension ClosedRange: Plotable where Element: Encodable {
     }
 }
 
+
 extension StrideTo: Plotable where Element: Encodable {
     public func encode(toPlotly encoder: Encoder) throws {
         var container = encoder.unkeyedContainer()
@@ -50,7 +51,6 @@ extension StrideThrough: Plotable where Element: Encodable {
         }
     }
 }
-
 
 #if canImport(TensorFlow)
 import TensorFlow

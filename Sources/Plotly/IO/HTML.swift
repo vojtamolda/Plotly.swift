@@ -4,10 +4,9 @@ import Foundation
 #endif
 
 
-/// Functions for converting `Figure` object to HTML compatible with _Plotly.js_ library.
+/// Functions for converting `Figure`s to HTML documents rendered via _Plotly.js_.
 public struct HTML {
-
-    /// Specifies how a JavaScript library is incorporated in the generated HTML.
+    /// Option how a JavaScript library is incorporated in a HTML document.
     public enum JavaScriptBundleOption {
         /// Include `<script>` tag that contains full source code of the library. Generated HTML
         /// is  larger than the `.online` option but is portable and can be viewed offline.
@@ -22,12 +21,13 @@ public struct HTML {
         /// Include `<script>` tag with a custom library bundle located in the specified URL.
         case from(url: URL)
         /// Don't include the library. This is useful when the resulting `<div>` will be incorporated
-        /// in a larger document where it is already referenced.
+        /// in a larger document where the library is already used.
         case excluded
 
         /// Generates HTML `<script>` tag from the library name and CDN server URL.
-        /// - Parameter library: Filename of the JavaScript library.
-        /// - Parameter CDN:Location of the library on a CDN server.
+        /// - Parameters:
+        ///   - library: Filename of the JavaScript library.
+        ///   - CDN:Location of the library on a CDN server.
         func scriptTag(library: String, CDN: URL) -> String {
             switch self {
             case .included:
@@ -48,15 +48,16 @@ public struct HTML {
         }
     }
 
-    /// Creates HTML  representation of a `Figure` object.
-    /// - Parameter figure: `Figure` object representing a _Plotly.js_ figure
-    /// - Parameter config: Configuration options of _Plotly.js_ figure
-    /// - Parameter plotly: Specifies how is _Plotly.js_ library source code (~3 MB)
-    /// incorporated in the HTML output.
-    /// - Parameter mathJax: Specifies how is _MathJax.js_ library source code (~40 kB)
-    /// incorporated in the HTML output.
-    /// - Parameter document: Produce a string containing a complete HTML document starting with the
-    /// `<html>`element  instead of a single `<div>` tag.
+    /// Creates HTML document that contains the `Figure`.
+    ///
+    /// - Parameters:
+    ///   - figure: `Figure` object representing a _Plotly.js_ chart.
+    ///   - plotly: Specifies how is _Plotly.js_ library source code incorporated in the HTML output. Size of the minified library
+    ///   is about 3 MB.
+    ///   - mathJax: Specifies how is _MathJax.js_ library source code incorporated in the HTML output. Size of the
+    ///   minified library is about 40 kB.
+    ///   - document: Flag indicating whether to create a complete HTML document starting with the `<html>`element
+    ///               or only a single `<div>` holding the chart.
     static public func create(from figure: Figure,
                               plotly: JavaScriptBundleOption = .included,
                               mathJax: JavaScriptBundleOption = .included,
@@ -90,7 +91,7 @@ public struct HTML {
             <html>
             <head>
               <meta charset='utf-8' />
-            <title>\(figure.layout?.title?.text ?? "")</title>
+            <title>\(figure.layout.title?.text ?? "")</title>
             </head>
             <body>
               \(figureDiv)

@@ -1,13 +1,14 @@
 
 /// Encapsulation of either a constant value or a collection of changing data.
-public enum Data<T>: Encodable where T: Encodable {
+public enum Data<T> {
     /// Constant, fixed value.
     case constant(_ constant: T)
 
     /// Changing collection of values.
     case variable(_ values: [T])
+}
 
-    // TODO: Docs
+extension Data: Encodable where T: Encodable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
@@ -19,7 +20,6 @@ public enum Data<T>: Encodable where T: Encodable {
     }
 }
 
-
 extension Data: ExpressibleByFloatLiteral where T: ExpressibleByFloatLiteral {
     public init(floatLiteral value: T.FloatLiteralType) {
         let t = T(floatLiteral: value)
@@ -27,14 +27,12 @@ extension Data: ExpressibleByFloatLiteral where T: ExpressibleByFloatLiteral {
     }
 }
 
-
 extension Data: ExpressibleByIntegerLiteral where T: ExpressibleByIntegerLiteral {
     public init(integerLiteral value: T.IntegerLiteralType) {
         let t = T(integerLiteral: value)
         self = .constant(t)
     }
 }
-
 
 extension Data: ExpressibleByUnicodeScalarLiteral where T: ExpressibleByUnicodeScalarLiteral {
     public init(unicodeScalarLiteral value: T.UnicodeScalarLiteralType) {
