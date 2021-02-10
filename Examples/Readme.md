@@ -19,7 +19,7 @@ By far the quickest way to get started is to open an example [Google Colaborator
 Running Swift code in [Jupyter] locally requires installing Swift kernel from the [swift-jupyter] project. After installing, the first line of the notebook has to download, build and link the Plotly module. Subsequent cells can then import and use the `Plotly` module.
 
 ```swift
-%install '.package(url: "https://github.com/vojtamolda/Plotly.swift.git", branch("master"))' Plotly
+%install '.package(url: "https://github.com/vojtamolda/Plotly.swift.git", branch("main"))' Plotly
 ```
 ```swift
 import Plotly
@@ -47,16 +47,16 @@ Getting Plotly working in Playgrounds requires a few extra steps but hopefully t
 
 
 [`Blank.ipynb`]: Notebooks/Blank.ipynb
-[Colab Blank]: https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/master/Examples/Notebooks/Blank.ipynb
+[Colab Blank]: https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/main/Examples/Notebooks/Blank.ipynb
 
 [`Showcase.ipynb`]: Notebooks/Showcase.ipynb
-[Colab Showcase]: https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/master/Examples/Notebooks/Showcase.ipynb
+[Colab Showcase]: https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/main/Examples/Notebooks/Showcase.ipynb
 
 [`Color Scales.ipynb`]: Notebooks/Color%20Scales.ipynb
-[Colab Color Scales]: https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/master/Examples/Notebooks/Color%20Scales.ipynb
+[Colab Color Scales]: https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/main/Examples/Notebooks/Color%20Scales.ipynb
 
 [`Machine Learning.ipynb`]: Notebooks/Machine%20Learning.ipynb
-[Colab Machine Learning]: https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/master/Examples/Notebooks/Machine%20Learning.ipynb
+[Colab Machine Learning]: https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/main/Examples/Notebooks/Machine%20Learning.ipynb
 
 [Colab Badge]: https://colab.research.google.com/assets/colab-badge.svg "Run in Google Colab"
 [Colab Notebook Screenshot]: Notebooks.png "Colab Notebook Screenshot"

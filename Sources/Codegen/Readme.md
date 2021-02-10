@@ -76,9 +76,9 @@ The `Codegen` utility is exposed as a target in the package manifest file which 
 
 [Swift JSON]: https://t1.daumcdn.net/cfile/tistory/9905A133599248C827 "Swift & JSON"
 
-[Birds Eye View Diagram]: https://raw.githubusercontent.com/vojtamolda/Plotly.swift/master/Examples/Diagrams/Codegen%20-%20Bird%20Eye%20View.png "Birds Eye View Diagram"
-[Overview Diagram]: https://raw.githubusercontent.com/vojtamolda/Plotly.swift/master/Examples/Diagrams/Codegen%20-%20Overview.png "Overview Diagram"
-[Data Types Diagram]: https://raw.githubusercontent.com/vojtamolda/Plotly.swift/master/Examples/Diagrams/Codegen%20-%20Data%20Types.png "Data Types Diagram"
+[Birds Eye View Diagram]: https://raw.githubusercontent.com/vojtamolda/Plotly.swift/main/Examples/Diagrams/Codegen%20-%20Bird%20Eye%20View.png "Birds Eye View Diagram"
+[Overview Diagram]: https://raw.githubusercontent.com/vojtamolda/Plotly.swift/main/Examples/Diagrams/Codegen%20-%20Overview.png "Overview Diagram"
+[Data Types Diagram]: https://raw.githubusercontent.com/vojtamolda/Plotly.swift/main/Examples/Diagrams/Codegen%20-%20Data%20Types.png "Data Types Diagram"
 
 [Swift Standard Library]: https://developer.apple.com/documentation/swift/swift_standard_library
 [`Decodable`]: https://developer.apple.com/documentation/swift/decodable

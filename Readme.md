@@ -14,7 +14,7 @@
 
 The following code creates a combined line and bar plot and displays the figure.
 
-<img alt="Example" align="right" height="320" src="https://github.com/vojtamolda/Plotly.swift/blob/master/Examples/Example.png?raw=true">
+<img alt="Example" align="right" height="320" src="https://github.com/vojtamolda/Plotly.swift/blob/main/Examples/Example.png?raw=true">
 
 ```swift
  
@@ -78,7 +78,7 @@ Licensed under the MIT license. See [the text][License] for more details.
 [Plotly]: https://plot.ly/
 [Plotly.swift]: https://github.com/vojtamolda/Plotly.swift/
 
-[Build Badge]: https://img.shields.io/github/workflow/status/vojtamolda/Plotly.swift/Swift%20Package.svg "Build"
+[Build Badge]: https://img.shields.io/github/workflow/status/vojtamolda/Plotly.swift/Package.svg "Build"
 [Build]: https://github.com/vojtamolda/Plotly.swift/actions
 
 [Release Badge]: https://img.shields.io/github/v/release/vojtamolda/Plotly.swift.svg?color=lightgrey "Release"
@@ -88,7 +88,7 @@ Licensed under the MIT license. See [the text][License] for more details.
 [Contributions]: https://github.com/vojtamolda/Plotly.swift/issues
 
 [License Badge]: https://img.shields.io/github/license/vojtamolda/Plotly.swift.svg?color=yellow "MIT License"
-[License]: https://github.com/vojtamolda/Plotly.swift/blob/master/License.txt
+[License]: https://github.com/vojtamolda/Plotly.swift/blob/main/License.txt
 
 [Lifecycle Badge]: https://img.shields.io/badge/lifecycle-maturing-blue.svg "Lifecycle"
 [Lifecycle]: https://www.tidyverse.org/lifecycle/#maturing
@@ -100,16 +100,16 @@ Licensed under the MIT license. See [the text][License] for more details.
 [Swift for TensorFlow]: https://www.tensorflow.org/swift/
 
 [Colab Badge]: https://colab.research.google.com/assets/colab-badge.svg "Google Colab"
-[Colab Blank]: https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/master/Examples/Notebooks/Blank.ipynb 
-[`Showcase.ipynb`]: https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/master/Examples/Notebooks/Showcase.ipynb 
-[`Examples/`]: https://github.com/vojtamolda/Plotly.swift/blob/master/Examples/
+[Colab Blank]: https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/main/Examples/Notebooks/Blank.ipynb 
+[`Showcase.ipynb`]: https://colab.research.google.com/github/vojtamolda/Plotly.swift/blob/main/Examples/Notebooks/Showcase.ipynb 
+[`Examples/`]: https://github.com/vojtamolda/Plotly.swift/blob/main/Examples/
 [Jupyter Swift kernel]: https://github.com/google/swift-jupyter
 
 [Swift Package Manager]: https://swift.org/package-manager/
 [Swift API Design Guidelines]: https://swift.org/documentation/api-design-guidelines/
 
-[Code Generation]: https://github.com/vojtamolda/Plotly.swift/blob/master/Sources/Codegen/Readme.md
-[Internals]: https://github.com/vojtamolda/Plotly.swift/blob/master/Sources/Plotly/Readme.md
+[Code Generation]: https://github.com/vojtamolda/Plotly.swift/blob/main/Sources/Codegen/Readme.md
+[Internals]: https://github.com/vojtamolda/Plotly.swift/blob/main/Sources/Plotly/Readme.md
 
 [Reference Documentation]: https://vojtamolda.github.io/Plotly.swift/
 [Semantic Versioning]: https://semver.org/

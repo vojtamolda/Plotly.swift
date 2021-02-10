@@ -26,6 +26,6 @@ Nobody writes these so who would read them, right? For the time being this is th
 [Plotly.swift]: https://github.com/vojtamolda/Plotly.swift/
 [Plotly.js]: https://github.com/plotly/plotly.js/
 
-[`Sources/Codegen/`]: https://github.com/vojtamolda/Plotly.swift/tree/master/Sources/Codegen/
-[`Sources/Plotly/`]: https://github.com/vojtamolda/Plotly.swift/tree/master/Sources/Plotly/
-[`Tests/`]: https://github.com/vojtamolda/Plotly.swift/tree/master/Tests/
+[`Sources/Codegen/`]: https://github.com/vojtamolda/Plotly.swift/tree/main/Sources/Codegen/
+[`Sources/Plotly/`]: https://github.com/vojtamolda/Plotly.swift/tree/main/Sources/Plotly/
+[`Tests/`]: https://github.com/vojtamolda/Plotly.swift/tree/main/Tests/
