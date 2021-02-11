@@ -1,6 +1,5 @@
 import XCTest
 import Plotly
-import CSV
 
 
 // https://plot.ly/javascript/mixed-subplots/
@@ -25,10 +24,9 @@ final class MixedSubplotTests: XCTestCase {
 
     class func downloadVolcanos() -> [Volcano] {
         let url = URL(string: "https://raw.githubusercontent.com/plotly/datasets/master/volcano_db.csv")!
-        let contents = try! String(contentsOf: url, encoding: .ascii)
-        let reader = try! CSVReader(string: contents, hasHeaderRow: true)
-
-        return reader.map { _ in try! CSVRowDecoder().decode(Volcano.self, from: reader) }
+        let contents = try! Foundation.Data(contentsOf: url)
+        let decoder = CSVDecoder()
+        return try! decoder.decode([Volcano].self, from: contents, encoding: .ascii)
     }
 
     // https://plot.ly/javascript/mixed-subplots/#mixed-subplots

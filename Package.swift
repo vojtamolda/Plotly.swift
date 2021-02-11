@@ -1,5 +1,4 @@
 // swift-tools-version:5.1
-
 import PackageDescription
 
 
@@ -11,9 +10,6 @@ let package = Package(
             name: "Plotly",
             targets: ["Plotly"]),
     ],
-    dependencies: [
-        .package(url: "https://github.com/yaslab/CSV.swift.git", .upToNextMinor(from: "2.4.2"))
-    ],
     targets: [
         .target(
             name: "Plotly",
@@ -21,7 +17,7 @@ let package = Package(
             path: "Sources/Plotly"),
         .testTarget(
             name: "PlotlyTests",
-            dependencies: ["Plotly", "CSV"]),
+            dependencies: ["Plotly"]),
         .target(
             name: "codegen", 
             dependencies: [],

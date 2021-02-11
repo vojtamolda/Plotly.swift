@@ -1,6 +1,5 @@
 import XCTest
 import Plotly
-import CSV
 
 
 // https://plot.ly/javascript/table-subplots/
@@ -29,10 +28,9 @@ final class TableSubplotTests: XCTestCase {
 
     class func downloadTransactions() -> [Transaction] {
         let url = URL(string: "https://raw.githubusercontent.com/plotly/datasets/master/Mining-BTC-180.csv")!
-        let contents = try! String(contentsOf: url, encoding: .ascii)
-        let reader = try! CSVReader(string: contents, hasHeaderRow: true)
-
-        return reader.map { _ in try! CSVRowDecoder().decode(Transaction.self, from: reader) }
+        let contents = try! Data(contentsOf: url)
+        let decoder = CSVDecoder()
+        return try! decoder.decode([Transaction].self, from: contents, encoding: .utf8)
     }
 
     // https://plot.ly/javascript/table-subplots/#table-and-chart-subplot
@@ -91,8 +89,8 @@ final class TableSubplotTests: XCTestCase {
 
         let trace1 = Scatter(
             name: "Hash-rate-TH/s",
-            x: transactions.map { $0.date },
-            y: transactions.map { $0.hashRate },
+            x: transactions.map(\.date),
+            y: transactions.map(\.hashRate),
             mode: .lines,
             line: .init(
                 color: 0x9748a1,
@@ -128,8 +126,8 @@ final class TableSubplotTests: XCTestCase {
 
         let trace2 = Scatter(
             name: "Mining-revenue-USD",
-            x: transactions.map { $0.date },
-            y: transactions.map { $0.miningRevenueUSD },
+            x: transactions.map(\.date),
+            y: transactions.map(\.miningRevenueUSD),
             mode: .lines,
             line: .init(
                 color: 0xb04553,
@@ -166,8 +164,8 @@ final class TableSubplotTests: XCTestCase {
 
         let trace3 = Scatter(
             name: "Transaction-fees-BTC",
-            x: transactions.map { $0.date },
-            y: transactions.map { $0.transactionFeesBTC },
+            x: transactions.map(\.date),
+            y: transactions.map(\.transactionFeesBTC),
             mode: .lines,
             line: .init(
                 color: 0xaf7bbd,

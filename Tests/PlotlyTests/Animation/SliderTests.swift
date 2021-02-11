@@ -1,6 +1,6 @@
 import XCTest
 import Plotly
-import CSV
+
 
 
 /// https://plotly.com/python/sliders/
@@ -30,10 +30,9 @@ final class SliderTests: XCTestCase {
     
     class func downloadGapminder() -> [Country] {
         let url = URL(string: "https://raw.githubusercontent.com/plotly/datasets/master/gapminder_with_codes.csv")!
-        let contents = try! String(contentsOf: url, encoding: .ascii)
-        let reader = try! CSVReader(string: contents, hasHeaderRow: true)
-
-        return reader.map { _ in try! CSVRowDecoder().decode(Country.self, from: reader) }
+        let contents = try! Foundation.Data(contentsOf: url)
+        let decoder = CSVDecoder()
+        return try! decoder.decode([Country].self, from: contents, encoding: .utf8)
     }
     
     /// https://plotly.com/python/sliders/
