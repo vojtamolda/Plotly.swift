@@ -81,12 +81,24 @@ custom_categories:
     children:
       - Figure
       - Trace
-      - Layout
-      - Frame
       - Config
-      - Shared
-      - HTML
+      - Frame
       - Animation
+      - HTML
+      - JSON
+      - CSVDecoder
+
+  - name: Layout
+    children:
+      - Layout
+      - XAxis
+      - YAxis
+      - Polar
+      - Scene
+      - Mapbox
+      - Geo
+      - Ternary
+      - ColorAxis
 
   - name: Plotable
     children:
