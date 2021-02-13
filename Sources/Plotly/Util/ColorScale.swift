@@ -21,14 +21,14 @@
 /// ```
 /// let diverging = ColorScale.Diverging.swatch()
 /// // Also: Sequential, Cyclic, Ocean, Brewer, Carto, Plotly
-/// diverging.show()
+/// try diverging.show()
 /// ```
 ///
 /// Most popular color scales are exposed directly as static properties of `ColorScale` struct. The following
 /// code displays a swatch of the most frequent used scales:
 /// ```
 /// let frequent = ColorScale.swatch()
-/// frequent.show()
+/// try frequent.show()
 /// ```
 ///
 /// ## Custom Color Scales

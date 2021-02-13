@@ -25,7 +25,7 @@ public extension Trace {
     ///
     /// Here's a one-liner that shows a scatter trace:
     /// ```swift
-    /// Scatter(x: [1, 2, 3], y: [4, 6, 5]).show()
+    /// try Scatter(x: [1, 2, 3], y: [4, 6, 5]).show()
     /// ```
     ///
     /// - Parameters:
@@ -33,9 +33,9 @@ public extension Trace {
     ///   - config: Configuration of the figure, i.e. toolbar, watermark, scrolling, locale and more.
     @discardableResult
     @available(iOS 10.0, *)
-    func show(layout: Layout = Layout(), config: Config = Config()) -> Figure {
+    func show(layout: Layout = Layout(), config: Config = Config()) throws -> Figure {
         let figure = Figure(data: [self], layout: layout, config: config)
-        figure.show()
+        try figure.show()
         return figure
     }
 }
@@ -51,7 +51,7 @@ public extension Trace {
     ///
     /// Here's a example that displays a scatter trace:
     /// ```swift
-    /// Scatter(x: [1, 2, 3], y: [4, 6, 5]).display()
+    /// try Scatter(x: [1, 2, 3], y: [4, 6, 5]).display()
     /// ```
     ///
     /// - Important:
@@ -70,9 +70,9 @@ public extension Trace {
     ///   - layout: Settings affecting layout of the figure, i.e. subplots, axis, title and more.
     ///   - config: Configuration of the figure, i.e. toolbar, watermark, scrolling, locale and more.
     @discardableResult
-    func display(layout: Layout = Layout(), config: Config = Config()) -> Figure {
+    func display(layout: Layout = Layout(), config: Config = Config()) throws -> Figure {
         let figure = Figure(data: [self], layout: layout, config: config)
-        figure.display()
+        try figure.display()
         return figure
     }
 }

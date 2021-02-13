@@ -129,11 +129,11 @@ public struct Figure {
     /// ```swift
     /// let scatterTrace = Scatter(x: [1, 2, 3], y: [4, 6, 5])
     /// let figure = Figure(data: [scatterTrace])
-    /// figure.show()
+    /// try figure.show()
     /// ```
     @available(iOS 10.0, *)
-    public func show(javaScript bundle: HTML.JavaScriptBundleOption = .online) {
-        try! Browser.show(figure: self, javaScript: bundle)
+    public func show(javaScript bundle: HTML.JavaScriptBundleOption = .online) throws {
+        try Browser.show(figure: self, javaScript: bundle)
     }
 
     /// Writes chart to a URL using the specified format.
@@ -149,14 +149,15 @@ public struct Figure {
     ///   server and returns `<script>` tag with the file content.
     @available(iOS 11.0, *)
     public func write<T: StringProtocol>(toFile path: T, as format: Format = .HTML,
-                                         javaScript bundle: HTML.JavaScriptBundleOption = .online) {
+                                         javaScript bundle: HTML.JavaScriptBundleOption = .online)
+    throws {
         switch format {
         case .HTML:
-            let html = try! HTML.create(from: self, plotly: bundle, mathJax: bundle, document: true)
-            try! html.write(toFile: path, atomically: true, encoding: .utf8)
+            let html = try HTML.create(from: self, plotly: bundle, mathJax: bundle, document: true)
+            try html.write(toFile: path, atomically: true, encoding: .utf8)
         case .JSON:
-            let json = try! JSON.create(from: self, formatting: [.prettyPrinted, .sortedKeys])
-            try! json.write(toFile: path, atomically: true, encoding: .utf8)
+            let json = try JSON.create(from: self, formatting: [.prettyPrinted, .sortedKeys])
+            try json.write(toFile: path, atomically: true, encoding: .utf8)
         }
     }
 }
@@ -196,7 +197,7 @@ public extension Figure {
     /// ```swift
     /// let barTrace = Scatter(x: [1, 2, 3], y: [4, 6, 5])
     /// let scatterTrace = Scatter(x: [1, 2, 3], y: [4, 6, 5])
-    /// Figure(data: [barTrace, scatterTrace]).display()
+    /// try Figure(data: [barTrace, scatterTrace]).display()
     /// ```
     ///
     /// - Important:
@@ -210,9 +211,9 @@ public extension Figure {
     ///   There's more details in the `Workaround.ipynb` notebook. A Swift only solution that works locally in Jupyter breaks in
     ///   the Colab environment. For the time being, to make the display method work, the communication with the kernel has to
     ///   be routed via the Python bridge.
-    func display() {
-        let htmlContent = try! HTML.create(from: self, plotly: .online, mathJax: .online, document: false)
-        let iPythonDisplay = Python.import("IPython.display")
+    func display() throws {
+        let htmlContent = try HTML.create(from: self, plotly: .online, mathJax: .online, document: false)
+        let iPythonDisplay = try Python.attemptImport("IPython.display")
         iPythonDisplay[dynamicMember: "display"](iPythonDisplay.HTML(htmlContent))
     }
 }

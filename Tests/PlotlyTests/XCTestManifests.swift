@@ -47,23 +47,43 @@ public func allTests() -> [XCTestCaseEntry] {
 
 
 extension XCTestCase {
-    internal func output(_ figure: Figure) {
+    func output(_ figure: Figure) {
         var name = self.name.replacingOccurrences(of: "-", with: "")
         name = name.replacingOccurrences(of: "[", with: "")
         name = name.replacingOccurrences(of: "]", with: "")
         name = name.replacingOccurrences(of: " ", with: ".")
 
-        let htmlFile = URL(fileURLWithPath: "\(name).html")
-        figure.write(toFile: htmlFile.relativePath, as: .HTML, javaScript: .online)
+        #if os(Linux)
+            let htmlFile = URL(fileURLWithPath: "\(name).html")
+            try! figure.write(toFile: htmlFile.relativePath, as: .HTML, javaScript: .online)
 
-        let jsonFile = URL(fileURLWithPath: "\(name).json")
-        figure.write(toFile: jsonFile.relativePath, as: .JSON)
+            let jsonFile = URL(fileURLWithPath: "\(name).json")
+            try! figure.write(toFile: jsonFile.relativePath, as: .JSON)
+        #else
+            XCTContext.runActivity(named: name.suffix(after: ".")) { activity in
+                let htmlFile = URL(fileURLWithPath: "\(name).html")
+                try! figure.write(toFile: htmlFile.relativePath, as: .HTML, javaScript: .online)
 
-        #if !os(Linux)
-        if ProcessInfo.processInfo.environment["GITHUB_ACTIONS"] != "true" {
-            add(XCTAttachment(contentsOfFile: htmlFile))
-            add(XCTAttachment(contentsOfFile: jsonFile))
-        }
+                let jsonFile = URL(fileURLWithPath: "\(name).json")
+                try! figure.write(toFile: jsonFile.relativePath, as: .JSON)
+
+                if ProcessInfo.processInfo.environment["GITHUB_ACTIONS"] != "true" {
+                    activity.add(XCTAttachment(contentsOfFile: htmlFile))
+                    activity.add(XCTAttachment(contentsOfFile: jsonFile))
+                }
+            }
         #endif
+    }
+}
+
+
+// MARK: - Utilities
+
+fileprivate extension String {
+    func suffix(after element: Character = ".") -> String {
+        if let elementIndex = self.lastIndex(of: element) {
+            return String(self[index(after: elementIndex)...])
+        }
+        return self
     }
 }

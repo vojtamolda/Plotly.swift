@@ -28,7 +28,7 @@ let scatter = Scatter(name: "Scatter", x: x, y: y)
 let bar = Bar(name: "Bar", x: x, y: y)
  
 let figure = Figure(data: [scatter, bar])
-figure.show()  // figure.display() in Jupyter notebook
+try figure.show()  // figure.display() in Jupyter notebook
  
  
 ```

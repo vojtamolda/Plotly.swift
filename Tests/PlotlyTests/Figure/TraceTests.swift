@@ -7,8 +7,8 @@ final class TraceTests: XCTestCase {
         ("testShow", testShow)
     ]
 
-    func testShow() {
-        let figure = Scatter(
+    func testShow() throws {
+        let figure = try Scatter(
             x: [1.0, 2.0, 3.0, 4.0],
             y: [10.0, 15.0, 13.0, 17.0]
         ).show(
