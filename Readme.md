@@ -44,7 +44,7 @@ Project uses [Swift Package Manager] for distribution, building, running and tes
 To create a figure and display it in your notebook running a [Jupyter Swift kernel], copy and paste the following starter code to the first cell. Then use `Figure.display()` method to interactively embed any graph into the notebook.
 
 ```swift
-%install '.package(url: "https://github.com/vojtamolda/Plotly.swift.git", .exact("0.2.0"))' Plotly
+%install '.package(url: "https://github.com/vojtamolda/Plotly.swift.git", .exact("0.5.0"))' Plotly
 %include "EnableIPythonDisplay.swift"
 ```
 
@@ -53,7 +53,7 @@ To bundle the library and create charts in your own project, add the following d
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/vojtamolda/Plotly.swift.git", .exact("0.2.0")),
+    .package(url: "https://github.com/vojtamolda/Plotly.swift.git", .exact("0.5.0")),
 ]
 ```
 
