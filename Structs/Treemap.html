@@ -1,0 +1,3350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Treemap Structure Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/Treemap" class="dashAnchor"></a>
+    <a title="Treemap Structure Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Plotly.swift - Documentation (0.5.0)</a></p>
+        <p class="header-right"><a href="https://github.com/vojtamolda/Plotly.swift"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right"><a href="dash-feed://https%3A%2F%2Fvojtamolda.github.io%2FPlotly.swift%2Fdocsets%2FPlotly.xml"><img src="../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Plotly Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Treemap Structure Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Basic%20Traces.html">Basic Traces</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Scatter.html">Scatter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Scatter/GroupNormalization.html">– GroupNormalization</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Scatter/StackGaps.html">– StackGaps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Scatter/ShapedSmoothDashedLine.html">– ShapedSmoothDashedLine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Scatter/Selected.html">– Selected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Scatter/Unselected.html">– Unselected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterGL.html">ScatterGL</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterGL/ShapedDashedLine.html">– ShapedDashedLine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterGL/Selected.html">– Selected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterGL/Unselected.html">– Unselected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Bar.html">Bar</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Bar/Selected.html">– Selected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Bar/Unselected.html">– Unselected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Pie.html">Pie</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Pie/Marker.html">– Marker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Pie/TextInfo.html">– TextInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Pie/HoverInfo.html">– HoverInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Pie/InsideTextOrientation.html">– InsideTextOrientation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Pie/Title.html">– Title</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Pie/Direction.html">– Direction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Sunburst.html">Sunburst</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Sunburst/BranchValues.html">– BranchValues</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Sunburst/Count.html">– Count</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Sunburst/Marker.html">– Marker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Sunburst/Leaf.html">– Leaf</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Sunburst/TextInfo.html">– TextInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Sunburst/HoverInfo.html">– HoverInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Sunburst/InsideTextOrientation.html">– InsideTextOrientation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Sunburst/Root.html">– Root</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Sankey.html">Sankey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Sankey/HoverInfo.html">– HoverInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Sankey/Arrangement.html">– Arrangement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Sankey/Node.html">– Node</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Sankey/Link.html">– Link</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Treemap.html">Treemap</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Treemap/BranchValues.html">– BranchValues</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Treemap/Count.html">– Count</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Treemap/Tiling.html">– Tiling</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Treemap/Marker.html">– Marker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Treemap/PathBar.html">– PathBar</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Treemap/TextInfo.html">– TextInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Treemap/HoverInfo.html">– HoverInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Treemap/Root.html">– Root</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Image.html">Image</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Image/ColorModel.html">– ColorModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Image/HoverInfo.html">– HoverInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Table.html">Table</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Table/Header.html">– Header</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Table/Cells.html">– Cells</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Statistical%20Traces.html">Statistical Traces</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Box.html">Box</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Box/BoxPoints.html">– BoxPoints</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Box/BoxMean.html">– BoxMean</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Box/QuartileMethod.html">– QuartileMethod</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Box/SymbolicMarker.html">– SymbolicMarker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Box/Selected.html">– Selected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Box/Unselected.html">– Unselected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Box/HoverOn.html">– HoverOn</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Histogram.html">Histogram</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Histogram/Cumulative.html">– Cumulative</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Histogram/Selected.html">– Selected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Histogram/Unselected.html">– Unselected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Histogram2D.html">Histogram2D</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Histogram2D/Marker.html">– Marker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Histogram2D/ZSmooth.html">– ZSmooth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Histogram2DContour.html">Histogram2DContour</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Histogram2DContour/Marker.html">– Marker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Violin.html">Violin</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Violin/ScaleMode.html">– ScaleMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Violin/SpanMode.html">– SpanMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Violin/Points.html">– Points</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Violin/SymbolicMarker.html">– SymbolicMarker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Violin/Box.html">– Box</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Violin/MeanLine.html">– MeanLine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Violin/Side.html">– Side</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Violin/Selected.html">– Selected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Violin/Unselected.html">– Unselected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Violin/HoverOn.html">– HoverOn</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ParallelCategories.html">ParallelCategories</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ParallelCategories/HoverInfo.html">– HoverInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ParallelCategories/HoverOn.html">– HoverOn</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ParallelCategories/Arrangement.html">– Arrangement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ParallelCategories/SortPaths.html">– SortPaths</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ParallelCategories/Dimension.html">– Dimension</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ParallelCategories/ShapedMarkerLine.html">– ShapedMarkerLine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterPlotMatrix.html">ScatterPlotMatrix</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterPlotMatrix/Dimension.html">– Dimension</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterPlotMatrix/Diagonal.html">– Diagonal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterPlotMatrix/Selected.html">– Selected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterPlotMatrix/Unselected.html">– Unselected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PointCloud.html">PointCloud</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PointCloud/Marker.html">– Marker</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Scientific%20Traces.html">Scientific Traces</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Contour.html">Contour</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Carpet.html">Carpet</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Carpet/AAxis.html">– AAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Carpet/BAxis.html">– BAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ContourCarpet.html">ContourCarpet</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ContourCarpet/AType.html">– AType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ContourCarpet/BType.html">– BType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BarPolar.html">BarPolar</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BarPolar/Selected.html">– Selected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/BarPolar/Unselected.html">– Unselected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Heatmap.html">Heatmap</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Heatmap/ZSmooth.html">– ZSmooth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/HeatmapGL.html">HeatmapGL</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/HeatmapGL/ZSmooth.html">– ZSmooth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ParallelCoordinates.html">ParallelCoordinates</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ParallelCoordinates/LabelSide.html">– LabelSide</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ParallelCoordinates/Dimension.html">– Dimension</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ParallelCoordinates/MarkerLine.html">– MarkerLine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterPolar.html">ScatterPolar</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterPolar/Selected.html">– Selected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterPolar/Unselected.html">– Unselected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterCarpet.html">ScatterCarpet</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterCarpet/Selected.html">– Selected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterCarpet/Unselected.html">– Unselected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterCarpet/HoverInfo.html">– HoverInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterPolarGL.html">ScatterPolarGL</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterPolarGL/ShapedDashedLine.html">– ShapedDashedLine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterPolarGL/Selected.html">– Selected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterPolarGL/Unselected.html">– Unselected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterTernary.html">ScatterTernary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterTernary/Selected.html">– Selected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterTernary/Unselected.html">– Unselected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterTernary/HoverInfo.html">– HoverInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Indicator.html">Indicator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Indicator/Mode.html">– Mode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Indicator/Title.html">– Title</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Indicator/Number.html">– Number</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Indicator/Delta.html">– Delta</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Indicator/Gauge.html">– Gauge</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Financial%20Traces.html">Financial Traces</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Waterfall.html">Waterfall</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Waterfall/HoverInfo.html">– HoverInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Waterfall/TextInfo.html">– TextInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Waterfall/Increasing.html">– Increasing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Waterfall/Decreasing.html">– Decreasing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Waterfall/Totals.html">– Totals</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Waterfall/Connector.html">– Connector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Candlestick.html">Candlestick</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Candlestick/Line.html">– Line</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Candlestick/Increasing.html">– Increasing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Candlestick/Decreasing.html">– Decreasing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Candlestick/HoverLabel.html">– HoverLabel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FunnelArea.html">FunnelArea</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FunnelArea/Marker.html">– Marker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FunnelArea/TextInfo.html">– TextInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FunnelArea/HoverInfo.html">– HoverInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FunnelArea/TextPosition.html">– TextPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/FunnelArea/Title.html">– Title</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Funnel.html">Funnel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Funnel/HoverInfo.html">– HoverInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Funnel/TextInfo.html">– TextInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Funnel/Connector.html">– Connector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OHLC.html">OHLC</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OHLC/DashedLine.html">– DashedLine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OHLC/Increasing.html">– Increasing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OHLC/Decreasing.html">– Decreasing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OHLC/HoverLabel.html">– HoverLabel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Map%20Traces.html">Map Traces</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Choropleth.html">Choropleth</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Choropleth/LocationMode.html">– LocationMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Choropleth/Marker.html">– Marker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Choropleth/Selected.html">– Selected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Choropleth/Unselected.html">– Unselected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Choropleth/HoverInfo.html">– HoverInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ChoroplethMapbox.html">ChoroplethMapbox</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ChoroplethMapbox/Marker.html">– Marker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ChoroplethMapbox/Selected.html">– Selected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ChoroplethMapbox/Unselected.html">– Unselected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ChoroplethMapbox/HoverInfo.html">– HoverInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterGeo.html">ScatterGeo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterGeo/LocationMode.html">– LocationMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterGeo/GradientMarker.html">– GradientMarker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterGeo/Fill.html">– Fill</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterGeo/Selected.html">– Selected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterGeo/Unselected.html">– Unselected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterGeo/HoverInfo.html">– HoverInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterMapbox.html">ScatterMapbox</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterMapbox/SymbolicMarker.html">– SymbolicMarker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterMapbox/Fill.html">– Fill</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterMapbox/Selected.html">– Selected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterMapbox/Unselected.html">– Unselected</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ScatterMapbox/HoverInfo.html">– HoverInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DensityMapbox.html">DensityMapbox</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DensityMapbox/HoverInfo.html">– HoverInfo</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../3D%20Traces.html">3D Traces</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Scatter3D.html">Scatter3D</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Scatter3D/SurfaceAxis.html">– SurfaceAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Scatter3D/DashedMarkerLine.html">– DashedMarkerLine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Surface.html">Surface</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Surface/Contours.html">– Contours</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Surface/Lighting.html">– Lighting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Isosurface.html">Isosurface</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Isosurface/Surface.html">– Surface</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Isosurface/SpaceFrame.html">– SpaceFrame</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Isosurface/Slices.html">– Slices</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Isosurface/Caps.html">– Caps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Volume.html">Volume</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Volume/Surface.html">– Surface</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Volume/SpaceFrame.html">– SpaceFrame</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Volume/Slices.html">– Slices</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Volume/Caps.html">– Caps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StreamTube.html">StreamTube</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StreamTube/Starts.html">– Starts</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StreamTube/HoverInfo.html">– HoverInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Mesh3D.html">Mesh3D</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Mesh3D/DelaunayAxis.html">– DelaunayAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Mesh3D/IntensityMode.html">– IntensityMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Cone.html">Cone</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Cone/SizeMode.html">– SizeMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Cone/Anchor.html">– Anchor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Cone/HoverInfo.html">– HoverInfo</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Figure.html">Figure</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Figure.html">Figure</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Figure/Format.html">– Format</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Figure.html">Figure</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Trace.html">Trace</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Trace.html">Trace</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Config.html">Config</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Config/Edits.html">– Edits</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Config/ScrollZoom.html">– ScrollZoom</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Config/DoubleClick.html">– DoubleClick</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Config/DisplayModeBar.html">– DisplayModeBar</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Frame.html">Frame</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Animation.html">Animation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Animation/Mode.html">– Mode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Animation/Direction.html">– Direction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Animation/Frame.html">– Frame</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Animation/Transition.html">– Transition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/HTML.html">HTML</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/HTML/JavaScriptBundleOption.html">– JavaScriptBundleOption</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/CSVDecoder.html">CSVDecoder</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Layout.html">Layout</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Layout.html">Layout</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/WaterfallMode.html">– WaterfallMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/FunnelMode.html">– FunnelMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/ViolinMode.html">– ViolinMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/BoxMode.html">– BoxMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/BarMode.html">– BarMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/BarNormalization.html">– BarNormalization</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/Title.html">– Title</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/UniformText.html">– UniformText</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/Margin.html">– Margin</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/ModeBar.html">– ModeBar</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/NewShape.html">– NewShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/ActiveShape.html">– ActiveShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/Transition.html">– Transition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/ClickMode.html">– ClickMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/DragMode.html">– DragMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/HoverMode.html">– HoverMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/SelectDirection.html">– SelectDirection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/Grid.html">– Grid</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/Legend.html">– Legend</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/Annotation.html">– Annotation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/Shape.html">– Shape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/Image.html">– Image</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/UpdateMenu.html">– UpdateMenu</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/Slider.html">– Slider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Layout/ColorMap.html">– ColorMap</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XAxis.html">XAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XAxis/Title.html">– Title</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XAxis/Type.html">– Type</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XAxis/ScaleAnchor.html">– ScaleAnchor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XAxis/Constrain.html">– Constrain</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XAxis/ConstrainToward.html">– ConstrainToward</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XAxis/Matches.html">– Matches</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XAxis/RangeBreak.html">– RangeBreak</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XAxis/TicksOn.html">– TicksOn</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XAxis/TickLabelMode.html">– TickLabelMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XAxis/TickLabelPosition.html">– TickLabelPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XAxis/SpikeMode.html">– SpikeMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XAxis/SpikeSnap.html">– SpikeSnap</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XAxis/Anchor.html">– Anchor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XAxis/Side.html">– Side</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XAxis/Overlaying.html">– Overlaying</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XAxis/RangeSlider.html">– RangeSlider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/XAxis/RangeSelector.html">– RangeSelector</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/YAxis.html">YAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/YAxis/Title.html">– Title</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/YAxis/Type.html">– Type</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/YAxis/ScaleAnchor.html">– ScaleAnchor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/YAxis/Constrain.html">– Constrain</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/YAxis/ConstrainToward.html">– ConstrainToward</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/YAxis/Matches.html">– Matches</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/YAxis/RangeBreak.html">– RangeBreak</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/YAxis/TicksOn.html">– TicksOn</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/YAxis/TickLabelMode.html">– TickLabelMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/YAxis/TickLabelPosition.html">– TickLabelPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/YAxis/SpikeMode.html">– SpikeMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/YAxis/SpikeSnap.html">– SpikeSnap</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/YAxis/Anchor.html">– Anchor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/YAxis/Side.html">– Side</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/YAxis/Overlaying.html">– Overlaying</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Polar.html">Polar</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Polar/RadialAxis.html">– RadialAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Polar/AngularAxis.html">– AngularAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Polar/GridShape.html">– GridShape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Scene.html">Scene</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Scene/Camera.html">– Camera</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Scene/AspectMode.html">– AspectMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Scene/AspectRatio.html">– AspectRatio</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Scene/XAxis.html">– XAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Scene/YAxis.html">– YAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Scene/ZAxis.html">– ZAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Scene/DragMode.html">– DragMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Scene/HoverMode.html">– HoverMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Scene/Annotation.html">– Annotation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Mapbox.html">Mapbox</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Mapbox/Center.html">– Center</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Mapbox/Layer.html">– Layer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Geo.html">Geo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Geo/FitBounds.html">– FitBounds</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Geo/Resolution.html">– Resolution</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Geo/Scope.html">– Scope</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Geo/Projection.html">– Projection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Geo/Center.html">– Center</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Geo/LongitudeAxis.html">– LongitudeAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Geo/LatitudeAxis.html">– LatitudeAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Ternary.html">Ternary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Ternary/AAxis.html">– AAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Ternary/BAxis.html">– BAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Ternary/CAxis.html">– CAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ColorAxis.html">ColorAxis</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Plotable.html">Plotable</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Plotable.html">Plotable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Tensor.html">Tensor</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Utilities.html">Utilities</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Angle.html">Angle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Anything.html">Anything</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Color.html">Color</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Coloring.html">Coloring</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Utilities.html#/s:6Plotly9ColorLista">ColorList</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/ColorList.html">ColorList</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/ColorList/Brewer.html">– Brewer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/ColorList/Carto.html">– Carto</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/ColorList/Plotly.html">– Plotly</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ColorScale.html">ColorScale</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ColorScale/Ocean.html">– Ocean</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ColorScale/Brewer.html">– Brewer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ColorScale/Carto.html">– Carto</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ColorScale/Plotly.html">– Plotly</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ColorScale/Sequential.html">– Sequential</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ColorScale/Diverging.html">– Diverging</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ColorScale/Cyclical.html">– Cyclical</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/InfoArray.html">InfoArray</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Transforms.html">Transforms</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Transform.html">Transform</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Filter.html">Filter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Filter/Operation.html">– Operation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Aggregate.html">Aggregate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Aggregate/Aggregation.html">– Aggregation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GroupBy.html">GroupBy</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GroupBy/Style.html">– Style</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Sort.html">Sort</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Sort/Order.html">– Order</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other%20Enums.html">Other Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AdjacentPosition.html">AdjacentPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AreaFill.html">AreaFill</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AutoAlign.html">AutoAlign</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AutoRange.html">AutoRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AutoTypeNumbers.html">AutoTypeNumbers</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AxisLayer.html">AxisLayer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AxisType.html">AxisType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/BinningFunction.html">BinningFunction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CSVDecodingError.html">CSVDecodingError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Calendar.html">Calendar</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CarpetCategoryOrder.html">CarpetCategoryOrder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CategoryOrder.html">CategoryOrder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ConstrainText.html">ConstrainText</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Dash.html">Dash</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Easing.html">Easing</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ExponentFormat.html">ExponentFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Fill.html">Fill</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/HorizontalAlign.html">HorizontalAlign</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/InsideTextAnchor.html">InsideTextAnchor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LengthMode.html">LengthMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Mirror.html">Mirror</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Normalization.html">Normalization</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Operation.html">Operation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Orientation.html">Orientation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RangeMode.html">RangeMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Shape.html">Shape</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ShapeLayer.html">ShapeLayer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ShowExponent.html">ShowExponent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ShowTickPrefix.html">ShowTickPrefix</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ShowTickSuffix.html">ShowTickSuffix</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Side.html">Side</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SizeMode.html">SizeMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Symbol.html">Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TextPosition.html">TextPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ThetaUnit.html">ThetaUnit</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ThicknessMode.html">ThicknessMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TickLabelPosition.html">TickLabelPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TickMode.html">TickMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Ticks.html">Ticks</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Unused.html">Unused</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/VerticalAlign.html">VerticalAlign</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Visible.html">Visible</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/XAnchor.html">XAnchor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/XAutoAnchor.html">XAutoAnchor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/XAxisReference.html">XAxisReference</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/XPeriodAlignment.html">XPeriodAlignment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/YAnchor.html">YAnchor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/YAutoAnchor.html">YAutoAnchor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/YAxisReference.html">YAxisReference</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/YPeriodAlignment.html">YPeriodAlignment</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other%20Extensions.html">Other Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/ClosedRange.html">ClosedRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Range.html">Range</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/StrideThrough.html">StrideThrough</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/StrideTo.html">StrideTo</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Other%20Structs.html">Other Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Bins.html">Bins</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ColorBar.html">ColorBar</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ContourHover.html">ContourHover</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Contours.html">Contours</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Contours/Type.html">– Type</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Contours/Coloring.html">– Coloring</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DashedLine.html">DashedLine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Domain.html">Domain</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Error.html">Error</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Error/Type.html">– Type</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Font.html">Font</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Gradient.html">Gradient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Gradient/Type.html">– Type</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/GradientMarker.html">GradientMarker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/HoverInfo.html">HoverInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/HoverLabel.html">HoverLabel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/HoverOn.html">HoverOn</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LegendTitle.html">LegendTitle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LegendTitle/Side.html">– Side</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LightPosition.html">LightPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Lighting.html">Lighting</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Line.html">Line</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Marker.html">Marker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/MarkerLine.html">MarkerLine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Mode.html">Mode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OutsideTextFont.html">OutsideTextFont</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Padding.html">Padding</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PolarHoverInfo.html">PolarHoverInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Projection.html">Projection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Projection/X.html">– X</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Projection/Y.html">– Y</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Projection/Z.html">– Z</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ShapedSmoothDashedLine.html">ShapedSmoothDashedLine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SmoothDashedLine.html">SmoothDashedLine</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Stream.html">Stream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SymbolicMarker.html">SymbolicMarker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SymbolicMarker/Symbol.html">– Symbol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/TickFormatStop.html">TickFormatStop</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Title.html">Title</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VariableFont.html">VariableFont</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/VariableLine.html">VariableLine</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Treemap</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Treemap</span><span class="o">&lt;</span><span class="kt">ValuesData</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Trace.html">Trace</a></span><span class="p">,</span> <span class="kt">DomainSubplot</span> <span class="k">where</span> <span class="kt">ValuesData</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Plotable.html">Plotable</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>Visualize hierarchal data from leaves (and/or outer branches) towards root with rectangles.</p>
+
+<p>The treemap sectors are determined by the entries in <em>labels</em> or <em>ids</em> and in <em>parents</em>.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    Documentation for 
+<a href="https://plot.ly/python/reference/#treemap">Python</a>, 
+<a href="https://plot.ly/javascript/reference/#treemap">JavaScript</a> or 
+<a href="https://plot.ly/r/reference/#treemap">R</a>
+
+</div>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV4typeSSvp"></a>
+                    <a name="//apple_ref/swift/Property/type" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV4typeSSvp">type</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Corresponding <em>Plotly</em> trace type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV10animatableSbvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/animatable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV10animatableSbvpZ">animatable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Switch indicating whether the trace supports animation of its data.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">animatable</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV7visibleAA7VisibleOSgvp"></a>
+                    <a name="//apple_ref/swift/Property/visible" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV7visibleAA7VisibleOSgvp">visible</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines whether or not this trace is visible.</p>
+
+<p>If <em>legendonly</em>, the trace is not drawn, but can appear as a legend item (provided that the
+legend itself is visible).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">visible</span><span class="p">:</span> <span class="kt"><a href="../Enums/Visible.html">Visible</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV7opacitySdSgvp"></a>
+                    <a name="//apple_ref/swift/Property/opacity" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV7opacitySdSgvp">opacity</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the opacity of the trace.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">opacity</span><span class="p">:</span> <span class="kt">Double</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV4nameSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/name" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV4nameSSSgvp">name</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the trace name.</p>
+
+<p>The trace name appear as the legend item and on hover.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV3uidSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/uid" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV3uidSSSgvp">uid</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Assign an id to this trace, Use this to provide object constancy between traces during
+animations and transitions.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">uid</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV3idsSaySSGSgvp"></a>
+                    <a name="//apple_ref/swift/Property/ids" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV3idsSaySSGSgvp">ids</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Assigns id labels to each datum.</p>
+
+<p>These ids for object constancy of data points during animation. Should be an array of strings,
+not numbers or any other type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">ids</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV10customDataSaySSGSgvp"></a>
+                    <a name="//apple_ref/swift/Property/customData" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV10customDataSaySSGSgvp">customData</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Assigns extra data each datum.</p>
+
+<p>This may be useful when listening to hover, click and selection events. Note that, <em>scatter</em>
+traces also appends customdata items in the markers DOM elements</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">customData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV4metaAA4DataOyAA8AnythingOGSgvp"></a>
+                    <a name="//apple_ref/swift/Property/meta" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV4metaAA4DataOyAA8AnythingOGSgvp">meta</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Assigns extra meta information associated with this trace that can be used in various text
+attributes.</p>
+
+<p>Attributes such as trace <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV4nameSSSgvp">name</a></code>, graph, axis and colorbar <code>title.text</code>, annotation <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV4textAA4DataOySSGSgvp">text</a></code>
+<code>rangeselector</code>, <code>updatemenues</code> and <code>sliders</code> <code>label</code> text all support <code>meta</code>. To access the
+trace <code>meta</code> values in an attribute in the same trace, simply use <code>%{meta[i]}</code> where <code>i</code> is the
+index or key of the <code>meta</code> item in question. To access trace <code>meta</code> in layout attributes, use
+<code>%{data[n[.meta[i]}</code> where <code>i</code> is the index or key of the <code>meta</code> and <code>n</code> is the trace index.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">meta</span><span class="p">:</span> <span class="kt"><a href="../Enums/Data.html">Data</a></span><span class="o">&lt;</span><span class="kt"><a href="../Enums/Anything.html">Anything</a></span><span class="o">&gt;</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV10hoverLabelAA05HoverD0VSgvp"></a>
+                    <a name="//apple_ref/swift/Property/hoverLabel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV10hoverLabelAA05HoverD0VSgvp">hoverLabel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hoverLabel</span><span class="p">:</span> <span class="kt"><a href="../Structs/HoverLabel.html">HoverLabel</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV6streamAA6StreamVSgvp"></a>
+                    <a name="//apple_ref/swift/Property/stream" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV6streamAA6StreamVSgvp">stream</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">stream</span><span class="p">:</span> <span class="kt"><a href="../Structs/Stream.html">Stream</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV10transformsSayAA9Transform_pGvp"></a>
+                    <a name="//apple_ref/swift/Property/transforms" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV10transformsSayAA9Transform_pGvp">transforms</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">transforms</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Transform.html">Transform</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV10uiRevisionAA8AnythingOSgvp"></a>
+                    <a name="//apple_ref/swift/Property/uiRevision" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV10uiRevisionAA8AnythingOSgvp">uiRevision</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Controls persistence of some user-driven changes to the trace: <code>constraintrange</code> in <code>parcoords</code>
+traces, as well as some <code>editable: true</code> modifications such as <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV4nameSSSgvp">name</a></code> and <code>colorbar.title</code>.</p>
+
+<p>Defaults to <code>layout.uirevision</code>. Note that other user-driven trace attribute changes are
+controlled by <code>layout</code> attributes: <code>trace.visible</code> is controlled by <code>layout.legend.uirevision</code>,
+<code>selectedpoints</code> is controlled by <code>layout.selectionrevision</code>, and <code>colorbar.(x|y)</code> (accessible
+with <code>config: {editable: true}</code>) is controlled by <code>layout.editrevision</code>. Trace changes are
+tracked by <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV3uidSSSgvp">uid</a></code>, which only falls back on trace index if no <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV3uidSSSgvp">uid</a></code> is provided. So if your app
+can add/remove traces before the end of the <code>data</code> array, such that the same trace has a
+different index, you can still preserve user-driven changes if you give each trace a <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV3uidSSSgvp">uid</a></code> that
+stays with it as it moves.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">uiRevision</span><span class="p">:</span> <span class="kt"><a href="../Enums/Anything.html">Anything</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV6labelsSaySSGSgvp"></a>
+                    <a name="//apple_ref/swift/Property/labels" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV6labelsSaySSGSgvp">labels</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the labels of each of the sectors.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">labels</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV7parentsSaySSGSgvp"></a>
+                    <a name="//apple_ref/swift/Property/parents" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV7parentsSaySSGSgvp">parents</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the parent sectors for each of the sectors.</p>
+
+<p>Empty string items &ldquo; are understood to reference the root node in the hierarchy. If <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV3idsSaySSGSgvp">ids</a></code> is
+filled, <code>parents</code> items are understood to be &quot;ids&rdquo; themselves. When <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV3idsSaySSGSgvp">ids</a></code> is not set, plotly
+attempts to find matching items in <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV6labelsSaySSGSgvp">labels</a></code>, but beware they must be unique.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">parents</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV6valuesxSgvp"></a>
+                    <a name="//apple_ref/swift/Property/values" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV6valuesxSgvp">values</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the values associated with each of the sectors.</p>
+
+<p>Use with <code>branchvalues</code> to determine how the values are summed.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">values</span><span class="p">:</span> <span class="kt">ValuesData</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV12BranchValuesO"></a>
+                    <a name="//apple_ref/swift/Enum/BranchValues" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV12BranchValuesO">BranchValues</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines how the items in <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV6valuesxSgvp">values</a></code> are summed.</p>
+
+<p>When set to <em>total</em>, items in <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV6valuesxSgvp">values</a></code> are taken to be value of all its descendants. When set to
+<em>remainder</em>, items in <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV6valuesxSgvp">values</a></code> corresponding to the root and the branches sectors are taken to
+be the extra part not part of the sum of the values at their leaves.</p>
+
+                        <a href="../Structs/Treemap/BranchValues.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">BranchValues</span> <span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">Encodable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV12branchValuesAC06BranchD0Oyx_GSgvp"></a>
+                    <a name="//apple_ref/swift/Property/branchValues" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV12branchValuesAC06BranchD0Oyx_GSgvp">branchValues</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines how the items in <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV6valuesxSgvp">values</a></code> are summed.</p>
+
+<p>When set to <em>total</em>, items in <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV6valuesxSgvp">values</a></code> are taken to be value of all its descendants. When set to
+<em>remainder</em>, items in <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV6valuesxSgvp">values</a></code> corresponding to the root and the branches sectors are taken to
+be the extra part not part of the sum of the values at their leaves.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">branchValues</span><span class="p">:</span> <span class="kt"><a href="../Structs/Treemap/BranchValues.html">BranchValues</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV5CountV"></a>
+                    <a name="//apple_ref/swift/Struct/Count" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV5CountV">Count</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines default for <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV6valuesxSgvp">values</a></code> when it is not provided, by inferring a 1 for each of the
+<em>leaves</em> and/or <em>branches</em>, otherwise 0.</p>
+
+                        <a href="../Structs/Treemap/Count.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Count</span> <span class="p">:</span> <span class="kt">OptionSet</span><span class="p">,</span> <span class="kt">Encodable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV5countAC5CountVyx_GSgvp"></a>
+                    <a name="//apple_ref/swift/Property/count" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV5countAC5CountVyx_GSgvp">count</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines default for <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV6valuesxSgvp">values</a></code> when it is not provided, by inferring a 1 for each of the
+<em>leaves</em> and/or <em>branches</em>, otherwise 0.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">count</span><span class="p">:</span> <span class="kt"><a href="../Structs/Treemap/Count.html">Count</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV5levelAA8AnythingOSgvp"></a>
+                    <a name="//apple_ref/swift/Property/level" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV5levelAA8AnythingOSgvp">level</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the level from which this trace hierarchy is rendered.</p>
+
+<p>Set <code>level</code> to <code>&#39;&#39;</code> to start from the root node in the hierarchy. Must be an &ldquo;id&rdquo; if <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV3idsSaySSGSgvp">ids</a></code> is
+filled in, otherwise plotly attempts to find a matching item in <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV6labelsSaySSGSgvp">labels</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">level</span><span class="p">:</span> <span class="kt"><a href="../Enums/Anything.html">Anything</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV8maxDepthSiSgvp"></a>
+                    <a name="//apple_ref/swift/Property/maxDepth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV8maxDepthSiSgvp">maxDepth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the number of rendered sectors from any given <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV5levelAA8AnythingOSgvp">level</a></code>.</p>
+
+<p>Set <code>maxdepth</code> to <em>-1</em> to render all the levels in the hierarchy.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxDepth</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV6TilingV"></a>
+                    <a name="//apple_ref/swift/Struct/Tiling" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV6TilingV">Tiling</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="../Structs/Treemap/Tiling.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Tiling</span> <span class="p">:</span> <span class="kt">Encodable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV6tilingAC6TilingVyx_GSgvp"></a>
+                    <a name="//apple_ref/swift/Property/tiling" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV6tilingAC6TilingVyx_GSgvp">tiling</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">tiling</span><span class="p">:</span> <span class="kt"><a href="../Structs/Treemap/Tiling.html">Tiling</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV6MarkerV"></a>
+                    <a name="//apple_ref/swift/Struct/Marker" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV6MarkerV">Marker</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="../Structs/Treemap/Marker.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Marker</span> <span class="p">:</span> <span class="kt">Encodable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV6markerAC6MarkerVyx_GSgvp"></a>
+                    <a name="//apple_ref/swift/Property/marker" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV6markerAC6MarkerVyx_GSgvp">marker</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">marker</span><span class="p">:</span> <span class="kt"><a href="../Structs/Treemap/Marker.html">Marker</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV7PathBarV"></a>
+                    <a name="//apple_ref/swift/Struct/PathBar" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV7PathBarV">PathBar</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="../Structs/Treemap/PathBar.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">PathBar</span> <span class="p">:</span> <span class="kt">Encodable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV7pathBarAC04PathD0Vyx_GSgvp"></a>
+                    <a name="//apple_ref/swift/Property/pathBar" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV7pathBarAC04PathD0Vyx_GSgvp">pathBar</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">pathBar</span><span class="p">:</span> <span class="kt"><a href="../Structs/Treemap/PathBar.html">PathBar</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV4textAA4DataOySSGSgvp"></a>
+                    <a name="//apple_ref/swift/Property/text" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV4textAA4DataOySSGSgvp">text</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets text elements associated with each sector.</p>
+
+<p>If trace <code>textinfo</code> contains a <em>text</em> flag, these elements will be seen on the chart. If trace
+<code>hoverinfo</code> contains a <em>text</em> flag and <em>hovertext</em> is not set, these elements will be seen in
+the hover labels.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">text</span><span class="p">:</span> <span class="kt"><a href="../Enums/Data.html">Data</a></span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV8TextInfoV"></a>
+                    <a name="//apple_ref/swift/Struct/TextInfo" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV8TextInfoV">TextInfo</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines which trace information appear on the graph.</p>
+
+                        <a href="../Structs/Treemap/TextInfo.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">TextInfo</span> <span class="p">:</span> <span class="kt">OptionSet</span><span class="p">,</span> <span class="kt">Encodable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV8textInfoAC04TextD0Vyx_GSgvp"></a>
+                    <a name="//apple_ref/swift/Property/textInfo" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV8textInfoAC04TextD0Vyx_GSgvp">textInfo</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines which trace information appear on the graph.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">textInfo</span><span class="p">:</span> <span class="kt"><a href="../Structs/Treemap/TextInfo.html">TextInfo</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV12textTemplateAA4DataOySSGSgvp"></a>
+                    <a name="//apple_ref/swift/Property/textTemplate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV12textTemplateAA4DataOySSGSgvp">textTemplate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Template string used for rendering the information text that appear on points.</p>
+
+<p>Note that this will override <code>textinfo</code>. Variables are inserted using %{variable}, for example
+&ldquo;y: %{y}&rdquo;. Numbers are formatted using d3-format&rsquo;s syntax %{variable:d3-format}, for example
+&ldquo;Price: %{y:$.2f}&rdquo;.
+<a href="https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format">https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format</a> for details on
+the formatting syntax. Dates are formatted using d3-time-format&rsquo;s syntax
+%{variable|d3-time-format}, for example &ldquo;Day: %{2019-01-01|%A}&rdquo;.
+<a href="https://github.com/d3/d3-time-format#locale_format">https://github.com/d3/d3-time-format#locale_format</a> for details on the date formatting syntax.
+Every attributes that can be specified per-point (the ones that are <code>arrayOk: true</code>) are
+available. variables <code>currentPath</code>, <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV4rootAC4RootVyx_GSgvp">root</a></code>, <code>entry</code>, <code>percentRoot</code>, <code>percentEntry</code>,
+<code>percentParent</code>, <code>label</code> and <code>value</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">textTemplate</span><span class="p">:</span> <span class="kt"><a href="../Enums/Data.html">Data</a></span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV9hoverTextAA4DataOySSGSgvp"></a>
+                    <a name="//apple_ref/swift/Property/hoverText" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV9hoverTextAA4DataOySSGSgvp">hoverText</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets hover text elements associated with each sector.</p>
+
+<p>If a single string, the same string appears for all data points. If an array of string, the
+items are mapped in order of this trace&rsquo;s sectors. To be seen, trace <code>hoverinfo</code> must contain a
+<em>text</em> flag.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hoverText</span><span class="p">:</span> <span class="kt"><a href="../Enums/Data.html">Data</a></span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV9HoverInfoV"></a>
+                    <a name="//apple_ref/swift/Struct/HoverInfo" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV9HoverInfoV">HoverInfo</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines which trace information appear on hover.</p>
+
+<p>If <code>none</code> or <code>skip</code> are set, no information is displayed upon hovering. But, if <code>none</code> is set,
+click and hover events are still fired.</p>
+
+                        <a href="../Structs/Treemap/HoverInfo.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">HoverInfo</span> <span class="p">:</span> <span class="kt">OptionSet</span><span class="p">,</span> <span class="kt">Encodable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV9hoverInfoAC05HoverD0Vyx_GSgvp"></a>
+                    <a name="//apple_ref/swift/Property/hoverInfo" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV9hoverInfoAC05HoverD0Vyx_GSgvp">hoverInfo</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines which trace information appear on hover.</p>
+
+<p>If <code>none</code> or <code>skip</code> are set, no information is displayed upon hovering. But, if <code>none</code> is set,
+click and hover events are still fired.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hoverInfo</span><span class="p">:</span> <span class="kt"><a href="../Structs/Treemap/HoverInfo.html">HoverInfo</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV13hoverTemplateAA4DataOySSGSgvp"></a>
+                    <a name="//apple_ref/swift/Property/hoverTemplate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV13hoverTemplateAA4DataOySSGSgvp">hoverTemplate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Template string used for rendering the information that appear on hover box.</p>
+
+<p>Note that this will override <code>hoverinfo</code>. Variables are inserted using %{variable}, for example
+&ldquo;y: %{y}&rdquo;. Numbers are formatted using d3-format&rsquo;s syntax %{variable:d3-format}, for example
+&ldquo;Price: %{y:$.2f}&rdquo;.
+<a href="https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format">https://github.com/d3/d3-3.x-api-reference/blob/master/Formatting.md#d3_format</a> for details on
+the formatting syntax. Dates are formatted using d3-time-format&rsquo;s syntax
+%{variable|d3-time-format}, for example &ldquo;Day: %{2019-01-01|%A}&rdquo;.
+<a href="https://github.com/d3/d3-time-format#locale_format">https://github.com/d3/d3-time-format#locale_format</a> for details on the date formatting syntax.
+The variables available in <code>hovertemplate</code> are the ones emitted as event data described at this
+link <a href="https://plotly.com/javascript/plotlyjs-events/#event-data">https://plotly.com/javascript/plotlyjs-events/#event-data</a>. Additionally, every attributes
+that can be specified per-point (the ones that are <code>arrayOk: true</code>) are available. variables
+<code>currentPath</code>, <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV4rootAC4RootVyx_GSgvp">root</a></code>, <code>entry</code>, <code>percentRoot</code>, <code>percentEntry</code> and <code>percentParent</code>. Anything
+contained in tag <code>&lt;extra&gt;</code> is displayed in the secondary box, for example
+&ldquo;<extra>{fullData.name}</extra>&rdquo;. To hide the secondary box completely, use an empty tag
+<code>&lt;extra&gt;&lt;/extra&gt;</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hoverTemplate</span><span class="p">:</span> <span class="kt"><a href="../Enums/Data.html">Data</a></span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV8textFontAA08VariableD0VSgvp"></a>
+                    <a name="//apple_ref/swift/Property/textFont" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV8textFontAA08VariableD0VSgvp">textFont</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the font used for <code>textinfo</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">textFont</span><span class="p">:</span> <span class="kt"><a href="../Structs/VariableFont.html">VariableFont</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV14insideTextFontAA08VariableE0VSgvp"></a>
+                    <a name="//apple_ref/swift/Property/insideTextFont" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV14insideTextFontAA08VariableE0VSgvp">insideTextFont</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the font used for <code>textinfo</code> lying inside the sector.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">insideTextFont</span><span class="p">:</span> <span class="kt"><a href="../Structs/VariableFont.html">VariableFont</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV15outsideTextFontAA07OutsidedE0VSgvp"></a>
+                    <a name="//apple_ref/swift/Property/outsideTextFont" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV15outsideTextFontAA07OutsidedE0VSgvp">outsideTextFont</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the font used for <code>textinfo</code> lying outside the sector.</p>
+
+<p>This option refers to the root of the hierarchy presented on top left corner of a treemap graph.
+Please note that if a hierarchy has multiple root nodes, this option won&rsquo;t have any effect and
+<code>insidetextfont</code> would be used.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">outsideTextFont</span><span class="p">:</span> <span class="kt"><a href="../Structs/OutsideTextFont.html">OutsideTextFont</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV12textPositionAA04TextD0OSgvp"></a>
+                    <a name="//apple_ref/swift/Property/textPosition" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV12textPositionAA04TextD0OSgvp">textPosition</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the positions of the <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV4textAA4DataOySSGSgvp">text</a></code> elements.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">textPosition</span><span class="p">:</span> <span class="kt"><a href="../Enums/TextPosition.html">TextPosition</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV4sortSbSgvp"></a>
+                    <a name="//apple_ref/swift/Property/sort" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV4sortSbSgvp">sort</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Determines whether or not the sectors are reordered from largest to smallest.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">sort</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV4RootV"></a>
+                    <a name="//apple_ref/swift/Struct/Root" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV4RootV">Root</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="../Structs/Treemap/Root.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Root</span> <span class="p">:</span> <span class="kt">Encodable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV4rootAC4RootVyx_GSgvp"></a>
+                    <a name="//apple_ref/swift/Property/root" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV4rootAC4RootVyx_GSgvp">root</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">root</span><span class="p">:</span> <span class="kt"><a href="../Structs/Treemap/Root.html">Root</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly13DomainSubplotP6domainAA0B0VSgvp"></a>
+                    <a name="//apple_ref/swift/Property/domain" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly13DomainSubplotP6domainAA0B0VSgvp">domain</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">domain</span><span class="p">:</span> <span class="kt"><a href="../Structs/Domain.html">Domain</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV4name6values6marker4text9hoverTextACyxGSSSg_xSgAC6MarkerVyx_GSgAA4DataOySSGSgAStcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(name:values:marker:text:hoverText:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV4name6values6marker4text9hoverTextACyxGSSSg_xSgAC6MarkerVyx_GSgAA4DataOySSGSgAStcfc">init(name:<wbr>values:<wbr>marker:<wbr>text:<wbr>hoverText:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates <code>Treemap</code> object from the most frequently used properties.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">values</span><span class="p">:</span> <span class="kt">ValuesData</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">marker</span><span class="p">:</span> <span class="kt"><a href="../Structs/Treemap/Marker.html">Marker</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span>
+        <span class="kt"><a href="../Enums/Data.html">Data</a></span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">hoverText</span><span class="p">:</span> <span class="kt"><a href="../Enums/Data.html">Data</a></span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets the trace name.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>values</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets the values associated with each of the sectors.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>marker</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>text</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets text elements associated with each sector.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>hoverText</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets hover text elements associated with each sector.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV7visible7opacity4name3uid3ids10customData4meta10hoverLabel6stream10transforms10uiRevision6labels7parents6values12branchValues5count5level8maxDepth6tiling6marker7pathBar4text8textInfo12textTemplate0K4Text0K4Info0K8Template8textFont14insideTextFont15outsideTextFont12textPosition4sort4root6domainACyxGAA7VisibleOSg_SdSgSSSgA15_SaySSGSgA17_AA0I0OyAA8AnythingOGSgAA05HoverL0VSgAA6StreamVSgSayAA9Transform_pGA21_SgA17_A17_xSgAC06BranchU0Oyx_GSgAC5CountVyx_GSgA32_SiSgAC6TilingVyx_GSgAC6MarkerVyx_GSgAC7PathBarVyx_GSgA19_ySSGSgAC8TextInfoVyx_GSgA56_A56_AC9HoverInfoVyx_GSgA56_AA12VariableFontVSgA67_AA15OutsideTextFontVSgAA12TextPositionOSgSbSgAC4RootVyx_GSgAA6DomainVSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(visible:opacity:name:uid:ids:customData:meta:hoverLabel:stream:transforms:uiRevision:labels:parents:values:branchValues:count:level:maxDepth:tiling:marker:pathBar:text:textInfo:textTemplate:hoverText:hoverInfo:hoverTemplate:textFont:insideTextFont:outsideTextFont:textPosition:sort:root:domain:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV7visible7opacity4name3uid3ids10customData4meta10hoverLabel6stream10transforms10uiRevision6labels7parents6values12branchValues5count5level8maxDepth6tiling6marker7pathBar4text8textInfo12textTemplate0K4Text0K4Info0K8Template8textFont14insideTextFont15outsideTextFont12textPosition4sort4root6domainACyxGAA7VisibleOSg_SdSgSSSgA15_SaySSGSgA17_AA0I0OyAA8AnythingOGSgAA05HoverL0VSgAA6StreamVSgSayAA9Transform_pGA21_SgA17_A17_xSgAC06BranchU0Oyx_GSgAC5CountVyx_GSgA32_SiSgAC6TilingVyx_GSgAC6MarkerVyx_GSgAC7PathBarVyx_GSgA19_ySSGSgAC8TextInfoVyx_GSgA56_A56_AC9HoverInfoVyx_GSgA56_AA12VariableFontVSgA67_AA15OutsideTextFontVSgAA12TextPositionOSgSbSgAC4RootVyx_GSgAA6DomainVSgtcfc">init(visible:<wbr>opacity:<wbr>name:<wbr>uid:<wbr>ids:<wbr>customData:<wbr>meta:<wbr>hoverLabel:<wbr>stream:<wbr>transforms:<wbr>uiRevision:<wbr>labels:<wbr>parents:<wbr>values:<wbr>branchValues:<wbr>count:<wbr>level:<wbr>maxDepth:<wbr>tiling:<wbr>marker:<wbr>pathBar:<wbr>text:<wbr>textInfo:<wbr>textTemplate:<wbr>hoverText:<wbr>hoverInfo:<wbr>hoverTemplate:<wbr>textFont:<wbr>insideTextFont:<wbr>outsideTextFont:<wbr>textPosition:<wbr>sort:<wbr>root:<wbr>domain:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates <code>Treemap</code> object with specified properties.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">visible</span><span class="p">:</span> <span class="kt"><a href="../Enums/Visible.html">Visible</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">opacity</span><span class="p">:</span> <span class="kt">Double</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">uid</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span>
+        <span class="kc">nil</span><span class="p">,</span> <span class="nv">ids</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">customData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">meta</span><span class="p">:</span> <span class="kt"><a href="../Enums/Data.html">Data</a></span><span class="o">&lt;</span><span class="kt"><a href="../Enums/Anything.html">Anything</a></span><span class="o">&gt;</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">hoverLabel</span><span class="p">:</span>
+        <span class="kt"><a href="../Structs/HoverLabel.html">HoverLabel</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">stream</span><span class="p">:</span> <span class="kt"><a href="../Structs/Stream.html">Stream</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">transforms</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Protocols/Transform.html">Transform</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="nv">uiRevision</span><span class="p">:</span> <span class="kt"><a href="../Enums/Anything.html">Anything</a></span><span class="p">?</span> <span class="o">=</span>
+        <span class="kc">nil</span><span class="p">,</span> <span class="nv">labels</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">parents</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">values</span><span class="p">:</span> <span class="kt">ValuesData</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">branchValues</span><span class="p">:</span>
+        <span class="kt"><a href="../Structs/Treemap/BranchValues.html">BranchValues</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">count</span><span class="p">:</span> <span class="kt"><a href="../Structs/Treemap/Count.html">Count</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">level</span><span class="p">:</span> <span class="kt"><a href="../Enums/Anything.html">Anything</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">maxDepth</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">tiling</span><span class="p">:</span>
+        <span class="kt"><a href="../Structs/Treemap/Tiling.html">Tiling</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">marker</span><span class="p">:</span> <span class="kt"><a href="../Structs/Treemap/Marker.html">Marker</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">pathBar</span><span class="p">:</span> <span class="kt"><a href="../Structs/Treemap/PathBar.html">PathBar</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">text</span><span class="p">:</span> <span class="kt"><a href="../Enums/Data.html">Data</a></span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+        <span class="nv">textInfo</span><span class="p">:</span> <span class="kt"><a href="../Structs/Treemap/TextInfo.html">TextInfo</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">textTemplate</span><span class="p">:</span> <span class="kt"><a href="../Enums/Data.html">Data</a></span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">hoverText</span><span class="p">:</span> <span class="kt"><a href="../Enums/Data.html">Data</a></span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+        <span class="nv">hoverInfo</span><span class="p">:</span> <span class="kt"><a href="../Structs/Treemap/HoverInfo.html">HoverInfo</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">hoverTemplate</span><span class="p">:</span> <span class="kt"><a href="../Enums/Data.html">Data</a></span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">textFont</span><span class="p">:</span> <span class="kt"><a href="../Structs/VariableFont.html">VariableFont</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+        <span class="nv">insideTextFont</span><span class="p">:</span> <span class="kt"><a href="../Structs/VariableFont.html">VariableFont</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">outsideTextFont</span><span class="p">:</span> <span class="kt"><a href="../Structs/OutsideTextFont.html">OutsideTextFont</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">textPosition</span><span class="p">:</span>
+        <span class="kt"><a href="../Enums/TextPosition.html">TextPosition</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">sort</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">root</span><span class="p">:</span> <span class="kt"><a href="../Structs/Treemap/Root.html">Root</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">domain</span><span class="p">:</span> <span class="kt"><a href="../Structs/Domain.html">Domain</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>visible</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Determines whether or not this trace is visible.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>opacity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets the opacity of the trace.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets the trace name.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>uid</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Assign an id to this trace, Use this to provide object constancy between traces during
+animations and transitions.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ids</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Assigns id labels to each datum.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>customData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Assigns extra data each datum.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>meta</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Assigns extra meta information associated with this trace that can be used in various
+text attributes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>hoverLabel</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>stream</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>transforms</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>uiRevision</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Controls persistence of some user-driven changes to the trace: <code>constraintrange</code>
+in <code>parcoords</code> traces, as well as some <code>editable: true</code> modifications such as <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV4nameSSSgvp">name</a></code> and
+<code>colorbar.title</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>labels</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets the labels of each of the sectors.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>parents</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets the parent sectors for each of the sectors.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>values</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets the values associated with each of the sectors.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>branchValues</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Determines how the items in <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV6valuesxSgvp">values</a></code> are summed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>count</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Determines default for <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV6valuesxSgvp">values</a></code> when it is not provided, by inferring a 1 for each of
+the <em>leaves</em> and/or <em>branches</em>, otherwise 0.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>level</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets the level from which this trace hierarchy is rendered.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>maxDepth</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets the number of rendered sectors from any given <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV5levelAA8AnythingOSgvp">level</a></code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tiling</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>marker</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pathBar</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>text</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets text elements associated with each sector.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>textInfo</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Determines which trace information appear on the graph.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>textTemplate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Template string used for rendering the information text that appear on points.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>hoverText</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets hover text elements associated with each sector.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>hoverInfo</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Determines which trace information appear on hover.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>hoverTemplate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Template string used for rendering the information that appear on hover box.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>textFont</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets the font used for <code>textinfo</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insideTextFont</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets the font used for <code>textinfo</code> lying inside the sector.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>outsideTextFont</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets the font used for <code>textinfo</code> lying outside the sector.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>textPosition</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Sets the positions of the <code><a href="../Structs/Treemap.html#/s:6Plotly7TreemapV4textAA4DataOySSGSgvp">text</a></code> elements.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sort</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Determines whether or not the sectors are reordered from largest to smallest.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>root</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>domain</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Plotly7TreemapV6encode2toys7Encoder_p_tKF"></a>
+                    <a name="//apple_ref/swift/Method/encode(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Plotly7TreemapV6encode2toys7Encoder_p_tKF">encode(to:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Encodes the object in a format compatible with Plotly.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="n">to</span> <span class="nv">encoder</span><span class="p">:</span> <span class="kt">Encoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="http://github.com/vojtamolda" target="_blank" rel="external">Vojta Molda</a>. All rights reserved. (Last updated: 2021-02-13)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
